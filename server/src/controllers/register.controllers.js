@@ -1,13 +1,15 @@
-import db from "./config/db.js";
+import db from "../db/db.js";
 // import pg from "pg";
 // import express from "express";
 // import loginData from "./index";
 import bcrypt from "bcrypt";
-import {otp} from "./otpGenerator.js"
+// import {otp} from "./otpGenerator.js"
 
 const saltround = 10;
 
-export async function register(email, username, password) {
+export async function register(req,res,next) {
+  const {email, username, password} = req.body
+  
   try {
     const checkEmail = await db.query("SELECT * FROM users WHERE email=$1", [
       email,
@@ -16,11 +18,12 @@ export async function register(email, username, password) {
       "SELECT * FROM users WHERE username=$1",
       [username]
     );
+
     if (checkEmail.rows.length > 0 || checkUsername.rows.length > 0) {
       console.log("user already exist");
       return { ok: "ok" };
     } else {
-      bcrypt.hash(password, saltround, async (err, hash) => {
+      await bcrypt.hash (password, saltround, async (err, hash) => {
         if (err) {
           console.log("an error occured", err);
         } else {
@@ -29,7 +32,8 @@ export async function register(email, username, password) {
             [username, email, hash]
           );
           console.log("User registered");
-          return result;
+          res.json({ok:"ok"})
+          return result
         }
       });
     }
@@ -39,26 +43,3 @@ export async function register(email, username, password) {
   }
 }
 
-export async function login(email, password) {
-  try {
-    const result = await db.query("SELECT * FROM users WHERE email=$1", [email]);
-    if (result.rows.length === 0) {
-      return null;
-    }
-    const user = result.rows[0];
-    console.log(user.password);
-    const isMatch = await bcrypt.compare(password, user.user_password);
-    if (isMatch) {
-      return user;
-    } else {
-      return null;
-    }
-  } catch (error) {
-    console.log("error: ", error);
-    throw error;
-  }
-}
-
-// module.exports = {login,register};
-
-// export default {login,register}

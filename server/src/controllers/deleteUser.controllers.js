@@ -1,7 +1,10 @@
-import db from "./config/db.js";
+import db from "../db/db.js";
 import bcrypt from "bcrypt";
+import { ApiResponse } from "../utils/ApiResponse.js";
 
-export async function deleteUser(email, password) {
+
+export async function deleteUser(req,res) {
+  const{email, password}  = req.body;
   // const useremail = email;
   // const userpassword = password;
   try {
@@ -23,8 +26,10 @@ export async function deleteUser(email, password) {
 
     if (compareEmail && comparePass) {
       const result = db.query("DELETE FROM users WHERE email=$1", [email]);
+      return res.status(200).json(new ApiResponse(200,"Deleted","User deleted"))
     } else {
       console.log("email and password did not match");
+      return res.status(400).json(new ApiResponse(400,"Deleted","Email and password didnot match"))
     }
   } catch (error) {
     console.log("An error occured", error);
