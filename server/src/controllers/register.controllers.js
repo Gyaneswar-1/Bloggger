@@ -7,7 +7,7 @@ import bcrypt from "bcrypt";
 
 const saltround = 10;
 
-export async function register(req,res,next) {
+export async function register(req,res) {
   const {email, username, password} = req.body
   
   try {
@@ -43,3 +43,9 @@ export async function register(req,res,next) {
   }
 }
 
+
+// {
+// 	"email": "gyaneswar@gmail.com",
+// 	"username":"gyana",
+// 	"password": "12345"
+// }
