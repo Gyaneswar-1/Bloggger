@@ -11,7 +11,7 @@ import { deleteblog } from "../controllers/deleteblog.controllers.js";
 
 const router = Router();
 
-router.route("/healthcheck").get(healthcheck);
+router.route("/test").get(healthcheck)
 router.route("/user/register").post(register);
 router.route("/user/login").post(login);
 // router.route("/user/logout").get(logout)
@@ -20,6 +20,5 @@ router.route("/home").get(homepage);
 router.route("/blog/post").post(postnewblogs);
 router.route("/blog/delete/:id/:uid").delete(deleteblog)
 
-// router.route("/test").get(healthcheck)
 
 export default router;

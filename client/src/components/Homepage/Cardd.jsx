@@ -1,12 +1,12 @@
 import React from "react";
 
 function Cardd(props) {
-  const {title,content} = props;
+  const {title,content,images} = props;
   return (
     <>
       <div className="cardd bg-slate-300 h-[450px] w-[300px] ml-4 mr-4">
         <div className="image h-1/3 bg-slate-600 m-3">
-          <img src="" alt="" />
+          <img src={images} alt="" />
         </div>
         <h3 className="pl-3 pr-3 pt-2 text-[1.3rem] ">
           {title}

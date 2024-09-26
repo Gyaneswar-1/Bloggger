@@ -26,7 +26,7 @@ function App() {
       <button className="bg-red-400" onClick={getDatas}>click me</button>
      <div className="cards  flex flex-row flex-wrap  justify-center gap-5">
      {card.map((card, index) => (
-        <Cardd key={index} title={card.title} content={card.content} />
+        <Cardd key={index} title={card.title} content={card.content} images={card.images}/>
       ))}
      </div>
     </div>
