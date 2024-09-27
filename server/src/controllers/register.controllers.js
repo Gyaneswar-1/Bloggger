@@ -8,7 +8,7 @@ import bcrypt from "bcrypt";
 const saltround = 10;
 
 export async function register(req,res) {
-  const {email, username, password} = req.body
+  const {email, username, password,pfp} = req.body
   
   try {
     const checkEmail = await db.query("SELECT * FROM users WHERE email=$1", [
@@ -28,8 +28,8 @@ export async function register(req,res) {
           console.log("an error occured", err);
         } else {
           const result = await db.query(
-            "INSERT INTO users (username,email,user_password) VALUES ($1,$2,$3)",
-            [username, email, hash]
+            "INSERT INTO users (username,email,user_password,pfp) VALUES ($1,$2,$3,$4)",
+            [username, email, hash,pfp]
           );
           console.log("User registered");
           res.json({ok:"ok"})

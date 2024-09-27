@@ -16,3 +16,12 @@ CREATE TABLE blogs(
     created_at TIMESTAMP,
     updated_at TIMESTAMP
 );
+
+-- delete blog
+DELETE FROM blogs WHERE id='38' AND user_id='20' RETURNING *
+SELECT * FROM blogs;
+
+--added new field to the blog db
+ALTER table blogs ADD images VARCHAR(400) DEFAULT NULL;
+
+

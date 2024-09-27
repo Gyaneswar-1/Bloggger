@@ -1,11 +1,15 @@
 /** @type {import('tailwindcss').Config} */
-export default {
+
+module.exports = {
   content: [
-    "./index.html",
-    "./src/**/*.{vue,js,ts,jsx,tsx}",
+    "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        playfair: ['"Playfair Display SC"', 'serif'],
+      },
+    },
   },
   plugins: [],
-};
+}
