@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Cardd from "./Cardd.jsx";
+import Cardd from "../ReuseableComponents.jsx/Cardd.jsx";
 import axios from "axios";
 import { useEffect } from "react";
 

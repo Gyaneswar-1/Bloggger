@@ -1,12 +1,11 @@
 import React from "react";
 import Navbar from "./Navbarr";
+// import Footer_ from "../ReuseableComponents.jsx/Footer_";
 function HomeEx() {
   return (
     <>
       <Navbar />
-      <footer>
-        this is footer
-      </footer>
+      {/* <Footer_/> */}
     </>
   );
 }

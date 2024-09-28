@@ -12,7 +12,7 @@ function NavbarHandle() {
       <Route path="/search" element={<SearchPage />} />
       <Route path="/user" element={<UserProfilePage />} />
       <Route path="/trending" element={<TrendingPage />} />
-      <Route path="*" element={<HomePage />} /> {/* Default route */}
+      <Route path="*" element={<HomePage />} /> {/*Default route*/}
     </Routes>
   );
 }

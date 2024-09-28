@@ -13,11 +13,17 @@ function Cardd(props) {
         <hr className="border-gray-300 mb-4" />
         <div className="flex items-center ">
           <div className="avatar h-10 w-10 rounded-full overflow-hidden mr-3">
-            <img src="https://via.placeholder.com/150" alt={username} className="h-full w-full object-cover" />
+            <img
+              src="https://via.placeholder.com/150"
+              alt={username}
+              className="h-full w-full object-cover"
+            />
           </div>
           <div>
             <p className="text-gray-900 font-medium">{username}</p>
-            <p className="text-gray-500 text-sm">{new Date(created_at).toLocaleDateString()}</p>
+            <p className="text-gray-500 text-sm">
+              {new Date(created_at).toLocaleDateString()}
+            </p>
           </div>
         </div>
       </div>

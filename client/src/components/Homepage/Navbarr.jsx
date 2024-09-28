@@ -3,32 +3,35 @@ import NavbarHandle from "../../utils/NavbarHandle";
 import { BrowserRouter,NavLink } from "react-router-dom";
 
 
-function Navbar() {
+function Navbar(props) {
+  const {id,pfp} = props; 
+  console.log("user registered ",id);
   return (
     <BrowserRouter>
       <div className="m-3 p-6">
-        <div className="name-avatar flex flex-row">
+        <div className="name-avatar flex flex-row justify-between">
           <h1 className="text-5xl font-playfair italic">Bloggger</h1>
-          <div className="avatar h-6 w-6">
-            <img src="" alt="" />
+          <div className="avatar h-14 w-14 ">
+            {/* <img src={pfp} alt="" /> */}
+            <img src="https://via.placeholder.com/150" alt="" className=""/>
           </div>
         </div>
         <div className="real-nav flex place-items-center flex-col">
-          <nav className="flex p-9 mr-9 ml-9 mt-5 mb-4 justify-center" >
+          <nav className="flex pt-9 pb-6 mr-9 ml-9 mt-5 mb-0 justify-center" >
             <NavLink className='pl-14 pr-14 text-2xl ' to="/home">
-            {(e)=>{return <span className={[e.isActive ? "font-bold":""].join("")}>Home</span>}}
+            {(e)=>{return <span className={[e.isActive ? "font-bold underline italic ":"opacity-80"].join("")}>Home</span>}}
             </NavLink>
             <NavLink className='pl-14 pr-14 text-2xl ' to="/search">
-            {(e)=>{return <span className={[e.isActive ? "font-bold":""].join("")}>Search</span>}}
+            {(e)=>{return <span className={[e.isActive ? "font-bold underline italic ":"opacity-80"].join("")}>Search</span>}}
             </NavLink>
             <NavLink className='pl-14 pr-14 text-2xl ' to="/trending">
-            {(e)=>{return <span className={[e.isActive ? "font-bold":""].join("")}>Trending</span>}}
+            {(e)=>{return <span className={[e.isActive ? "font-bold underline italic ":"opacity-80"].join("")}>Trending</span>}}
             </NavLink>
             <NavLink className='pl-14 pr-14 text-2xl ' to="/user">
-            {(e)=>{return <span className={[e.isActive ? "font-bold":""].join("")}>User</span>}}
+            {(e)=>{return <span className={[e.isActive ? "font-bold underline italic ":"opacity-80"].join("")}>User</span>}}
             </NavLink>
           </nav>
-          <hr className="h-1 rounded-full w-5/6 bg-slate-500 mb-8" />
+          <hr className="h-[0.09rem]  rounded-full w-5/6 bg-black mb-8" />
           <NavbarHandle/>
         </div>
       </div>
