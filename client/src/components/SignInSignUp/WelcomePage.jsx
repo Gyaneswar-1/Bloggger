@@ -8,6 +8,7 @@ import { CloseButton } from "@chakra-ui/react";
 function WelcomePage() {
   const toast = useToast();
   const [login, setLogin] = useState(false);
+  const [signUp, setSignUp] = useState(false);
   // useEffect(() => {
   //   toast({
   //     title: "तेरी माँ की चूत",
@@ -34,7 +35,10 @@ function WelcomePage() {
               >
                 Login in
               </button>
-              <button className="ml-4 mr-4 p-2 pl-3 pr-3 text-2xl border-2 border-emerald-600 rounded-full text-emerald-600 hover:text-emerald-800 hover:border-emerald-800">
+              <button
+                className="ml-4 mr-4 p-2 pl-3 pr-3 text-2xl border-2 border-emerald-600 rounded-full text-emerald-600 hover:text-emerald-800 hover:border-emerald-800"
+                onClick={() => setSignUp(!signUp)}
+              >
                 Sign in
               </button>
             </div>
@@ -44,13 +48,13 @@ function WelcomePage() {
         <main className="mb-80 w-screen ">
           <div className="pl-28 pt-[13%] gap-16 flex flex-col">
             <h1 className="text-8xl sm:text-4xl font-playfair">
-              Share Information <br /> &{" "}
-              <span className="animate-pulse">Grow</span>
+              Share Information <br /> &
+              <span className="animate-pulse text-lime-700"> Grow</span>
             </h1>
             <h3 className="text-4xl sm:text-2xl font-CosmicNeue">
               Lorem ipsum dolor sit amet consectetur adipisicing
             </h3>
-            <button className="bg-emerald-800 text-white pl-8 pr-8 p-5 text-3xl sm:text-xl rounded-full w-fit hover:bg-emerald-950">
+            <button className="bg-emerald-800 text-white pl-8 pr-8 p-4 text-3xl sm:text-xl rounded-full w-fit hover:bg-emerald-950">
               Get Started
             </button>
           </div>
@@ -61,16 +65,41 @@ function WelcomePage() {
       </div>
 
       {login && (
-        <div className="fixed inset-0 flex items-center justify-center backdrop-blur-md bg-black bg-opacity-70">
-          <div className="bg-white p-8 rounded-lg shadow-lg h-5/6 w-3/4">
-            <h1 className="text-5xl text-center font-playfair">Join to Blogger</h1>
+        <div className="fixed inset-0 flex items-center justify-center backdrop-blur-md bg-black bg-opacity-70 ">
+          <div className="bg-white p-8 rounded-none shadow-lg h-5/6 w-3/4">
+            <h1 className="text-5xl text-center font-playfair">
+              Join to Blogger
+            </h1>
             <CloseButton
               size="lg"
-              className="absolute inset-y-0 right-0 w-16"
+              className="absolute inset-y-0 right-0 w-16 text-white"
               onClick={() => setLogin(false)}
             />
             <Login />
-            <p className="text-wrap text-center">Click “Sign up” to agree to Medium’s Terms of Service and acknowledge that Medium’s Privacy Policy applies to you.</p>
+            <p className="text-wrap text-center">
+              Click “Register” to agree to Blogger’s Terms of Service and
+              acknowledge that Medium’s Privacy Policy applies to you.
+            </p>
+          </div>
+        </div>
+      )}
+
+      {signUp && (
+        <div className="fixed inset-0 flex items-center justify-center backdrop-blur-md bg-black bg-opacity-70 ">
+          <div className="bg-white p-8 rounded-none shadow-lg h-5/6 w-3/4">
+            <h1 className="text-5xl text-center font-playfair">
+              
+            </h1>
+            <CloseButton
+              size="lg"
+              className="absolute inset-y-0 right-0 w-16 text-white"
+              onClick={() => setSignUp(false)}
+            />
+            <SignUp/>
+            <p className="text-wrap text-center">
+              Click “Sign up” to agree to Blogger’s Terms of Service and
+              acknowledge that Medium’s Privacy Policy applies to you.
+            </p>
           </div>
         </div>
       )}

@@ -3,8 +3,8 @@ import { ApiResponse } from "../utils/ApiResponse.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
-const saltround = 10;
-const jwtSecret = "chin_tapak";
+
+const JWT_SECRET = "Gyaneswar";
 
 export async function login(req, res) {
   const { email, password } = req.body;
@@ -18,9 +18,8 @@ export async function login(req, res) {
     const isEmailMatch = user.email === email;
 
     if (isMatch && isEmailMatch) {
-      const token = jwt.sign({ id: user.id, email: user.email }, jwtSecret, { expiresIn: "1h" });
-      console.log(token);
-      res.cookie('token', token, { httpOnly: true, secure: true, maxAge: 3600000 }); // 1 hour
+
+      const token = jwt.sign({email},JWT_SECRET,{expiresIn:'3h'})
       return res.status(200).json(new ApiResponse(200, "OK", "User logged in",token));
     } else {
       return res.status(401).json(new ApiResponse(401, "Unauthorized", "Invalid credentials"));
@@ -30,9 +29,3 @@ export async function login(req, res) {
     return res.status(500).json(new ApiResponse(500, "Internal Server Error", "An error occurred"));
   }
 }
-
-export async function logout(req, res) {
-  res.clearCookie('token');
-  return res.status(200).json(new ApiResponse(200, "OK", "User logged out"));
-}
- 

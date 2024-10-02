@@ -1,11 +1,10 @@
 import db from "../db/db.js";
-// import pg from "pg";
-// import express from "express";
-// import loginData from "./index";
 import bcrypt from "bcrypt";
-// import {otp} from "./otpGenerator.js"
+import jwt from "jsonwebtoken"
+import { ApiResponse } from "../utils/ApiResponse.js";
 
 const saltround = 10;
+const JWT_SECRET="Gyaneswar"
 
 export async function register(req,res) {
   const {email, username, password,pfp} = req.body
@@ -21,19 +20,21 @@ export async function register(req,res) {
 
     if (checkEmail.rows.length > 0 || checkUsername.rows.length > 0) {
       console.log("user already exist");
-      return { ok: "ok" };
+      return res.status(300).json(new ApiResponse(300, "NotOk", "User already exists"));
     } else {
       await bcrypt.hash (password, saltround, async (err, hash) => {
         if (err) {
           console.log("an error occured", err);
         } else {
           const result = await db.query(
-            "INSERT INTO users (username,email,user_password,pfp) VALUES ($1,$2,$3,$4)",
+            "INSERT INTO users (username,email,user_password,pfp) VALUES ($1,$2,$3,$4) RETURNING *",
             [username, email, hash,pfp]
           );
+          const token = jwt.sign({email},JWT_SECRET,{expiresIn:'3h'});
           console.log("User registered");
-          res.json({ok:"ok"})
-          return result
+          // console.log(result);
+          
+          return res.status(200).json(new ApiResponse(200, "OK", "User logged in",token));
         }
       });
     }
@@ -44,8 +45,3 @@ export async function register(req,res) {
 }
 
 
-// {
-// 	"email": "gyaneswar@gmail.com",
-// 	"username":"gyana",
-// 	"password": "12345"
-// }
