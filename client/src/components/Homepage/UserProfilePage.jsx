@@ -1,14 +1,21 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useEffect } from "react";
+import Navbar from "./Navbarr";
+import { getToken } from "../../services/authService";
 
-function UserProfilePage({ username, email, userPfp, createdAt }) {
+export default function UserProfilePage({ username, email, userPfp, createdAt }) {
   const [udata, setUdata] = useState({});
+  const token = getToken();
 
   const getData = () => {
-    const api = "http://localhost:3000/api/v1/user/24";
+    const api = "http://localhost:3000/api/v1/user/70";
     axios
-      .get(api)
+      .get(api,{
+        headers:{
+          Authorization:`Bearer ${token}`,
+        }
+      })
       .then((result) => {
         setUdata(result.data);
       })
@@ -22,6 +29,8 @@ function UserProfilePage({ username, email, userPfp, createdAt }) {
   });
 
   return (
+    <>
+      <Navbar/>
     <div className="flex flex-col items-center p-6 bg-gray-100 min-h-screen">
       <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
         <div className="flex flex-col items-center">
@@ -38,7 +47,7 @@ function UserProfilePage({ username, email, userPfp, createdAt }) {
         </div>
       </div>
     </div>
+    </>
   );
 }
 
-export default UserProfilePage;

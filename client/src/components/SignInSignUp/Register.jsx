@@ -6,16 +6,30 @@ import {
   FormErrorMessage,
   Input,
   Button,
+  useToast
 } from "@chakra-ui/react";
+import { useNavigate } from "react-router-dom";
 
-function Login() {
+export default function Register() {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [isError, setIsError] = useState(false);
+  const navigate = useNavigate();
+  const toast = useToast();
 
-  const  handleSubmit = async (e) => {
+  const toastRes = () => {
+    toast({
+      title: "User already exist",
+      description: "user exist please try to log in",
+      status: "error",
+      duration: 9000,
+      isClosable: true,
+    });
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     // console.log("Email:", email);
@@ -30,8 +44,14 @@ function Login() {
         password: password,
         pfp: "https://www.hollywoodreporter.com/wp-content/uploads/2024/05/GettyImages-2150913647-copy.jpg?w=1296&h=730&crop=1",
       };
-      console.log(await register(userdata));
-      
+
+      try {
+        await register(userdata);
+        navigate("/home");
+      } catch (error) {
+        console.log("Registration failed Try again");
+        toastRes();
+      }
     } else {
       console.log("password did not match");
     }
@@ -93,4 +113,3 @@ function Login() {
   );
 }
 
-export default Login;

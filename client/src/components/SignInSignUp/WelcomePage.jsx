@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, {  useState } from "react";
 import SignUp from "./SignUp";
-import Login from "./Login";
+import Register from "./Register";
 import IntropageFooter from "../ReuseableComponents.jsx/IntropageFooter";
 import { useToast } from "@chakra-ui/react";
 import { CloseButton } from "@chakra-ui/react";
@@ -9,15 +9,7 @@ function WelcomePage() {
   const toast = useToast();
   const [login, setLogin] = useState(false);
   const [signUp, setSignUp] = useState(false);
-  // useEffect(() => {
-  //   toast({
-  //     title: "तेरी माँ की चूत",
-  //     description: "मेरा लंड चूसो",
-  //     status: "success",
-  //     duration: 9000,
-  //     isClosable: true,
-  //   });
-  // }, []);
+ 
 
   return (
     <>
@@ -33,7 +25,7 @@ function WelcomePage() {
                 className="ml-4 mr-4 p-2 pl-3 pr-3 text-2xl bg-emerald-600 border-2 border-emerald-600 rounded-full text-white hover:bg-emerald-800 hover:border-emerald-800 "
                 onClick={() => setLogin(!login)}
               >
-                Login in
+                Register
               </button>
               <button
                 className="ml-4 mr-4 p-2 pl-3 pr-3 text-2xl border-2 border-emerald-600 rounded-full text-emerald-600 hover:text-emerald-800 hover:border-emerald-800"
@@ -75,7 +67,7 @@ function WelcomePage() {
               className="absolute inset-y-0 right-0 w-16 text-white"
               onClick={() => setLogin(false)}
             />
-            <Login />
+            <Register />
             <p className="text-wrap text-center">
               Click “Register” to agree to Blogger’s Terms of Service and
               acknowledge that Medium’s Privacy Policy applies to you.

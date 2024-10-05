@@ -1,9 +1,11 @@
 import React from 'react'
+import Navbar from './Navbarr'
 
-function Trendingpage() {
+export default function Trendingpage() {
   return (
-    <div>Trendingpage</div>
+
+    <div>
+      <Navbar/>
+      Trendingpage</div>
   )
 }
-
-export default Trendingpage

@@ -15,16 +15,17 @@ export const register = async (userdata) => {
   if (response.data.token) {
     localStorage.setItem("token", response.data.token); // Store token upon registration
   }
-  return response.data;
+  return {authorization:response.data.token};
 };
 
 // Login user
 export const login = async (userdata) => {
-  const response = await axios.post(`${API_URL}/login`, { username, password });
+  const {email,password} = userdata;
+  const response = await axios.post(`${API_URL}/login`, { email, password });
   if (response.data.token) {
     localStorage.setItem("token", response.data.token); // Store token upon login
   }
-  return response.data;
+  return {authorization:response.data.token};
 };
 
 export const getToken = () => {
