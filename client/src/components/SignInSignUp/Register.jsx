@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { register } from "../../services/authService";
+import { register } from "../../services/authService.js";
 import {
   FormControl,
   FormLabel,
@@ -31,11 +31,6 @@ export default function Register() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    // console.log("Email:", email);
-    // console.log("Email:", username);
-    // console.log("Email:", password);
-    // console.log("Email:", confirmPassword);
 
     if (password === confirmPassword) {
       const userdata = {

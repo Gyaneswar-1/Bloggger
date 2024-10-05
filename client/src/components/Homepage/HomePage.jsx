@@ -1,41 +1,23 @@
-
 import React, { useState, useEffect } from "react";
 import Cardd from "../ReuseableComponents.jsx/Cardd.jsx";
-import axios from "axios";
-import { getToken } from "../../services/authService.js";
+import { getHomePageData } from "../../services/apiManage.service.js";
 
 function HomePage() {
   const [card, setCard] = useState([]);
 
   const getDatas = async () => {
-    const token = getToken();
-    if (!token) {
-      console.log("No token found, sorry");
-      return;
-    } else {
-      const api = "http://localhost:3000/api/v1/home";
-      try {
-        const response = await axios.get(api, {
-          headers: {
-            Authorization: `Bearer ${token}`, 
-            userID:"70"
-          },
-        });
-        console.log(response);
-        setCard(response.data.result);
-      } catch (err) {
-        console.log("error ===>", err);
-      }
-    }
+    getHomePageData().then((data) => {
+      setCard(data)
+    });
   };
 
   useEffect(() => {
     getDatas();
   }, []);
-
+ 
   return (
     <div>
-      <div className="cards flex flex-row flex-wrap justify-center gap-5">
+      <div className=" cards flex flex-col flex-wraps items-center gap-2">
         {card.map((card, index) => (
           <Cardd
             key={index}

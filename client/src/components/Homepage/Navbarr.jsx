@@ -11,12 +11,11 @@ function Navbar(props) {
         <div className="name-avatar flex flex-row justify-between">
           <h1 className="text-5xl font-playfair italic">Bloggger</h1>
           <div className="avatar h-14 w-14 flex ">
-            {/* <img src={pfp} alt="" /> */}
             <img src="https://via.placeholder.com/150" alt="" className=""/>
           </div>
         </div>
         <div className="real-nav flex place-items-center flex-col">
-          <nav className="flex pt-9 pb-6 mr-9 ml-9 mt-5 mb-0 justify-center" >
+          <nav className="flex pt-9 pb-6 mr-9 ml-9 mt-5 mb-0 justify-center " >
             <NavLink className='pl-14 pr-14 text-2xl ' to="/home/main">
             {(e)=>{return <span className={[e.isActive ? "font-bold underline italic ":"opacity-80"].join("")}>Home</span>}}
             </NavLink>

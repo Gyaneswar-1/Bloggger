@@ -24,4 +24,9 @@ SELECT * FROM blogs;
 --added new field to the blog db
 ALTER table blogs ADD images VARCHAR(400) DEFAULT NULL;
 
+--insert into blogs
+INSERT INTO blogs (title,content,user_id,images) VALUES
+('spider man exposed!!' , 'spider man is a 16 year old highschool guy his name is peater parker',70,'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQlVhsONH57akBZYZyExGw-n3r4vfXNbffgL4dCXSXDJV9WRYLGqQlRBK2a4cZFMEInwQ9b');
+
+
 

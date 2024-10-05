@@ -1,11 +1,14 @@
 import jwt from 'jsonwebtoken';
 import { ApiResponse } from '../utils/ApiResponse.js';
 
+
 export const authenticationToken = (req, res, next) => {
   const JWT_SECRET = 'Gyaneswar'; // Consider storing this in an environment variable
   const authHeader = req.headers.authorization;
 
   if (!authHeader || !authHeader.startsWith('Bearer ')) {
+    console.log(authHeader);
+    
     return res.status(401).json(new ApiResponse(401, 'Access Denied', 'No token provided'));
   }
   
