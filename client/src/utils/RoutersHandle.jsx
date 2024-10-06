@@ -9,6 +9,7 @@ import SearchPage from "../components/Homepage/SearchPage";
 import UserProfilePage from "../components/Homepage/UserProfilePage";
 import Trendingpage from "../components/Homepage/Trendingpage";
 import { getToken } from "../services/authService";
+import PostnewBlogs from "../components/Homepage/PostnewBlogs";
 
 function RoutersHandle() {
   const token = getToken();
@@ -26,6 +27,7 @@ function RoutersHandle() {
         <Route path="/home/main" element={<HomeEx />} />
         <Route path="/home/search" element={<SearchPage />} />
         <Route path="/home/user" element={<UserProfilePage />} />
+        <Route path="/home/user/postnewblog" element={<PostnewBlogs />} />
         <Route path="/home/trending" element={<Trendingpage />} />
       </Routes>
     </BrowserRouter>

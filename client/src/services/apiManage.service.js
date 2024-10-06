@@ -1,4 +1,4 @@
-import { getToken } from "./authService";
+import { getToken, isAuthenticated } from "./authService";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
@@ -38,6 +38,34 @@ export const getUserProfileData = async () => {
       },
     });
     return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const postNewBlogData = async (title,content) => {
+  // const { title, content, user_id, image_url } = props;
+  console.log("props data ",title,content);
+  
+  const api = "http://localhost:3000/api/v1/blog/post";
+  const token = getToken();
+
+  try {
+    const response = await axios.post(
+      api,
+      {
+        title: title,
+        content: content,
+        user_id: 70,
+        image_url: "random.png",
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    return response;
   } catch (error) {
     console.log(error);
   }
