@@ -30,3 +30,7 @@ INSERT INTO blogs (title,content,user_id,images) VALUES
 
 
 
+SELECT users.*
+FROM blogs
+JOIN users ON blogs.user_id = users.id
+WHERE blogs.user_id = 70;

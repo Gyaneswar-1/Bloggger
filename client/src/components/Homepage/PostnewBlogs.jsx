@@ -6,18 +6,24 @@ import { postNewBlogData } from "../../services/apiManage.service";
 function PostnewBlogs() {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const [image, setImage] = useState("");
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log("Title: ", title);
-    console.log("Content: ", content);
-    postNewBlogData(title,content)
+    // console.log("Title: ", title);
+    // console.log("Content: ", content);
+    // console.log("image: ", image);
+    
+    postNewBlogData(title,content,image)
   };
   const handleTitleChange = (event) => {
     setTitle(event.target.value);
   };
   const handleContentChange = (event) => {
     setContent(event.target.value);
+  };
+  const handleImageChange = (event) => {
+    setImage(event.target.value);
   };
   return (
     <div className="bg-emerald-50 h-lvh w-lvw flex justify-center items-center">
@@ -36,6 +42,13 @@ function PostnewBlogs() {
             placeholder="CONTENT"
             size="lg"
             variant="flushed"
+          />
+          <Input
+            placeholder="enter image url"
+            size="lg"
+            variant="flushed"
+            onChange={handleImageChange}
+            className="mb-12"
           />
           <button
             type="submit"

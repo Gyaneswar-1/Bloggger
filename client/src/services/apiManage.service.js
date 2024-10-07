@@ -1,21 +1,36 @@
-import { getToken, isAuthenticated } from "./authService";
+import { getToken, isAuthenticated,getUserId} from "./authService";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { jwtDecode } from "jwt-decode";
+import { login } from "./authService";
+
+// export const getUserInfoFromToken = () => {
+//   const token = getToken();
+//   if (token) {
+//     try {
+//       // const decodedData = getUserId();
+//       console.log(getUserId());
+      
+//       // return decodedData;
+//     } catch (error) {
+//       console.log("Error decoding token:", error);
+//     }
+//   } else {
+//     console.log("No token found, sorry");
+//   }
+// };
 
 // this is homepage data fetch
 export const getHomePageData = async () => {
-  const token = getToken();
-  if (token) {
-    //   console.log(token);
+  const token = await getToken();
+  if (isAuthenticated()) {
     const api = "http://localhost:3000/api/v1/home";
     try {
       const response = await axios.get(api, {
         headers: {
           Authorization: `Bearer ${token}`,
-          userID: "70",
         },
       });
-      // console.log("This is response",response.data.result);
+           
       return response.data.result;
     } catch (err) {
       console.log("error ===>", err);
@@ -28,25 +43,27 @@ export const getHomePageData = async () => {
 
 // this is UserProfile  page
 
-export const getUserProfileData = async () => {
+export const getUserProfileData = async (id) => {
   const token = getToken();
-  const api = "http://localhost:3000/api/v1/user/70";
+  const api = `http://localhost:3000/api/v1/user/${id}`;
   try {
     const response = await axios.get(api, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     });
+    console.log(response.data);
     return response.data;
   } catch (error) {
     console.log(error);
   }
 };
 
-export const postNewBlogData = async (title,content) => {
+export const postNewBlogData = async (title, content,image) => {
   // const { title, content, user_id, image_url } = props;
-  console.log("props data ",title,content);
-  
+  const uid =getUserId(); 
+  const ID = uid.id
+
   const api = "http://localhost:3000/api/v1/blog/post";
   const token = getToken();
 
@@ -56,8 +73,8 @@ export const postNewBlogData = async (title,content) => {
       {
         title: title,
         content: content,
-        user_id: 70,
-        image_url: "random.png",
+        user_id: ID,
+        image_url: image,
       },
       {
         headers: {
@@ -67,6 +84,6 @@ export const postNewBlogData = async (title,content) => {
     );
     return response;
   } catch (error) {
-    console.log(error);
+    console.log("Some error: ",error);
   }
 };

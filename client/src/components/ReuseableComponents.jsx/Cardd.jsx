@@ -7,7 +7,7 @@ function Cardd(props) {
     setColor("#ff0000")
   } 
 
-  const { title, content, images, username, created_at } = props;
+  const { title, content, images, username, created_at,userpfp } = props;
   return (
     <div className="cardd bg-white shadow-lg  overflow-hidden w-[700px] h-[240px] ml-4 mr-4 flex flex-row-reverse justify-between">
       <div className="image h-60 w-60 overflow-hidden ">
@@ -20,13 +20,13 @@ function Cardd(props) {
         <div className="flex items-center ">
           <div className="avatar h-10 w-10 rounded-full overflow-hidden mr-3">
             <img
-              src="https://via.placeholder.com/150"
+              src={userpfp}
               alt={username}
               className="h-full w-full object-cover"
             />
           </div>
           <div>
-            <p className="text-gray-900 font-medium">{username} name</p>
+            <p className="text-gray-900 font-medium">{username}</p>
             <p className="text-gray-500 text-sm">
               {new Date(created_at).toLocaleDateString()}
             </p>

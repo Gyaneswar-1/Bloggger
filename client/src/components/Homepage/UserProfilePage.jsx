@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "./Navbarr";
-import { getUserProfileData } from "../../services/apiManage.service.js";
+import { getUserId } from "../../services/authService.js";
 
 const UserProfilePage = () => {
   const [udata, setUdata] = useState({
@@ -11,7 +11,8 @@ const UserProfilePage = () => {
   });
   
   const getData = async () => {
-    const data = await getUserProfileData();
+    const data = await getUserId();
+    
     setUdata(data);
   };
   

@@ -16,11 +16,11 @@ const router = Router();
 router.route("/test").get(healthcheck);
 router.route("/user/register").post(register);
 router.route("/user/login").post(login);
-router.route("/user/:id").get(authenticationToken,getuserinfo);
+router.route("/user/:id").get(authenticationToken, getuserinfo);
 router.route("/user/delete").delete(authenticationToken, deleteUser);
-router.route("/home").get(authenticationToken,homepage);//////
-router.route("/blog/post").post(authenticationToken,postnewblogs);//////
-router.route("/blog/delete/:id/:uid").delete(authenticationToken,deleteblog);
+router.route("/home").get( homepage); //////
+router.route("/blog/post").post(authenticationToken, postnewblogs); //////
+router.route("/blog/delete/:id/:uid").delete(authenticationToken, deleteblog);
 // router.route("/user/logout").get(logout);
 
 export default router;

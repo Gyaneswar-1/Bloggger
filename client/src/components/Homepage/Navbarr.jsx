@@ -1,17 +1,18 @@
 import React from "react";
 // import NavbarHandle from "../../utils/RoutersHandle";
 import { BrowserRouter,NavLink } from "react-router-dom";
-
+import { getUserId } from "../../services/authService";
 
 function Navbar(props) {
-  const {id,pfp} = props; 
+  const data = getUserId();
+  const {id} = props; 
   console.log("user registered ",id);
   return (
       <div className="m-3 p-6">
         <div className="name-avatar flex flex-row justify-between">
           <h1 className="text-5xl font-playfair italic">Bloggger</h1>
-          <div className="avatar h-14 w-14 flex ">
-            <img src="https://via.placeholder.com/150" alt="" className=""/>
+          <div className="avatar h-14 w-14 flex rounded-full">
+            <img src={data.pfp} alt="" className=""/>
           </div>
         </div>
         <div className="real-nav flex place-items-center flex-col">
