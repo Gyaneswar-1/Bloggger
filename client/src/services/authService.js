@@ -59,5 +59,6 @@ export const isAuthenticated = () => {
 
 export const logout = () => {
   localStorage.removeItem("token");
+  return true;
 };
 // console.log(!!localStorage.getItem("token"));

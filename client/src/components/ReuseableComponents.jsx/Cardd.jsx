@@ -9,9 +9,9 @@ function Cardd(props) {
 
   const { title, content, images, username, created_at,userpfp } = props;
   return (
-    <div className="cardd bg-white shadow-lg  overflow-hidden w-[700px] h-[240px] ml-4 mr-4 flex flex-row-reverse justify-between">
-      <div className="image h-60 w-60 overflow-hidden ">
-        <img src={images} alt={title} className="h-full w-full object-cover" />
+    <div className="cardd bg-emerald-200 shadow-2xl  overflow-hidden w-[700px] h-[240px] ml-4 mr-4 flex flex-row-reverse justify-between">
+      <div className="image h-60 w-60 overflow-hidden p-4 ">
+        <img src={images} alt={title} className="h-full w-full object-cover " />
       </div>
       <div className="p-4 items-start">
         <h3 className="text-xl font-bold mb-2">{title}</h3>

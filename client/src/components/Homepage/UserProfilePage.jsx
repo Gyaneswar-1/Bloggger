@@ -1,25 +1,29 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "./Navbarr";
 import { getUserId } from "../../services/authService.js";
+import { Button } from "@chakra-ui/react";
+import { logout } from "../../services/authService.js";
+import { useNavigate } from "react-router-dom";
 
 const UserProfilePage = () => {
+  const navigate = useNavigate();
   const [udata, setUdata] = useState({
-    pfp: '',
-    username: '',
-    email: '',
-    created_at: ''
+    pfp: "",
+    username: "",
+    email: "",
+    created_at: "",
   });
-  
+
   const getData = async () => {
     const data = await getUserId();
-    
+
     setUdata(data);
   };
-  
+
   useEffect(() => {
     getData();
   }, []);
-  
+
   return (
     <>
       <Navbar />
@@ -37,6 +41,24 @@ const UserProfilePage = () => {
               Created at: {new Date(udata.created_at).toLocaleDateString()}
             </p>
           </div>
+          <Button
+            variant="outline"
+            colorScheme="red"
+            onClick={(() => {
+              try {
+                if (logout()) {
+                  console.log("Logged out");
+                  navigate("/")
+                } else {
+                  console.log("Cannot logged out");
+                }
+              } catch (error) {
+                console.log(error);
+              }
+            })}
+          >
+            Logout
+          </Button>
         </div>
       </div>
     </>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Cardd from "../ReuseableComponents.jsx/Cardd.jsx";
 import { getHomePageData } from "../../services/apiManage.service.js";
-import { getUserId } from "../../services/authService.js";
+import SidePage from "./SidePage.jsx";
 
 function HomePage() {
   const [card, setCard] = useState([]);
@@ -9,7 +9,7 @@ function HomePage() {
   const getDatas = async () => {
     try {
       const data = await getHomePageData();
-      console.log("Fetched data",data);
+      console.log("Fetched data", data);
       setCard(data);
     } catch (error) {
       console.log(error);
@@ -20,7 +20,7 @@ function HomePage() {
   }, []);
 
   return (
-    <div>
+    <div className="flex justify-center ">
       <div className=" cards flex flex-col flex-wraps items-center gap-2">
         {card.map((card, index) => (
           <Cardd
@@ -33,8 +33,8 @@ function HomePage() {
             userpfp={card.pfp}
           />
         ))}
-        {/* <UserInfopage/> */}
       </div>
+      <SidePage />
     </div>
   );
 }
