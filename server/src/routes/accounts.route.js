@@ -9,6 +9,7 @@ import { postnewblogs } from "../controllers/postnewblogs.controllers.js";
 import { deleteblog } from "../controllers/deleteblog.controllers.js";
 import { getuserinfo } from "../controllers/getuserinfo.controllers.js";
 import { authenticationToken } from "../middleware/auth.middleware.js";
+import { getUserBlogs } from "../controllers/getUserBlogs.controllers.js";
 // import { logout } from "../controllers/logout.controllers.js";
 
 const router = Router();
@@ -17,9 +18,10 @@ router.route("/test").get(healthcheck);
 router.route("/user/register").post(register);
 router.route("/user/login").post(login);
 router.route("/user/:id").get(authenticationToken, getuserinfo);
+router.route("/user/blogs/:id").get(getUserBlogs);
 router.route("/user/delete").delete(authenticationToken, deleteUser);
-router.route("/home").get( homepage); //////
-router.route("/blog/post").post(authenticationToken, postnewblogs); //////
+router.route("/home").get(authenticationToken, homepage);
+router.route("/blog/post").post(authenticationToken, postnewblogs);
 router.route("/blog/delete/:id/:uid").delete(authenticationToken, deleteblog);
 // router.route("/user/logout").get(logout);
 

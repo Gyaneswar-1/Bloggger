@@ -9,6 +9,7 @@ import UserProfilePage from "../components/Homepage/UserProfilePage";
 import Trendingpage from "../components/Homepage/Trendingpage";
 import { getToken, isAuthenticated } from "../services/authService";
 import PostnewBlogs from "../components/Homepage/PostnewBlogs";
+import EditUser from "../components/Homepage/EditUser";
 
 function RoutersHandle() {
   const token = getToken();
@@ -20,6 +21,8 @@ function RoutersHandle() {
         ) : (
           <Route path="/" element={<WelcomePage />} />
         )}
+
+        <Route path="/welcome" element={<WelcomePage />} />
         <Route path="/register" element={<Register />} />
         <Route path="/home" element={isAuthenticated() ? <HomeEx /> : "Loding..."} />
         {/*<Navigate to="/login" />*/}
@@ -28,6 +31,8 @@ function RoutersHandle() {
         <Route path="/home/search" element={<SearchPage />} />
         <Route path="/home/user" element={<UserProfilePage />} />
         <Route path="/home/user/postnewblog" element={<PostnewBlogs />} />
+        <Route path="/home/user/edituser" element={<EditUser />} />
+        <Route path="/home/main/postnewblog" element={<PostnewBlogs />} />
         <Route path="/home/trending" element={<Trendingpage />} />
       </Routes>
     </BrowserRouter>

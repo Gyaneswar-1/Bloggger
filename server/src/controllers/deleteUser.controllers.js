@@ -28,3 +28,4 @@ export async function deleteUser(req,res) {
     console.log("An error occured", error);
   }
 }
+

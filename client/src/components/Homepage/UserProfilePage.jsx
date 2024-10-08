@@ -4,9 +4,12 @@ import { getUserId } from "../../services/authService.js";
 import { Button } from "@chakra-ui/react";
 import { logout } from "../../services/authService.js";
 import { useNavigate } from "react-router-dom";
+import { getUserBlogs } from "../../services/apiManage.service.js";
+import Cardd from "../ReuseableComponents.jsx/Cardd.jsx";
 
 const UserProfilePage = () => {
   const navigate = useNavigate();
+  const [ublog, setUblog] = useState([]);
   const [udata, setUdata] = useState({
     pfp: "",
     username: "",
@@ -16,7 +19,8 @@ const UserProfilePage = () => {
 
   const getData = async () => {
     const data = await getUserId();
-
+    const result = await getUserBlogs(getUserId().id);
+    setUblog(result);
     setUdata(data);
   };
 
@@ -27,8 +31,31 @@ const UserProfilePage = () => {
   return (
     <>
       <Navbar />
-      <div className="flex flex-col items-center p-6 bg-gray-100 min-h-screen">
-        <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
+      <div className="flex  justify-evenly gap-8 p-6 bg-gray-100 h-full">
+        <div className="h-1/2 w-4/5 rounded-lg bg-white shadow-2xl flex flex-row">
+          <div>
+            <h1 className="m-9 text-6xl font-thin font-CosmicNeue">
+              Your Blogs
+            </h1>
+            <div className="m-3 flex flex-col gap-9 mt-9">
+              {ublog.map((data, index) => (
+                <Cardd
+                  key={index}
+                  title={data.title}
+                  content={data.content}
+                  images={data.images}
+                  created_at={data.created_at}
+                />
+              ))}
+            </div>
+          </div>
+          <div className="h-auto w-full bg-white p-3 m-4 shadow-2xl">
+            <h1 className="text-6xl font-CosmicNeue font-extralight m-9">
+              saved
+            </h1>
+          </div>
+        </div>
+        <div className="bg-white p-6 rounded-lg shadow-lg h-fit w-1/4 ">
           <div className="flex flex-col items-center">
             <img
               src={udata.pfp}
@@ -41,24 +68,35 @@ const UserProfilePage = () => {
               Created at: {new Date(udata.created_at).toLocaleDateString()}
             </p>
           </div>
-          <Button
-            variant="outline"
-            colorScheme="red"
-            onClick={(() => {
-              try {
-                if (logout()) {
-                  console.log("Logged out");
-                  navigate("/")
-                } else {
-                  console.log("Cannot logged out");
+          <div className="buttons flex justify-evenly pt-5">
+            <Button
+              variant="outline"
+              colorScheme="red"
+              onClick={() => {
+                try {
+                  if (logout()) {
+                    console.log("Logged out");
+                    navigate("/welcome");
+                  } else {
+                    console.log("Cannot logged out");
+                  }
+                } catch (error) {
+                  console.log(error);
                 }
-              } catch (error) {
-                console.log(error);
-              }
-            })}
-          >
-            Logout
-          </Button>
+              }}
+            >
+              Logout
+            </Button>
+            <Button
+              variant="outline"
+              colorScheme="blue"
+              onClick={() => {
+                navigate("/home/user/edituser");
+              }}
+            >
+              Edit
+            </Button>
+          </div>
         </div>
       </div>
     </>

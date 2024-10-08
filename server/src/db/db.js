@@ -5,8 +5,6 @@ import dotenv from "dotenv";
 // dotenv.config({
 //     path:"../.env"
 // })
-  
-
 
 // const db = new pg.Client({
 //     user: process.env.USER,
@@ -16,13 +14,12 @@ import dotenv from "dotenv";
 //     port: process.env.DB_PORT,
 // });
 
-  
 const db = new pg.Client({
-    user: "postgres",
-    host: "localhost",
-    database: "blog",
-    password: "@Gyana87356",
-    port: 5432,
+  user: "postgres",
+  host: "localhost",
+  database: "blog",
+  password: "@Gyana87356",
+  port: 5432,
 });
 
 // db.connect();

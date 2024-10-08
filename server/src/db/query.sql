@@ -29,7 +29,7 @@ INSERT INTO blogs (title,content,user_id,images) VALUES
 ('spider man exposed!!' , 'spider man is a 16 year old highschool guy his name is peater parker',70,'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQlVhsONH57akBZYZyExGw-n3r4vfXNbffgL4dCXSXDJV9WRYLGqQlRBK2a4cZFMEInwQ9b');
 
 
-
+-- join tables
 SELECT users.*
 FROM blogs
 JOIN users ON blogs.user_id = users.id

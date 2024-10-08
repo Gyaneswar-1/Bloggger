@@ -87,3 +87,15 @@ export const postNewBlogData = async (title, content,image) => {
     console.log("Some error: ",error);
   }
 };
+
+
+export const getUserBlogs = async (id) =>{
+  const api = `http://localhost:3000/api/v1/user/blogs/${id}`
+  try {
+    const result = await axios.get(api);
+    // console.log("Fetched data:",result.data.data);
+    return result.data.data
+  } catch (error) {
+    console.log("Error in fetching data: ",error);
+  }
+}
