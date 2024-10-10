@@ -41,6 +41,7 @@ const UserProfilePage = () => {
               {ublog.map((data, index) => (
                 <Cardd
                   key={index}
+                  id={data.id}
                   title={data.title}
                   content={data.content}
                   images={data.images}

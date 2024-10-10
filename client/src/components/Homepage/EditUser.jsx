@@ -21,7 +21,6 @@ function EditUser() {
     try {
       console.log("Submitting data: ", userData);
       await postUserData(userData);
-      // navigate("/profile");
     } catch (error) {
       console.log(error);
     }
@@ -103,7 +102,7 @@ function EditUser() {
             <button
               className="bg-red-700 p-2 mt-12 ml-10 text-white"
               onClick={() => {
-                setDeleteUser(!deleteUser);
+                setDeleteUser(true);
               }}
             >
               Delete

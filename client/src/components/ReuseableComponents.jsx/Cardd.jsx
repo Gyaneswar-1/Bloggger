@@ -1,14 +1,18 @@
 import { Button } from "@chakra-ui/react";
 import React, { useState } from "react";
+import { deleteBlog } from "../../services/apiManage.service";
+import DeleteBlogs from "../Homepage/DeleteBlogs";
+import DeleteUserPage from "../Homepage/DeleteUserPage";
 
 function Cardd(props) {
   const [color, setColor] = useState("#000000");
+  const [showDeleteUser, setShowDeleteUser] = useState(false);
 
   const updateColor = () => {
     setColor("#ff0000");
   };
 
-  const { title, content, images, username, created_at, userpfp } = props;
+  const { id, title, content, images, username, created_at, userpfp } = props;
 
   return (
     <div className="cardd bg-zinc-200 shadow-2xl overflow-hidden w-[700px] h-[240px] ml-4 mr-4 flex flex-row-reverse justify-between">
@@ -44,7 +48,13 @@ function Cardd(props) {
               //   <span> </span>
               // </div>
               <div>
-                <Button className="m-2" colorScheme="red">
+                <Button
+                  className="m-2"
+                  colorScheme="red"
+                  onClick={() => {
+                    setShowDeleteUser(!showDeleteUser);
+                  }}
+                >
                   Delete
                 </Button>
               </div>
@@ -79,6 +89,7 @@ function Cardd(props) {
           </svg>
         </div>
       </div>
+      {showDeleteUser && <DeleteBlogs id={id} />}
     </div>
   );
 }

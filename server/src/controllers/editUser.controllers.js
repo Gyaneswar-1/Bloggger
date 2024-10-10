@@ -11,7 +11,7 @@ export async function editUserData(req, res) {
     );
 
     console.log(result.rows);
-
+    
     res.json({ Ok: result.rows });
   } catch (error) {
     console.log(error);

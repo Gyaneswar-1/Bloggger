@@ -136,7 +136,6 @@ export const postUserData = async (data) => {
 export const deleteUser = async () => {
   const id = getUserId();
   const token = getToken();
-  console.log("User data: ", id.email);
 
   const api = "http://localhost:3000/api/v1/user/delete";
   try {
@@ -148,10 +147,28 @@ export const deleteUser = async () => {
         Authorization: `Bearer ${token}`,
       },
     });
+    console.log(result);
     if (result) {
       return "User deleted";
     }
   } catch (error) {
     console.log(error);
+  }
+};
+
+export const deleteBlog = async (bid) => {
+  const id = getUserId();
+  const token = getToken();
+  const api = `http://localhost:3000/api/v1/blog/delete/${id.id}/${bid}`;
+  try {
+    const result = await axios.delete(api, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return true
+  } catch (error) {
+    console.log(error);
+    return false
   }
 };

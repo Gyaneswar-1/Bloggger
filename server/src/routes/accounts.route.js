@@ -33,6 +33,6 @@ router.route("/home").get(authenticationToken, homepage);
 
 router.route("/blog/post").post(authenticationToken, postnewblogs);
 
-router.route("/blog/delete/:id/:uid").delete(authenticationToken, deleteblog);
+router.route("/blog/delete/:uid/:id").delete( deleteblog);
 
 export default router;

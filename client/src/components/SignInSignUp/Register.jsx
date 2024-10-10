@@ -9,6 +9,7 @@ import {
   useToast
 } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
+import Toast from "../ReuseableComponents.jsx/Toast.jsx";
 
 export default function Register() {
   const [email, setEmail] = useState("");
@@ -20,13 +21,7 @@ export default function Register() {
   const toast = useToast();
 
   const toastRes = () => {
-    toast({
-      title: "User already exist",
-      description: "user exist please try to log in",
-      status: "error",
-      duration: 9000,
-      isClosable: true,
-    });
+    <Toast title="User registered" desc="User registered success" status="success" />
   };
 
   const handleSubmit = async (e) => {
@@ -43,6 +38,7 @@ export default function Register() {
       try {
         await register(userdata);
         navigate("/home");
+        toastRes();
       } catch (error) {
         console.log("Registration failed Try again");
         toastRes();

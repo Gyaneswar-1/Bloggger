@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import {
   Modal,
   ModalOverlay,
@@ -12,9 +11,12 @@ import {
   Text,
   useDisclosure,
 } from '@chakra-ui/react';
+import { useNavigate } from 'react-router-dom';
 import { deleteUser } from '../../services/apiManage.service';
 
-function DeleteUserPage() {
+function DeleteUserPage(id) {
+  console.log("recived id ",id.id);
+  
   const { isOpen, onOpen, onClose } = useDisclosure();
   const navigate = useNavigate();
 
@@ -24,10 +26,10 @@ function DeleteUserPage() {
 
   const handleDelete = async () => {
     try {
-      const result =  await deleteUser();
+      const result = await deleteUser(id.id);
       onClose();
       if (result) {
-        navigate("/welcome")
+        navigate("/welcome");
       }
     } catch (error) {
       console.error("Failed to delete user:", error);
