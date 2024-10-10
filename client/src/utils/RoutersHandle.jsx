@@ -12,11 +12,15 @@ import PostnewBlogs from "../components/Homepage/PostnewBlogs";
 import EditUser from "../components/Homepage/EditUser";
 
 function RoutersHandle() {
-  const token = getToken();
+  let isAuth = false;
+  useEffect(() => {
+    isAuth = isAuthenticated();
+  }, []);
+
   return (
     <BrowserRouter>
       <Routes>
-        {isAuthenticated() ? (
+        {isAuth ? (
           <Route path="/" element={<HomeEx />} />
         ) : (
           <Route path="/" element={<WelcomePage />} />
@@ -24,9 +28,7 @@ function RoutersHandle() {
 
         <Route path="/welcome" element={<WelcomePage />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/home" element={isAuthenticated() ? <HomeEx /> : "Loding..."} />
-        {/*<Navigate to="/login" />*/}
-        {/* <Route path="/home/main" element={<HomeEx/>}/> */}
+        <Route path="/home" element={<HomeEx />} />
         <Route path="/home/main" element={<HomeEx />} />
         <Route path="/home/search" element={<SearchPage />} />
         <Route path="/home/user" element={<UserProfilePage />} />

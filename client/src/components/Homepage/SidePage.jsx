@@ -11,7 +11,12 @@ function SidePage() {
             <p>User name</p>
           </div>
           <h1>How to score 100 in one day 100% real</h1>
-          <Button colorScheme="blue" variant="solid" size="sm">
+          <Button
+            rounded="inherit"
+            colorScheme="blue"
+            variant="solid"
+            size="sm"
+          >
             Follow
           </Button>
         </div>

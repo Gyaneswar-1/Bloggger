@@ -31,7 +31,7 @@ function Cardd(props) {
         <hr className="border-gray-300 mb-4 w-full" />
         <div className="flex items-center">
           <div className="">
-            {userpfp ? (
+            {username ? (
               <div className="avatar h-10 w-10 rounded-full overflow-hidden mr-3">
                 <img
                   src={userpfp}

@@ -64,12 +64,14 @@ const UserProfilePage = () => {
             />
             <h1 className="text-2xl font-bold mb-2">{udata.username}</h1>
             <p className="text-gray-700">{udata.email}</p>
+            <p className="text-gray-700">{udata.bio}</p>
             <p className="text-gray-500 mt-2">
               Created at: {new Date(udata.created_at).toLocaleDateString()}
             </p>
           </div>
           <div className="buttons flex justify-evenly pt-5">
             <Button
+              rounded="inherit"
               variant="outline"
               colorScheme="red"
               onClick={() => {
@@ -90,6 +92,7 @@ const UserProfilePage = () => {
             <Button
               variant="outline"
               colorScheme="blue"
+              rounded="inherit"
               onClick={() => {
                 navigate("/home/user/edituser");
               }}

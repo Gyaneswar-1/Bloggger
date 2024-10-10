@@ -1,4 +1,4 @@
-import { getToken, isAuthenticated,getUserId} from "./authService";
+import { getToken, isAuthenticated, getUserId } from "./authService";
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 import { login } from "./authService";
@@ -9,7 +9,7 @@ import { login } from "./authService";
 //     try {
 //       // const decodedData = getUserId();
 //       console.log(getUserId());
-      
+
 //       // return decodedData;
 //     } catch (error) {
 //       console.log("Error decoding token:", error);
@@ -30,7 +30,7 @@ export const getHomePageData = async () => {
           Authorization: `Bearer ${token}`,
         },
       });
-           
+
       return response.data.result;
     } catch (err) {
       console.log("error ===>", err);
@@ -59,10 +59,10 @@ export const getUserProfileData = async (id) => {
   }
 };
 
-export const postNewBlogData = async (title, content,image) => {
+export const postNewBlogData = async (title, content, image) => {
   // const { title, content, user_id, image_url } = props;
-  const uid =getUserId(); 
-  const ID = uid.id
+  const uid = getUserId();
+  const ID = uid.id;
 
   const api = "http://localhost:3000/api/v1/blog/post";
   const token = getToken();
@@ -84,18 +84,74 @@ export const postNewBlogData = async (title, content,image) => {
     );
     return response;
   } catch (error) {
-    console.log("Some error: ",error);
+    console.log("Some error: ", error);
   }
 };
 
-
-export const getUserBlogs = async (id) =>{
-  const api = `http://localhost:3000/api/v1/user/blogs/${id}`
+export const getUserBlogs = async (id) => {
+  const token = getToken();
+  const api = `http://localhost:3000/api/v1/user/blogs/${id}`;
   try {
-    const result = await axios.get(api);
+    const result = await axios.get(api, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
     // console.log("Fetched data:",result.data.data);
-    return result.data.data
+    return result.data.data;
   } catch (error) {
-    console.log("Error in fetching data: ",error);
+    console.log("Error in fetching data: ", error);
   }
-}
+};
+
+export const postUserData = async (data) => {
+  const { username, pfp, bio } = data;
+  const token = getToken();
+  const id = getUserId();
+
+  const api = "http://localhost:3000/api/v1/user/edit";
+  try {
+    const result = await axios.put(
+      api,
+      {
+        id: id.id,
+        username: username,
+        pfp: pfp,
+        bio: bio,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    if (result) {
+      return result;
+    }
+  } catch (error) {
+    console.log("Error while posting user data: ", error);
+  }
+};
+
+export const deleteUser = async () => {
+  const id = getUserId();
+  const token = getToken();
+  console.log("User data: ", id.email);
+
+  const api = "http://localhost:3000/api/v1/user/delete";
+  try {
+    const result = await axios.delete(api, {
+      data: {
+        email: id.email,
+      },
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    if (result) {
+      return "User deleted";
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};

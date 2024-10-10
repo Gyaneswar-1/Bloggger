@@ -22,7 +22,7 @@ export async function register(req, res) {
       console.log("user already exist");
       return res
         .status(300)
-        .json(new ApiResponse(300, "NotOk", "User already exists"));
+        .json(new ApiResponse(300, "Cannot registered", "User already exists"));
     } else {
       await bcrypt.hash(password, saltround, async (err, hash) => {
         if (err) {
@@ -32,7 +32,7 @@ export async function register(req, res) {
             "INSERT INTO users (username,email,user_password,pfp) VALUES ($1,$2,$3,$4) RETURNING *",
             [username, email, hash, pfp]
           );
-          const token = jwt.sign({ email }, JWT_SECRET, { expiresIn: "3h" });
+          const token = jwt.sign({ result }, JWT_SECRET, { expiresIn: "3h" });
           console.log("User registered");
           console.log(result);
 

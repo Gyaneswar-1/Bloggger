@@ -37,7 +37,7 @@ export default function Register() {
         email: email,
         username: username,
         password: password,
-        pfp: "https://www.hollywoodreporter.com/wp-content/uploads/2024/05/GettyImages-2150913647-copy.jpg?w=1296&h=730&crop=1",
+        pfp: null,
       };
 
       try {

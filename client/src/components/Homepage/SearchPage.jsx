@@ -13,7 +13,7 @@ function SearchPage() {
             placeholder="Search Blog"
             className="rounded-full p-3 pl-5 w-[450px]"
           />
-          <Button className="" colorScheme="green">
+          <Button  className="" colorScheme="green">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               height="24px"
