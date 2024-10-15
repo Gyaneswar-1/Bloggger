@@ -1,16 +1,21 @@
 import React, { useState, useEffect } from "react";
 import Cardd from "../ReuseableComponents.jsx/Cardd.jsx";
-import { getHomePageData } from "../../services/apiManage.service.js";
+import {
+  getAllUsers,
+  getHomePageData,
+} from "../../services/apiManage.service.js";
 import SidePage from "./SidePage.jsx";
 
 function HomePage() {
   const [card, setCard] = useState([]);
+  const [ucard, setUCard] = useState([]);
 
   const getDatas = async () => {
     try {
       const data = await getHomePageData();
-      console.log("Fetched data", data);
+      const udata = await getAllUsers();
       setCard(data);
+      setUCard(udata);
     } catch (error) {
       console.log(error);
     }
@@ -25,6 +30,7 @@ function HomePage() {
         {card.map((card, index) => (
           <Cardd
             key={index}
+            id={card.id}
             title={card.title}
             content={card.content}
             images={card.images}
@@ -34,7 +40,16 @@ function HomePage() {
           />
         ))}
       </div>
-      <SidePage />
+      <div>
+        {ucard.map((user, index) => (
+          <SidePage
+            key={index}
+            pfp={user.pfp}
+            name={user.username}
+            bio={user.bio}
+          />
+        ))}
+      </div>
     </div>
   );
 }

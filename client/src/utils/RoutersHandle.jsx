@@ -10,6 +10,7 @@ import Trendingpage from "../components/Homepage/Trendingpage";
 import { getToken, isAuthenticated } from "../services/authService";
 import PostnewBlogs from "../components/Homepage/PostnewBlogs";
 import EditUser from "../components/Homepage/EditUser";
+import BlogPage from "../components/Homepage/BlogPage";
 
 function RoutersHandle() {
   let isAuth = false;
@@ -36,6 +37,7 @@ function RoutersHandle() {
         <Route path="/home/user/edituser" element={<EditUser />} />
         <Route path="/home/main/postnewblog" element={<PostnewBlogs />} />
         <Route path="/home/trending" element={<Trendingpage />} />
+      <Route path="/home/blog/:id" element={<BlogPage/>} />
       </Routes>
     </BrowserRouter>
   );

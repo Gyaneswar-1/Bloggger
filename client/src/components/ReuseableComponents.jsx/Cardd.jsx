@@ -1,16 +1,11 @@
 import { Button } from "@chakra-ui/react";
 import React, { useState } from "react";
-import { deleteBlog } from "../../services/apiManage.service";
 import DeleteBlogs from "../Homepage/DeleteBlogs";
-import DeleteUserPage from "../Homepage/DeleteUserPage";
+import { useNavigate } from "react-router-dom";
 
 function Cardd(props) {
-  const [color, setColor] = useState("#000000");
+  const navigate = useNavigate();
   const [showDeleteUser, setShowDeleteUser] = useState(false);
-
-  const updateColor = () => {
-    setColor("#ff0000");
-  };
 
   const { id, title, content, images, username, created_at, userpfp } = props;
 
@@ -21,7 +16,10 @@ function Cardd(props) {
           <img
             src={images}
             alt={title}
-            className="h-full w-full object-cover"
+            className="h-full w-full object-cover cursor-pointer"
+            onClick={() => {
+              navigate(`/home/blog/${id}`);
+            }}
           />
         ) : (
           <div className="h-full w-full bg-gray-300 flex items-center justify-center">
@@ -29,9 +27,23 @@ function Cardd(props) {
           </div>
         )}
       </div>
-      <div className="p-4 items-start">
-        <h3 className="text-xl font-bold mb-2">{title}</h3>
-        <p className="text-gray-700 mb-4">{content}</p>
+      <div className="p-4 items-start ">
+        <h3
+          className="text-xl font-bold mb-2 cursor-pointer"
+          onClick={() => {
+            navigate(`/home/blog/${id}`);
+          }}
+        >
+          {title}
+        </h3>
+        <p
+          className="text-gray-700 mb-4 cursor-pointer"
+          onClick={() => {
+            navigate(`/home/blog/${id}`);
+          }}
+        >
+          {content}
+        </p>
         <hr className="border-gray-300 mb-4 w-full" />
         <div className="flex items-center">
           <div className="">

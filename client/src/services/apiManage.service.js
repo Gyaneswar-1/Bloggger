@@ -166,9 +166,41 @@ export const deleteBlog = async (bid) => {
         Authorization: `Bearer ${token}`,
       },
     });
-    return true
+    return true;
   } catch (error) {
     console.log(error);
-    return false
+    return false;
+  }
+};
+
+export const getAllUsers = async () => {
+  const token = getToken();
+  try {
+    const api = "http://localhost:3000/api/v1/user";
+    const result = await axios.get(api, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    // console.log("rerult",result);
+
+    return result.data.message;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getBlogByID = async (id) => {
+  const token = getToken();
+  try {
+    const api = `http://localhost:3000/api/v1/blog/${id}`;
+    const result = await axios.get(api, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return result.data.message;
+  } catch (error) {
+    console.log(error);
   }
 };

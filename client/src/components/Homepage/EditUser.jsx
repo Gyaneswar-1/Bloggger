@@ -102,7 +102,7 @@ function EditUser() {
             <button
               className="bg-red-700 p-2 mt-12 ml-10 text-white"
               onClick={() => {
-                setDeleteUser(true);
+                setDeleteUser(!deleteUser);
               }}
             >
               Delete

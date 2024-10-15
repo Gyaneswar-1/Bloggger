@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Textarea, Input } from "@chakra-ui/react";
 import { postNewBlogData } from "../../services/apiManage.service";
 import { useNavigate } from "react-router-dom";
-import { useToast } from "@chakra-ui/react";
+import { useToast, CloseButton } from "@chakra-ui/react";
 
 function PostnewBlogs() {
   const [title, setTitle] = useState("");
@@ -52,15 +52,7 @@ function PostnewBlogs() {
               navigate("/home/main");
             }}
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              height="24px"
-              viewBox="0 -960 960 960"
-              width="24px"
-              fill="#000000"
-            >
-              <path d="m313-440 224 224-57 56-320-320 320-320 57 56-224 224h487v80H313Z" />
-            </svg>
+            <CloseButton background={"green"} color={"white"} />
           </div>
           <div className="text-4xl flex justify-center items-center pb-6 text-center font-serif">
             <h1>Post Blog</h1>
@@ -68,22 +60,28 @@ function PostnewBlogs() {
           <Input
             placeholder="ENTER TITLE"
             size="lg"
-            variant="flushed"
+            // variant="flushed"
+            background={"whitesmoke"}
+            padding={2}
             onChange={handleTitleChange}
-            className="mb-12"
-          />
+            marginBottom={12}
+            />
           <Textarea
+            marginBottom={12}
             onChange={handleContentChange}
             placeholder="CONTENT"
             size="lg"
-            variant="flushed"
-          />
+            height={40}
+            background={"whitesmoke"}
+            padding={2}
+            />
           <Input
+            marginBottom={12}
             placeholder="enter image url"
             size="lg"
-            variant="flushed"
+            background={"whitesmoke"}
+            padding={2}
             onChange={handleImageChange}
-            className="mb-12"
           />
           <button type="submit" className="mt-4 p-2 bg-emerald-800 text-white ">
             Submit
