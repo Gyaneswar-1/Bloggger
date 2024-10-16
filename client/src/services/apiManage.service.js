@@ -199,7 +199,8 @@ export const getBlogByID = async (id) => {
         Authorization: `Bearer ${token}`,
       },
     });
-    return result.data.message;
+    
+    return result.data;
   } catch (error) {
     console.log(error);
   }

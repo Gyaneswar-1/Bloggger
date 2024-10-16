@@ -6,7 +6,6 @@ export const authenticationToken = (req, res, next) => {
   const authHeader = req.headers.authorization;
 
   if (!authHeader || !authHeader.startsWith("Bearer ")) {
-    console.log(authHeader);
 
     return res
       .status(401)

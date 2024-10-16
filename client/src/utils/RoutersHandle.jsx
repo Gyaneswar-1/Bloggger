@@ -13,15 +13,15 @@ import EditUser from "../components/Homepage/EditUser";
 import BlogPage from "../components/Homepage/BlogPage";
 
 function RoutersHandle() {
-  let isAuth = false;
-  useEffect(() => {
-    isAuth = isAuthenticated();
-  }, []);
+  const token = getToken();
+  // useEffect(() => {
+  //     isAuth = isAuthenticated();
+  // }, []);
 
   return (
     <BrowserRouter>
       <Routes>
-        {isAuth ? (
+        {isAuthenticated() ? (
           <Route path="/" element={<HomeEx />} />
         ) : (
           <Route path="/" element={<WelcomePage />} />

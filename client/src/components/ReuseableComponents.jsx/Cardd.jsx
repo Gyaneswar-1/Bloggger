@@ -85,7 +85,7 @@ function Cardd(props) {
                 {new Date(created_at).toLocaleDateString()}
               </p>
             ) : (
-              <div></div>
+              <div> </div>
             )}
           </div>
         </div>
