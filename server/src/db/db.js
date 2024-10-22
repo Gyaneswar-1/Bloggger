@@ -1,18 +1,7 @@
 import pg from "pg";
-import dotenv from "dotenv";
+// import dotenv from "dotenv";
 
-// Load environment variables from .env file
-// dotenv.config({
-//     path:"../.env"
-// })
-
-// const db = new pg.Client({
-//     user: process.env.USER,
-//     host: process.env.HOST,
-//     database: process.env.DATABASE,
-//     password: process.env.PASSWORD,
-//     port: process.env.DB_PORT,
-// });
+// const db = new pg.Client("postgresql://blog_owner:U1pLS5NEmIbv@ep-soft-voice-a8iy3v9j.eastus2.azure.neon.tech/blog?sslmode=require");
 
 const db = new pg.Client({
   user: "postgres",
@@ -22,6 +11,5 @@ const db = new pg.Client({
   port: 5432,
 });
 
-// db.connect();
 
 export default db;

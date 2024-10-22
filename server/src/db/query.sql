@@ -4,7 +4,9 @@ CREATE TABLE users(
     username VARCHAR(50) UNIQUE NOT NULL,
     email VARCHAR(100) UNIQUE NOT NULL,
     user_password VARCHAR(255) UNIQUE NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    pfp VARCHAR(400) DEFAULT NULL,
+    bio VARCHAR(400) DEFAULT NULL
 );
 
 -- blog database table
@@ -14,7 +16,8 @@ CREATE TABLE blogs(
     content TEXT NOT NULL,
     user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
     created_at TIMESTAMP,
-    updated_at TIMESTAMP
+    updated_at TIMESTAMP,
+    images VARCHAR(400) DEFAULT NULL
 );
 
 -- delete blog
@@ -34,3 +37,19 @@ SELECT users.*
 FROM blogs
 JOIN users ON blogs.user_id = users.id
 WHERE blogs.user_id = 70;
+
+-- created comment model
+CREATE TABLE comments (
+    id SERIAL PRIMARY KEY,
+    content TEXT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    blog_id INT REFERENCES blogs(id) ON DELETE CASCADE,
+    user_id INT REFERENCES users(id) ON DELETE CASCADE
+);
+
+-- created follows
+CREATE TABLE follows (
+    id SERIAL PRIMARY KEY,
+    follower_id INT REFERENCES users(id) ON DELETE CASCADE,  -- The user who is following
+    followed_id INT REFERENCES users(id) ON DELETE CASCADE   --the user being followed
+)

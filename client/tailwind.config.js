@@ -20,7 +20,8 @@ module.exports = {
     extend: {
       fontFamily: {
         playfair: ['"Playfair Display SC"', 'serif'],
-        CosmicNeue:['"Comic Neue"']
+        CosmicNeue:['"Comic Neue"'],
+        Poppins:['"Poppins"']
       },
     },
   },

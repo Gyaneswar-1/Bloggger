@@ -96,9 +96,12 @@ function EditUser() {
               border="1px"
               rounded="inherit"
             />
-            <button className="bg-green-700 p-2 mt-12  text-white">
+            <button className="bg-green-700 p-2 mt-12 text-white" onClick={()=>{
+               handleSubmit();
+               navigate("/home/main")
+            }}>
               submit
-            </button>
+            </button >
             <button
               className="bg-red-700 p-2 mt-12 ml-10 text-white"
               onClick={() => {

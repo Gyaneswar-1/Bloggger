@@ -42,7 +42,7 @@ function Cardd(props) {
             navigate(`/home/blog/${id}`);
           }}
         >
-          {content}
+          {content.substring(0, 100)}
         </p>
         <hr className="border-gray-300 mb-4 w-full" />
         <div className="flex items-center">
