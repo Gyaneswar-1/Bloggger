@@ -44,7 +44,7 @@ function PostnewBlogs() {
   const toast = useToast();
   return (
     <div className="bg-black h-lvh w-lvw flex justify-center items-center">
-      <div className="h-5/6 w-5/6 bg-zinc-200 shadow-2xl p-8 rounded-xl">
+      <div className="h-5/6 w-5/6 bg-zinc-200 shadow-2xl p-8 rounded-xl max-h-full max-w-full min-h-fit min-w-fit">
         <form action="" onSubmit={handleSubmit}>
           <div className=" flex justify-between items-center pb-6 text-center font-serif">
             <div

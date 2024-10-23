@@ -54,7 +54,7 @@ function SignUp() {
 
   return (
     <>
-      <div className=" text-4xl font-playfair text-center">Welcome Back</div>
+     <div className=" text-4xl font-playfair text-center">Welcome Back</div>
       <form onSubmit={handleSubmit}>
         <FormControl isInvalid={isError}>
           <FormLabel>Email:</FormLabel>

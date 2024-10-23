@@ -11,12 +11,12 @@ export const authenticationToken = (req, res, next) => {
       .json(new ApiResponse(401, "Access Denied", "No token provided"));
   }
 
-  const token = authHeader.split(" ")[1]; // Extract the token from "Bearer <token>"
+  const token = authHeader.split(" ")[1];
 
   try {
-    const verified = jwt.verify(token, JWT_SECRET); // Verify token
-    req.user = verified; // Store user info from token in request object
-    next(); // Call next middleware only after successful verification
+    const verified = jwt.verify(token, JWT_SECRET);
+    req.user = verified;
+    next();
   } catch (error) {
     return res
       .status(403)
