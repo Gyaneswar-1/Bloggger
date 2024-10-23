@@ -2,37 +2,23 @@ import React, { useEffect } from "react";
 import { Button } from "@chakra-ui/react";
 
 function SidePage({ pfp, name, bio }) {
-  
   return (
     <div>
-      <div className="h-fit w-fit bg-emerald-400 p-4">
+      <div className="h-fit bg-zinc-200 p-4 mb-4 rounded-sm">
         <div className="best-picks flex flex-col items-start gap-2">
           <div className="user-info flex flex-row gap-3 rounded-full">
-            <img 
-              src={pfp} 
-              alt="User" 
-              style={{ width: "50px", height: "50px", borderRadius: "50%" }} 
+            <img
+              src={pfp}
+              alt="User"
+              className="w-[50px] h-[50px] rounded-full object-cover"
             />
             <p>{name}</p>
           </div>
-          <h1>{bio ? bio : " "}</h1>
-          <Button
-            rounded="inherit"
-            colorScheme="blue"
-            variant="solid"
-            size="sm"
-          >
+          <h1>{bio ? bio : ""}</h1>
+          <button className="text-green-600 p-2 rounded-md font-semibold">
             Follow
-          </Button>
+          </button>
         </div>
-        <hr
-          style={{
-            backgroundColor: "black",
-            height: "0.5px",
-            border: "none",
-            marginTop: "9px",
-          }}
-        />
       </div>
     </div>
   );

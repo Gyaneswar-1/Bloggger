@@ -31,10 +31,10 @@ const UserProfilePage = () => {
   return (
     <>
       <Navbar />
-      <div className="flex  justify-evenly gap-8 p-6 bg-gray-100 h-full">
-        <div className="h-1/2 w-4/5 rounded-lg bg-white shadow-2xl flex flex-row">
+      <div className="flex  justify-evenly gap-8 p-6 bg-black h-full">
+        <div className="h-1/2 w-4/5 rounded-lg bg-zinc-800 shadow-2xl flex flex-row">
           <div>
-            <h1 className="m-9 text-6xl font-thin font-CosmicNeue">
+            <h1 className="m-9 text-6xl font-thin font-CosmicNeue text-white">
               Your Blogs
             </h1>
             <div className="m-3 flex flex-col gap-9 mt-9">
@@ -50,11 +50,11 @@ const UserProfilePage = () => {
               ))}
             </div>
           </div>
-          <div className="h-auto w-full bg-white p-3 m-4 shadow-2xl">
+          {/* <div className="h-auto w-full bg-white p-3 m-4 shadow-2xl">
             <h1 className="text-6xl font-CosmicNeue font-extralight m-9">
               saved
             </h1>
-          </div>
+          </div> */}
         </div>
         <div className="bg-white p-6 rounded-lg shadow-lg h-fit w-1/4 ">
           <div className="flex flex-col items-center">
@@ -74,6 +74,7 @@ const UserProfilePage = () => {
             <Button
               rounded="inherit"
               variant="outline"
+              borderRadius={6}
               colorScheme="red"
               onClick={() => {
                 try {
@@ -93,7 +94,7 @@ const UserProfilePage = () => {
             <Button
               variant="outline"
               colorScheme="blue"
-              rounded="inherit"
+              borderRadius={6}
               onClick={() => {
                 navigate("/home/user/edituser");
               }}

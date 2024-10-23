@@ -38,79 +38,72 @@ function EditUser() {
   };
 
   return (
-    <div className="bg-zinc-300 h-screen w-full flex justify-center items-center">
-      <div className=" bg-emerald-50 h-5/6 w-5/6 shadow-2xl">
-        <div className="flex justify-starts pl-4">
-          <div className="font-playfair text-6xl flex justify-evenly items-center gap-[600px]">
+    <div className="bg-black h-screen w-full flex justify-center items-center ">
+      <div className=" bg-zinc-400 h-5/6 w-5/6 shadow-2xl rounded-md">
+        <div className="pl-2">
+          <div className="flex justify-between p-4">
             <CloseButton
               color="white"
               backgroundColor="green"
-              rounded="inherit"
+              className="rounded-md"
               onClick={() => {
                 navigate("/home/user");
               }}
             />
-            <h1>Edit User</h1>
+            <h1 className="font-Times text-4xl">Edit user</h1>
+            <div className="action">
+              <button
+                className="bg-green-600 p-2 rounded-md m-2 text-white"
+                onClick={() => {
+                  handleSubmit();
+                  navigate("/home/main");
+                }}
+              >
+                submit
+              </button>
+              <button
+                className="bg-red-600 p-2 rounded-md m-2 text-white"
+                onClick={() => {
+                  setDeleteUser(!deleteUser);
+                }}
+              >
+                Delete
+              </button>
+            </div>
           </div>
         </div>
-        <div className="userInputes pl-20 pr-20 pt-2">
-          <div className="flex justify-center">
-            <div className="h-fit p-2 w-1/2 m-4 bg-zinc-200 shadow-2xl flex justify-evenly items-center gap-24">
-              <div className="userimage rounded-full items-center flex flex-col text-3xl">
-                <img
-                  src={pfp}
-                  alt={id.username}
-                  className="h-32 w-32 object-cover rounded-full overflow-hidden"
-                />
-                <h1>{username}</h1>
-              </div>
-              <h1 className="text-wrap w-80">{bio ? bio : "No Bio"}</h1>
-            </div>
-          </div>
-          <form action="" onSubmit={handleSubmit}>
-            <Text mb="8px">Username: </Text>
-            <Input
-              onInput={(e) => handleUsername(e)}
-              placeholder="Enter name"
-              rounded="inherit"
-              color="black"
-              border="1px"
-            />
-            <div className="pfp-section flex items-center justify-between">
-              <div className="flex-grow mr-4">
-                <Text mb="8px">pfp: </Text>
-                <Input
-                  onInput={(e) => handlePfp(e)}
-                  placeholder="Enter pfp url:"
-                  color="black"
-                  border="1px"
-                  rounded="inherit"
-                />
-              </div>
-            </div>
-            <Text mb="8px">Bio: </Text>
-            <Input
-              onInput={(e) => handleBio(e)}
-              placeholder="Enter bio"
-              color="black"
-              border="1px"
-              rounded="inherit"
-            />
-            <button className="bg-green-700 p-2 mt-12 text-white" onClick={()=>{
-               handleSubmit();
-               navigate("/home/main")
-            }}>
-              submit
-            </button >
-            <button
-              className="bg-red-700 p-2 mt-12 ml-10 text-white"
-              onClick={() => {
-                setDeleteUser(!deleteUser);
-              }}
-            >
-              Delete
-            </button>
-          </form>
+        <div className="userInputes pl-36 pr-36 pt-2">
+          <div className="flex justify-center"></div>
+          <form>
+  <h1>Profile</h1>
+  <img
+    src={pfp}
+    alt={id.username}
+    className="h-32 w-32 object-cover rounded-full overflow-hidden"
+  />
+  <Text mb="8px">Username: </Text>
+  <input
+    onChange={(e) => handleUsername(e)}
+    defaultValue={username}
+    className="w-full bg-zinc-200 text-lg p-2 rounded-md"
+  />
+  <div className="pfp-section flex items-center justify-between">
+    <div className="flex-grow">
+      <Text mb="8px">pfp: </Text>
+      <input
+        onChange={(e) => handlePfp(e)}
+        className="w-full bg-zinc-200 text-lg p-2 rounded-md"
+        defaultValue={pfp}
+      />
+    </div>
+  </div>
+  <Text mb="8px">Bio: </Text>
+  <textarea
+    onChange={(e) => handleBio(e)}
+    maxLength={200}
+    className="w-full bg-zinc-200 text-lg p-2 rounded-md"
+  />
+</form>
         </div>
       </div>
       {deleteUser && <DeleteUserPage />}

@@ -25,7 +25,7 @@ function HomePage() {
   }, []);
 
   return (
-    <div className="flex justify-center ">
+    <div className="flex justify-center">
       <div className=" cards flex flex-col flex-wraps items-center gap-2">
         {card.map((card, index) => (
           <Cardd
@@ -41,6 +41,7 @@ function HomePage() {
         ))}
       </div>
       <div>
+      <h1 className="text-xl text-white pt-2 pb-2 font-bold">Top Publishers</h1>
         {ucard.map((user, index) => (
           <SidePage
             key={index}

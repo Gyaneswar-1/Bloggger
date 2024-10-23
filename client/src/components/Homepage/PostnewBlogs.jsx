@@ -43,49 +43,37 @@ function PostnewBlogs() {
   const navigate = useNavigate();
   const toast = useToast();
   return (
-    <div className="bg-emerald-50 h-lvh w-lvw flex justify-center items-center">
-      <div className="h-5/6 w-5/6 bg-emerald-200 shadow-2xl p-8">
+    <div className="bg-black h-lvh w-lvw flex justify-center items-center">
+      <div className="h-5/6 w-5/6 bg-zinc-200 shadow-2xl p-8 rounded-xl">
         <form action="" onSubmit={handleSubmit}>
-          <div
-            className="h-6 w-6 cursor-pointer"
-            onClick={() => {
-              navigate("/home/main");
-            }}
-          >
-            <CloseButton background={"green"} color={"white"} />
+          <div className=" flex justify-between items-center pb-6 text-center font-serif">
+            <div
+              className="h-6 w-6 cursor-pointer"
+              onClick={() => {
+                navigate("/home/main");
+              }}
+            >
+              <CloseButton background={"green"} color={"white"} />
+            </div>
+            <h1 className="text-4xl">Post Blog</h1>
+            <button type="submit" className="p-2 bg-green-700 rounded-md text-white hover:bg-green-800">
+              publish
+            </button>
           </div>
-          <div className="text-4xl flex justify-center items-center pb-6 text-center font-serif">
-            <h1>Post Blog</h1>
-          </div>
-          <Input
-            placeholder="ENTER TITLE"
-            size="lg"
-            // variant="flushed"
-            background={"whitesmoke"}
-            padding={2}
+          <input
+            type="text"
             onChange={handleTitleChange}
-            marginBottom={12}
-            />
-          <Textarea
-            marginBottom={12}
-            onChange={handleContentChange}
-            placeholder="CONTENT"
-            size="lg"
-            height={40}
-            background={"whitesmoke"}
-            padding={2}
-            />
-          <Input
-            marginBottom={12}
-            placeholder="enter image url"
-            size="lg"
-            background={"whitesmoke"}
-            padding={2}
-            onChange={handleImageChange}
+            className="w-full p-4 text-4xl bg-transparent text-black outline-none"
+            placeholder="Title"
           />
-          <button type="submit" className="mt-4 p-2 bg-emerald-800 text-white ">
-            Submit
-          </button>
+          <textarea
+            name=""
+            id=""
+            className="w-full p-4 h-40 max-h-60 bg-transparent text-xl outline-none placeholder-slate-700"
+            placeholder="Edit your text"
+            onChange={handleContentChange}
+          ></textarea>
+         <input type="text" onChange={handleImageChange} className="w-full p-4 bg-transparent outline-none" placeholder="image url" />
         </form>
       </div>
     </div>

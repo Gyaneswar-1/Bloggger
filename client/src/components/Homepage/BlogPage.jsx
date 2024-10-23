@@ -4,6 +4,7 @@ import {
   getBlogByID,
   getUserProfileData,
 } from "../../services/apiManage.service";
+
 import { CloseButton } from "@chakra-ui/react";
 
 const BlogPage = () => {

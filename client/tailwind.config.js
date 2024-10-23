@@ -21,7 +21,8 @@ module.exports = {
       fontFamily: {
         playfair: ['"Playfair Display SC"', 'serif'],
         CosmicNeue:['"Comic Neue"'],
-        Poppins:['"Poppins"']
+        Poppins:['"Poppins"'],
+        Times:['"Times New Roman"']
       },
     },
   },

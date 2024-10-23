@@ -14,9 +14,7 @@ import BlogPage from "../components/Homepage/BlogPage";
 
 function RoutersHandle() {
   const token = getToken();
-  // useEffect(() => {
-  //     isAuth = isAuthenticated();
-  // }, []);
+
 
   return (
     <BrowserRouter>

@@ -10,13 +10,13 @@ function Cardd(props) {
   const { id, title, content, images, username, created_at, userpfp } = props;
 
   return (
-    <div className="cardd bg-zinc-200 shadow-2xl overflow-hidden w-[700px] h-[240px] ml-4 mr-4 flex flex-row-reverse justify-between">
+    <div className="cardd bg-zinc-200 shadow-2xl rounded-sm overflow-hidden w-[700px] h-[240px] ml-4 mr-4 flex flex-row-reverse justify-between">
       <div className="image h-60 w-60 overflow-hidden p-4">
         {images ? (
           <img
             src={images}
             alt={title}
-            className="h-full w-full object-cover cursor-pointer"
+            className="rounded-sm h-full w-full object-cover cursor-pointer"
             onClick={() => {
               navigate(`/home/blog/${id}`);
             }}
