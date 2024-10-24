@@ -14,6 +14,7 @@ import { editUserData } from "../controllers/editUser.controllers.js";
 import { getusers } from "../controllers/getusers.controllers.js";
 import { getBlogByID } from "../controllers/getBlogByID.controllers.js";
 import { add_comment } from "../models/comment.models.js";
+import { follow } from "../controllers/follow.controllers.js";
 // import { logout } from "../controllers/logout.controllers.js";
 
 const router = Router();
@@ -44,4 +45,5 @@ router.route("/blog/:id").get(authenticationToken,getBlogByID);
 
 router.route("/blog/:id").get(add_comment);
 
+router.route("/user/follow/:uid/:fid").post(authenticationToken,follow);
 export default router;
