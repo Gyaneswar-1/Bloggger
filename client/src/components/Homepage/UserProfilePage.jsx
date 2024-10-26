@@ -69,6 +69,9 @@ const UserProfilePage = () => {
             <p className="text-gray-500 mt-2">
               Created at: {new Date(udata.created_at).toLocaleDateString()}
             </p>
+            <div className="follows flex gap-5 pt-2 ">
+              <h1 className="bg bg-gray-200 p-1 rounded-md">12 followers</h1>
+            </div>
           </div>
           <div className="buttons flex justify-evenly pt-5">
             <Button

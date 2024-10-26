@@ -5,6 +5,7 @@ import {
   getHomePageData,
 } from "../../services/apiManage.service.js";
 import SidePage from "./SidePage.jsx";
+import { getUserId } from "../../services/authService.js";
 
 function HomePage() {
   const [card, setCard] = useState([]);
@@ -41,18 +42,32 @@ function HomePage() {
         ))}
       </div>
       <div>
-      <h1 className="text-xl text-white pt-2 pb-2 font-bold">Top Publishers</h1>
-        {ucard.map((user, index) => (
-          <SidePage
-            key={index}
-            pfp={user.pfp}
-            name={user.username}
-            bio={user.bio}
-          />
-        ))}
+        <h1 className="text-xl text-white pt-2 pb-2 font-bold">
+          Top Publishers
+        </h1>
+        {ucard
+          .filter((user) => user.id !== getUserId().id)
+          .map((user, index) => (
+            <SidePage
+              key={index}
+              pfp={user.pfp}
+              name={user.username}
+              bio={user.bio}
+              id={user.id}
+            />
+          ))}
       </div>
     </div>
   );
 }
 
 export default HomePage;
+// {ucard.map((user, index) => (
+//   <SidePage
+//     key={index}
+//     pfp={user.pfp}
+//     name={user.username}
+//     bio={user.bio}
+//     id={user.id}
+//   />
+// ))}

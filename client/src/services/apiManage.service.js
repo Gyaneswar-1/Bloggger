@@ -199,8 +199,47 @@ export const getBlogByID = async (id) => {
         Authorization: `Bearer ${token}`,
       },
     });
-    
     return result.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const follow = async (uid) => {
+  const token = getToken();
+  const id = getUserId();
+  const fid = id.id;
+  console.log("user id: ", uid);
+  console.log("follow id: ", fid);
+  try {
+    const api = `http://localhost:3000/api/v1/user/follow/${uid}`;
+    const result = await axios.post(
+      api,
+      {id:fid},
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    console.log("Result", result);
+    return result;
+  } catch (error) {
+    console.log(error);
+  }
+};
+export const getFollows = async () => {
+  const token = getToken();
+  const uid = getUserId();
+  const id = uid.id;
+  try {
+    const api = `http://localhost:3000/api/v1/user/getfollows/${id}`;
+    const result = await axios.get(api, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return result.data.data;
   } catch (error) {
     console.log(error);
   }

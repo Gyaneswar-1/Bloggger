@@ -13,8 +13,10 @@ import { getUserBlogs } from "../controllers/getUserBlogs.controllers.js";
 import { editUserData } from "../controllers/editUser.controllers.js";
 import { getusers } from "../controllers/getusers.controllers.js";
 import { getBlogByID } from "../controllers/getBlogByID.controllers.js";
-import { add_comment } from "../models/comment.models.js";
-import { follow } from "../controllers/follow.controllers.js";
+import { follow } from "../controllers/FollowHandle.controllers/follow.controllers.js";
+import { getFollows } from "../controllers/FollowHandle.controllers/getFollows.controllers.js";
+import { getFollowedUser } from "../controllers/FollowHandle.controllers/getFollowedUser.js";
+import { unfollow } from "../controllers/FollowHandle.controllers/unfollow.controller.js";
 // import { logout } from "../controllers/logout.controllers.js";
 
 const router = Router();
@@ -41,9 +43,14 @@ router.route("/blog/post").post(authenticationToken, postnewblogs);
 
 router.route("/blog/delete/:uid/:id").delete(authenticationToken, deleteblog);
 
-router.route("/blog/:id").get(authenticationToken,getBlogByID);
+router.route("/blog/:id").get(authenticationToken, getBlogByID);
 
-router.route("/blog/:id").get(add_comment);
+router.route("/user/follow/:uid").post( follow);
 
-router.route("/user/follow/:uid/:fid").post(authenticationToken,follow);
+router.route("/user/getfollows/:uid").get(authenticationToken, getFollows);
+
+router.route("/user/getfolloweduser/:uid").get(getFollowedUser);
+
+router.route("/user/unfollow/:uid").delete(unfollow);
+
 export default router;

@@ -7,14 +7,13 @@ import WelcomePage from "../components/SignInSignUp/WelcomePage";
 import SearchPage from "../components/Homepage/SearchPage";
 import UserProfilePage from "../components/Homepage/UserProfilePage";
 import Trendingpage from "../components/Homepage/Trendingpage";
-import { getToken, isAuthenticated } from "../services/authService";
+import { getToken, isAuthenticated, logout } from "../services/authService";
 import PostnewBlogs from "../components/Homepage/PostnewBlogs";
 import EditUser from "../components/Homepage/EditUser";
 import BlogPage from "../components/Homepage/BlogPage";
 
 function RoutersHandle() {
   const token = getToken();
-
 
   return (
     <BrowserRouter>

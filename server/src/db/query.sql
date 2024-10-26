@@ -53,3 +53,15 @@ CREATE TABLE follows (
     follower_id INT REFERENCES users(id) ON DELETE CASCADE,  -- The user who is following
     followed_id INT REFERENCES users(id) ON DELETE CASCADE   --the user being followed
 )
+
+
+CREATE TABLE follows(
+  id SERIAL PRIMARY KEY,
+  follower_id INT REFERENCES user(id) ON DELETE CASCADE,
+  followed_id INT REFERENCES users(id) ON DELETE CASCADE,
+  UNIQUE (follower_id, followed_id)
+);  
+
+-- insert into follow table 
+INSERT INTO follows (follower_id,followed_id) VALUES 
+(91,93);

@@ -15,20 +15,20 @@ function WelcomePage() {
     <>
       <div className="h-screen w-screen">
         <div className="fixed w-full">
-          <nav className="pl-24 pr-14 p-4 flex flex-row justify-between bg-emerald-50">
-            <h1 className="text-6xl font-playfair">Bloggger</h1>
-            <div className="side-menu font-CosmicNeue flex flex-row items-center">
-              <button className="ml-4 mr-4 text-2xl">Get started</button>
-              <button className="ml-4 mr-4 text-2xl">About us</button>
-              <button className="ml-4 mr-4 text-2xl">Membership</button>
+          <nav className="pl-24 sm:pl-2 sm:pr-2 pr-14 p-4 flex flex-row justify-between bg-black sm:h-20 sm:w-full">
+            <h1 className="text-6xl font-playfair text-white sm:text-right sm:text-2xl">Bloggger</h1>
+            <div className="side-menu font-CosmicNeue flex flex-row items-center text-white">
+              <button className="ml-4 mr-4 text-2xl sm:hidden md:block">Get started</button>
+              <button className="ml-4 mr-4 text-2xl sm:hidden md:block">About us</button>
+              <button className="ml-4 mr-4 text-2xl sm:hidden md:block">Membership</button>
               <button
-                className="ml-4 mr-4 p-2 pl-3 pr-3 text-2xl bg-emerald-600 border-2 border-emerald-600 rounded-full text-white hover:bg-emerald-800 hover:border-emerald-800 "
+                className="ml-4 mr-4 p-2 pl-3 pr-3 text-2xl bg-green-400 border-2 border-green-400 rounded-full text-white hover:bg-emerald-800 hover:border-emerald-800 "
                 onClick={() => setLogin(!login)}
               >
                 Register
               </button>
               <button
-                className="ml-4 mr-4 p-2 pl-3 pr-3 text-2xl border-2 border-emerald-600 rounded-full text-emerald-600 hover:text-emerald-800 hover:border-emerald-800"
+                className="ml-4 mr-4 p-2 pl-3 pr-3 text-2xl border-2 border-green-400 rounded-full text-green-400 hover:text-green-50 hover:border-green-50"
                 onClick={() => setSignUp(!signUp)}
               >
                 Sign in
@@ -39,14 +39,14 @@ function WelcomePage() {
         </div>
         <main className="mb-80 w-screen ">
           <div className="pl-28 pt-[13%] gap-16 flex flex-col">
-            <h1 className="text-8xl sm:text-4xl font-playfair">
+            <h1 className="md:text-8xl font-playfair text-white sm:text-5xl sm:p-0 sm:pt-16">
               Share Information <br /> &
-              <span className="animate-pulse text-lime-700"> Grow</span>
+              <span className="animate-pulse text-green-400  "> Grow</span>
             </h1>
-            <h3 className="text-4xl sm:text-2xl font-CosmicNeue">
+            <h3 className="text-4xl sm:text-2xl font-CosmicNeue text-white">
               Lorem ipsum dolor sit amet consectetur adipisicing
             </h3>
-            <button className="bg-emerald-800 text-white pl-8 pr-8 p-4 text-3xl sm:text-xl rounded-full w-fit hover:bg-emerald-950">
+            <button className="bg-green-400 pl-8 pr-8 p-4 text-3xl rounded-full w-fit hover:bg-green-200">
               Get Started
             </button>
           </div>

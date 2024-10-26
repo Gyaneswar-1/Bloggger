@@ -6,17 +6,22 @@ module.exports = {
   ],
   theme: {
     screens: {
-      'mobile':"450px",
-      
-      'tablet': '760px',
+      'sm': '0px',
       // => @media (min-width: 640px) { ... }
 
-      'laptop': '1024px',
+      'md': '1156px',
+      // => @media (min-width: 768px) { ... }
+
+      'lg': '1024px',
       // => @media (min-width: 1024px) { ... }
 
-      'desktop': '1280px',
+      'xl': '1280px',
       // => @media (min-width: 1280px) { ... }
-    },
+
+      '2xl': '1536px',
+      // => @media (min-width: 1536px) { ... }
+    }
+,
     extend: {
       fontFamily: {
         playfair: ['"Playfair Display SC"', 'serif'],
