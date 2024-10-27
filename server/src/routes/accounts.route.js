@@ -15,7 +15,7 @@ import { getusers } from "../controllers/getusers.controllers.js";
 import { getBlogByID } from "../controllers/getBlogByID.controllers.js";
 import { follow } from "../controllers/FollowHandle.controllers/follow.controllers.js";
 import { getFollows } from "../controllers/FollowHandle.controllers/getFollows.controllers.js";
-import { getFollowedUser } from "../controllers/FollowHandle.controllers/getFollowedUser.js";
+import { getFollowers } from "../controllers/FollowHandle.controllers/getFollowers.js";
 import { unfollow } from "../controllers/FollowHandle.controllers/unfollow.controller.js";
 // import { logout } from "../controllers/logout.controllers.js";
 
@@ -47,9 +47,9 @@ router.route("/blog/:id").get(authenticationToken, getBlogByID);
 
 router.route("/user/follow/:uid").post( follow);
 
-router.route("/user/getfollows/:uid").get(authenticationToken, getFollows);
+router.route("/user/getfollows/:uid").get( getFollows);
 
-router.route("/user/getfolloweduser/:uid").get(getFollowedUser);
+router.route("/user/getfollowers/:uid").get(getFollowers);
 
 router.route("/user/unfollow/:uid").delete(unfollow);
 
