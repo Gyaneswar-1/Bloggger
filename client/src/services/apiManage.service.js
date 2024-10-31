@@ -228,7 +228,9 @@ export const follow = async (uid) => {
     console.log(error);
   }
 };
-export const getFollows = async () => {
+
+//user followed
+export const getFollowed = async () => { // the user followed these guys
   const token = getToken();
   const uid = getUserId();
   const id = uid.id;
@@ -244,3 +246,22 @@ export const getFollows = async () => {
     console.log(error);
   }
 };
+
+//user followers
+export const getFollowers = async () =>{ // the user followers; number of users that follows these user
+  const token  = getToken();
+  const uid  = getUserId()
+  const id  = uid.id;
+  const api = `http://localhost:3000/api/v1/user/getfollowers/${id}`;
+  try {
+    const result  = await axios.get(api,{
+      headers:{
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return result.data.data;
+  } catch (error) {
+    console.log(error);
+  }
+
+}

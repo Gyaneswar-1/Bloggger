@@ -45,12 +45,12 @@ router.route("/blog/delete/:uid/:id").delete(authenticationToken, deleteblog);
 
 router.route("/blog/:id").get(authenticationToken, getBlogByID);
 
-router.route("/user/follow/:uid").post( follow);
+router.route("/user/follow/:uid").post(authenticationToken, follow);
 
-router.route("/user/getfollows/:uid").get( getFollows);
+router.route("/user/getfollows/:uid").get(authenticationToken, getFollows);
 
-router.route("/user/getfollowers/:uid").get(getFollowers);
+router.route("/user/getfollowers/:uid").get(authenticationToken,getFollowers);
 
-router.route("/user/unfollow/:uid").delete(unfollow);
+router.route("/user/unfollow/:uid").delete(authenticationToken,unfollow);
 
 export default router;

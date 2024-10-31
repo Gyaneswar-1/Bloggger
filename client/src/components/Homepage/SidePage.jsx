@@ -1,14 +1,14 @@
 import React, { useEffect } from "react";
-import { follow, getFollows } from "../../services/apiManage.service";
+import { follow, getFollowed, getFollowers } from "../../services/apiManage.service";
 
 function SidePage({ pfp, name, bio, id }) {
   useEffect(() => {
     const fetchData = async () => {
-      const data = await getFollows();
-      const followedIds = data.map((item) => item.followed_id);
-      // setFollowCount(followedIds.length);
-      console.log(followedIds.length);
-      console.log("Follow data:", data);
+      const data = await getFollowed();
+      const data2 = await getFollowers();
+      console.log("User that followed: ",data);
+      console.log("User that followers: ",data2); 
+      
     };
     fetchData();
   }, []);

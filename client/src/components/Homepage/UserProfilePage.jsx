@@ -4,12 +4,13 @@ import { getUserId } from "../../services/authService.js";
 import { Button } from "@chakra-ui/react";
 import { logout } from "../../services/authService.js";
 import { useNavigate } from "react-router-dom";
-import { getUserBlogs } from "../../services/apiManage.service.js";
+import {  getFollowers, getUserBlogs } from "../../services/apiManage.service.js";
 import Cardd from "../ReuseableComponents.jsx/Cardd.jsx";
 
 const UserProfilePage = () => {
   const navigate = useNavigate();
   const [ublog, setUblog] = useState([]);
+  const [followers,setFollowers] = useState("");
   const [udata, setUdata] = useState({
     pfp: "",
     username: "",
@@ -20,8 +21,12 @@ const UserProfilePage = () => {
   const getData = async () => {
     const data = await getUserId();
     const result = await getUserBlogs(getUserId().id);
+    const follow = await getFollowers();
     setUblog(result);
     setUdata(data);
+    setFollowers(follow.length);
+    console.log("Get number of followers",follow.length);
+    
   };
 
   useEffect(() => {
@@ -70,7 +75,7 @@ const UserProfilePage = () => {
               Created at: {new Date(udata.created_at).toLocaleDateString()}
             </p>
             <div className="follows flex gap-5 pt-2 ">
-              <h1 className="bg bg-gray-200 p-1 rounded-md">12 followers</h1>
+              <h1 className="bg bg-gray-200 p-1 rounded-md">{followers} followers</h1>
             </div>
           </div>
           <div className="buttons flex justify-evenly pt-5">
