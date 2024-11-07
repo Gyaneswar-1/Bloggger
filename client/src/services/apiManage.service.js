@@ -265,3 +265,45 @@ export const getFollowers = async () =>{ // the user followers; number of users 
   }
 
 }
+
+export const getFollowersById = async (id) =>{
+  const token = getToken();
+  const api = `http://localhost:3000/api/v1/user/getfollowers/${id}`;
+  try {
+    const result  = await axios.get(api,{
+      headers:{
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return result.data.data;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export const unfollowUser = async (uid) => {
+  const token = getToken();
+  const id = getUserId();
+  const fid = id.id;
+  const api = `http://localhost:3000/api/v1/user/unfollow/${uid}`;
+  console.log("uid=", uid);
+  console.log("fid=", fid);
+
+  try {
+    const result = await axios.delete(api, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      data: {
+        id: fid,
+      },
+    });
+    return result.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const searchBlog = async (title) =>{
+  
+}

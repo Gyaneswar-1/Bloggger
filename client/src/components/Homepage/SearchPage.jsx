@@ -6,7 +6,7 @@ function SearchPage() {
   return (
     <div>
       <Navbar />
-      <div className="flex justify-center">
+      <div className="flex justify-center bg-black">
         <div className="flex justify-center items-center p-2 gap-3 rounded-full">
           <input
             type="text"

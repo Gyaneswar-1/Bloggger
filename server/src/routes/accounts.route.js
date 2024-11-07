@@ -1,56 +1,44 @@
 import { Router } from "express";
 
-import { healthcheck } from "../controllers/Healthcheck.controllers.js";
-import { register } from "../controllers/register.controllers.js";
-import { login } from "../controllers/login.controllers.js";
-import { deleteUser } from "../controllers/deleteUser.controllers.js";
-import { homepage } from "../controllers/homepage.controllers.js";
-import { postnewblogs } from "../controllers/postnewblogs.controllers.js";
-import { deleteblog } from "../controllers/deleteblog.controllers.js";
-import { getuserinfo } from "../controllers/getuserinfo.controllers.js";
+import { healthcheck } from "../controllers/Healthcheck.controller.js";
+import { register } from "../controllers/register.controller.js";
+import { login } from "../controllers/login.controller.js";
+import { deleteUser } from "../controllers/deleteUser.controller.js";
+import { homepage } from "../controllers/homepage.controller.js";
+import { postnewblogs } from "../controllers/postnewblogs.controller.js";
+import { deleteblog } from "../controllers/deleteblog.controller.js";
+import { getuserinfo } from "../controllers/getuserinfo.controller.js";
 import { authenticationToken } from "../middleware/auth.middleware.js";
-import { getUserBlogs } from "../controllers/getUserBlogs.controllers.js";
-import { editUserData } from "../controllers/editUser.controllers.js";
-import { getusers } from "../controllers/getusers.controllers.js";
-import { getBlogByID } from "../controllers/getBlogByID.controllers.js";
-import { follow } from "../controllers/FollowHandle.controllers/follow.controllers.js";
-import { getFollows } from "../controllers/FollowHandle.controllers/getFollows.controllers.js";
-import { getFollowers } from "../controllers/FollowHandle.controllers/getFollowers.js";
+import { getUserBlogs } from "../controllers/getUserBlogs.controller.js";
+import { editUserData } from "../controllers/editUser.controller.js";
+import { getusers } from "../controllers/getusers.controller.js";
+import { getBlogByID } from "../controllers/getBlogByID.controller.js";
+import { follow } from "../controllers/FollowHandle.controllers/follow.controller.js";
+import { getFollows } from "../controllers/FollowHandle.controllers/getFollows.controller.js";
+import { getFollowers } from "../controllers/FollowHandle.controllers/getFollowers.controller.js";
 import { unfollow } from "../controllers/FollowHandle.controllers/unfollow.controller.js";
+import { searchBlog } from "../controllers/searchBlog.controller.js";
 // import { logout } from "../controllers/logout.controllers.js";
 
 const router = Router();
 
 router.route("/test").get(healthcheck);
-
 router.route("/user/register").post(register);
-
 router.route("/user/login").post(login);
-
 router.route("/user/:id").get(authenticationToken, getuserinfo);
-
 router.route("/user").get(authenticationToken, getusers);
-
 router.route("/user/blogs/:id").get(authenticationToken, getUserBlogs);
-
 router.route("/user/edit").put(authenticationToken, editUserData);
-
 router.route("/user/delete").delete(authenticationToken, deleteUser);
-
 router.route("/home").get(authenticationToken, homepage);
-
 router.route("/blog/post").post(authenticationToken, postnewblogs);
-
 router.route("/blog/delete/:uid/:id").delete(authenticationToken, deleteblog);
-
 router.route("/blog/:id").get(authenticationToken, getBlogByID);
-
+router.route("/blog/searchBlog").get(searchBlog);
 router.route("/user/follow/:uid").post(authenticationToken, follow);
-
-router.route("/user/getfollows/:uid").get(authenticationToken, getFollows);
-
+router.route("/user/getfollows/:uid").get(authenticationToken,getFollows);
 router.route("/user/getfollowers/:uid").get(authenticationToken,getFollowers);
-
 router.route("/user/unfollow/:uid").delete(authenticationToken,unfollow);
+
 
 export default router;

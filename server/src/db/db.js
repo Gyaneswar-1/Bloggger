@@ -11,4 +11,6 @@ const db = new pg.Client({
   port: process.env.DB_PORT,
 });
 
+// const db = new pg.Client("postgresql://blog_owner:U1pLS5NEmIbv@ep-soft-voice-a8iy3v9j.eastus2.azure.neon.tech/blog?sslmode=require")
+
 export default db;
