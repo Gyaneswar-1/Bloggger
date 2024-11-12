@@ -28,6 +28,7 @@ function HomePage() {
   return (
     <div className="flex justify-center">
       <div className=" cards flex flex-col flex-wraps items-center gap-2">
+        
         {card.map((card, index) => (
           <Cardd
             key={index}

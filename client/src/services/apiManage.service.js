@@ -37,7 +37,7 @@ export const getHomePageData = async () => {
     }
   } else {
     console.log("No token found, sorry");
-    return;
+    return null;
   }
 };
 
@@ -56,6 +56,7 @@ export const getUserProfileData = async (id) => {
     return response.data;
   } catch (error) {
     console.log(error);
+    return null
   }
 };
 
@@ -182,11 +183,11 @@ export const getAllUsers = async () => {
         Authorization: `Bearer ${token}`,
       },
     });
-    // console.log("rerult",result);
 
     return result.data.message;
   } catch (error) {
     console.log(error);
+    return null;
   }
 };
 

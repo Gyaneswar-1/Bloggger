@@ -37,7 +37,7 @@ function SidePage({ pfp, name, bio, id }) {
 
   return (
     <div>
-      <div className="h-fit bg-zinc-200 p-4 mb-4 rounded-sm">
+      <div className="h-fit bg-zinc-800  text-white p-4 mb-4 rounded-sm">
         <div className="best-picks flex flex-col items-start gap-2">
           <div>
             <div className="user-info flex flex-row items-center gap-1 rounded-full">

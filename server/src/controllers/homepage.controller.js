@@ -8,7 +8,10 @@ export async function homepage(req, res) {
 
     const result = data.rows;
 
+   setTimeout(()=>{
     return res.json({ result });
+   },2000)
+
   } catch (error) {
     console.error(error);
     return res
