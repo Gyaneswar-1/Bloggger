@@ -1,15 +1,16 @@
-import React, {  useState } from "react";
+import React, { useState } from "react";
 import SignUp from "./SignUp";
 import Register from "./Register";
 import IntropageFooter from "../ReuseableComponents.jsx/IntropageFooter";
 import { useToast } from "@chakra-ui/react";
 import { CloseButton } from "@chakra-ui/react";
+import { useNavigate } from "react-router-dom";
 
 function WelcomePage() {
+  const navigate = useNavigate()
   const toast = useToast();
   const [login, setLogin] = useState(false);
   const [signUp, setSignUp] = useState(false);
- 
 
   return (
     <>
@@ -18,8 +19,9 @@ function WelcomePage() {
           <nav className="pl-24 pr-14 p-4 flex flex-row justify-between bg-black ">
             <h1 className="text-6xl font-playfair text-white ">Bloggger</h1>
             <div className="side-menu font-CosmicNeue flex flex-row items-center text-white">
-              <button className="ml-4 mr-4 text-2xl ">Get started</button>
-              <button className="ml-4 mr-4 text-2xl ">About us</button>
+              <button className="ml-4 mr-4 text-2xl "
+              onClick={()=>navigate("/aboutus")}
+              >About us</button>
               <button className="ml-4 mr-4 text-2xl ">Membership</button>
               <button
                 className="ml-4 mr-4 p-2 pl-3 pr-3 text-2xl bg-green-400 border-2 border-green-400 rounded-full text-white hover:bg-emerald-800 hover:border-emerald-800 "
@@ -46,7 +48,10 @@ function WelcomePage() {
             <h3 className="text-4xl font-CosmicNeue text-white">
               Lorem ipsum dolor sit amet consectetur adipisicing
             </h3>
-            <button className="bg-green-400 pl-8 pr-8 p-4 text-3xl rounded-full w-fit hover:bg-green-200">
+            <button
+              className="bg-green-400 pl-8 pr-8 p-4 text-3xl rounded-full w-fit hover:bg-green-200"
+              onClick={() => setLogin(!login)}
+            >
               Get Started
             </button>
           </div>
@@ -79,9 +84,7 @@ function WelcomePage() {
       {signUp && (
         <div className="fixed inset-0 flex items-center justify-center backdrop-blur-md bg-black bg-opacity-70 ">
           <div className="bg-white p-8 rounded-md shadow-lg h-5/6 w-3/4">
-            <h1 className="text-5xl text-center font-playfair">
-              
-            </h1>
+            <h1 className="text-5xl text-center font-playfair"></h1>
             <CloseButton
               size="lg"
               className="absolute inset-y-0 right-0 w-16 text-white"

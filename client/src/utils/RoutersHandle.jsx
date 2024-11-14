@@ -11,6 +11,7 @@ import { getToken, isAuthenticated, logout } from "../services/authService";
 import PostnewBlogs from "../components/Homepage/PostnewBlogs";
 import EditUser from "../components/Homepage/EditUser";
 import BlogPage from "../components/Homepage/BlogPage";
+import Aboutus from "../components/Homepage/Aboutus";
 
 function RoutersHandle() {
   const token = getToken();
@@ -25,6 +26,7 @@ function RoutersHandle() {
         )}
 
         <Route path="/welcome" element={<WelcomePage />} />
+        <Route path="/aboutus" element={<Aboutus/>} />
         <Route path="/register" element={<Register />} />
         <Route path="/home" element={<HomeEx />} />
         <Route path="/home/main" element={<HomeEx />} />
