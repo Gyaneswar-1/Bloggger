@@ -16,4 +16,4 @@ db.connect()
   })
   .catch((err) => {
     console.log(`error ${err}`);
-  });
+});

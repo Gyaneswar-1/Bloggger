@@ -65,3 +65,12 @@ CREATE TABLE follows(
 -- insert into follow table 
 INSERT INTO follows (follower_id,followed_id) VALUES 
 (91,93);
+
+
+-- update the blog table
+
+UPDATE blogs SET title = 'new_title', 
+    content = 'new_content',
+    images = 'new_images',
+    updated_at = NOW()
+WHERE id = 93;

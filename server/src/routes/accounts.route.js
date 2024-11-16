@@ -18,6 +18,7 @@ import { getFollows } from "../controllers/FollowHandle.controllers/getFollows.c
 import { getFollowers } from "../controllers/FollowHandle.controllers/getFollowers.controller.js";
 import { unfollow } from "../controllers/FollowHandle.controllers/unfollow.controller.js";
 import { searchBlog } from "../controllers/searchBlog.controller.js";
+import { editBlog } from "../controllers/editBlog.controller.js";
 // import { logout } from "../controllers/logout.controllers.js";
 
 const router = Router();
@@ -30,11 +31,12 @@ router.route("/user").get(authenticationToken, getusers);
 router.route("/user/blogs/:id").get(authenticationToken, getUserBlogs);
 router.route("/user/edit").put(authenticationToken, editUserData);
 router.route("/user/delete").delete(authenticationToken, deleteUser);
-router.route("/home").get(authenticationToken, homepage);
+router.route("/home").get( homepage);
 router.route("/blog/post").post(authenticationToken, postnewblogs);
 router.route("/blog/delete/:uid/:id").delete(authenticationToken, deleteblog);
 router.route("/blog/:id").get(authenticationToken, getBlogByID);
-router.route("/blog/searchBlog").get(searchBlog);
+router.route("/blog/searchBlog").get(authenticationToken,searchBlog);
+router.route("/blog/edit").put(editBlog);
 router.route("/user/follow/:uid").post(authenticationToken, follow);
 router.route("/user/getfollows/:uid").get(authenticationToken,getFollows);
 router.route("/user/getfollowers/:uid").get(authenticationToken,getFollowers);
