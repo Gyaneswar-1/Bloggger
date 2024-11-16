@@ -1,11 +1,13 @@
 import { Button } from "@chakra-ui/react";
 import React, { useState } from "react";
 import DeleteBlogs from "../Homepage/DeleteBlogs";
+import Editblog from "../Homepage/Editblog";
 import { useNavigate } from "react-router-dom";
 
 function Cardd(props) {
   const navigate = useNavigate();
   const [showDeleteUser, setShowDeleteUser] = useState(false);
+  const [showEditBlog,setShowEditBlog] = useState(false);
   const { id, title, content, images, username, created_at, userpfp } = props;
 
   
@@ -45,7 +47,7 @@ function Cardd(props) {
             >
               {content.substring(0, 100)}
             </p>
-            <hr className="border-gray-300 mb-4 w-full" />
+            {/* <hr className="border-gray-300 mb-4 w-full" /> */}
             <div className="flex items-center">
               <div className="">
                 {username ? (
@@ -57,9 +59,7 @@ function Cardd(props) {
                     />
                   </div>
                 ) : (
-                  // <div className="h-full w-full bg-gray-300 flex items-center justify-center">
-                  //   <span> </span>
-                  // </div>
+                
                   <div>
                     <Button
                       className="m-2"
@@ -77,7 +77,9 @@ function Cardd(props) {
                 {username ? (
                   <p className=" font-medium">{username}</p>
                 ) : (
-                  <Button className="m-2" colorScheme="yellow" color="black">
+                  <Button className="m-2" colorScheme="yellow" color="black" onClick={()=>{
+                    setShowEditBlog(!showEditBlog)
+                  }}>
                     edit
                   </Button>
                 )}
@@ -103,6 +105,7 @@ function Cardd(props) {
             </div>
           </div>
           {showDeleteUser && <DeleteBlogs id={id} />}
+          {showEditBlog &&  navigate("/home/blog/edit")}
         </div>
 
   );

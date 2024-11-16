@@ -12,7 +12,7 @@ function HomePage() {
   const [card, setCard] = useState([]);
   const [ucard, setUCard] = useState([]);
   const [blogLoading, setBlogLoading] = useState(true);
-
+ 
   const getDatas = async () => {
     try {
       const data = await getHomePageData();

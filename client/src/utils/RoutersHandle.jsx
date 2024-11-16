@@ -12,6 +12,7 @@ import PostnewBlogs from "../components/Homepage/PostnewBlogs";
 import EditUser from "../components/Homepage/EditUser";
 import BlogPage from "../components/Homepage/BlogPage";
 import Aboutus from "../components/Homepage/Aboutus";
+import Editblog from "../components/Homepage/Editblog";
 
 function RoutersHandle() {
   const token = getToken();
@@ -36,7 +37,8 @@ function RoutersHandle() {
         <Route path="/home/user/edituser" element={<EditUser />} />
         <Route path="/home/main/postnewblog" element={<PostnewBlogs />} />
         <Route path="/home/trending" element={<Trendingpage />} />
-      <Route path="/home/blog/:id" element={<BlogPage/>} />
+        <Route path="/home/blog/:id" element={<BlogPage/>} />
+        <Route path="/home/blog/edit" element={<Editblog/>} />
       </Routes>
     </BrowserRouter>
   );

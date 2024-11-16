@@ -55,11 +55,6 @@ const UserProfilePage = () => {
               ))}
             </div>
           </div>
-          {/* <div className="h-auto w-full bg-white p-3 m-4 shadow-2xl">
-            <h1 className="text-6xl font-CosmicNeue font-extralight m-9">
-              saved
-            </h1>
-          </div> */}
         </div>
         <div className="bg-white p-6 rounded-lg shadow-lg h-fit w-1/4 ">
           <div className="flex flex-col items-center">

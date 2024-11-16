@@ -5,8 +5,10 @@ export async function getBlogByID(req, res) {
   const { id } = req.params; // Destructure id from req.params
   try {
     const result = await db.query(`SELECT * FROM blogs WHERE id = $1`, [id]); // Use parameterized query
-    
-    return res.json(result.rows);
+
+    setTimeout(() => {
+      return res.json(result.rows);
+    }, 3000);
   } catch (error) {
     return res
       .status(500)

@@ -62,8 +62,8 @@ function WelcomePage() {
       </div>
 
       {login && (
-        <div className="fixed inset-0 flex items-center justify-center backdrop-blur-md bg-black bg-opacity-70 ">
-          <div className="bg-white p-8 rounded-none shadow-lg h-5/6 w-3/4">
+        <div className="fixed inset-0 text-white flex items-center justify-center backdrop-blur-md bg-black bg-opacity-70 w-full ">
+          <div className="bg-zinc-800 p-8 rounded-xl shadow-lg h-5/6 w-2/5">
             <h1 className="text-5xl text-center font-playfair">
               Join to Blogger
             </h1>
@@ -73,7 +73,7 @@ function WelcomePage() {
               onClick={() => setLogin(false)}
             />
             <Register />
-            <p className="text-wrap text-center">
+            <p className="text-wrap text-center pt-10">
               Click “Register” to agree to Blogger’s Terms of Service and
               acknowledge that Medium’s Privacy Policy applies to you.
             </p>
@@ -82,8 +82,8 @@ function WelcomePage() {
       )}
 
       {signUp && (
-        <div className="fixed inset-0 flex items-center justify-center backdrop-blur-md bg-black bg-opacity-70 ">
-          <div className="bg-white p-8 rounded-md shadow-lg h-5/6 w-3/4">
+        <div className="fixed inset-0 text-white flex items-center justify-center backdrop-blur-md bg-black bg-opacity-70 ">
+          <div className="bg-zinc-800 p-8 rounded-xl shadow-lg h-5/6 w-2/5">
             <h1 className="text-5xl text-center font-playfair"></h1>
             <CloseButton
               size="lg"
@@ -91,7 +91,7 @@ function WelcomePage() {
               onClick={() => setSignUp(false)}
             />
             <SignUp />
-            <p className="text-wrap text-center">
+            <p className="text-wrap text-center pt-10">
               Click “Sign up” to agree to Blogger’s Terms of Service and
               acknowledge that Medium’s Privacy Policy applies to you.
             </p>
