@@ -38,7 +38,7 @@ function RoutersHandle() {
         <Route path="/home/main/postnewblog" element={<PostnewBlogs />} />
         <Route path="/home/trending" element={<Trendingpage />} />
         <Route path="/home/blog/:id" element={<BlogPage/>} />
-        <Route path="/home/blog/edit" element={<Editblog/>} />
+        <Route path="/home/blog/edit/:id" element={<Editblog/>} />
       </Routes>
     </BrowserRouter>
   );

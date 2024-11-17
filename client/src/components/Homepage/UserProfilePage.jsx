@@ -11,6 +11,7 @@ const UserProfilePage = () => {
   const navigate = useNavigate();
   const [ublog, setUblog] = useState([]);
   const [followers,setFollowers] = useState("");
+  const [showVlogs,setShowBlogs] = useState(false)
   const [udata, setUdata] = useState({
     pfp: "",
     username: "",
@@ -22,6 +23,9 @@ const UserProfilePage = () => {
     const data = await getUserId();
     const result = await getUserBlogs(getUserId().id);
     const follow = await getFollowers();
+    if (result != null) {
+      setShowBlogs(true)
+    }
     setUblog(result);
     setUdata(data);
     setFollowers(follow.length);
@@ -37,10 +41,10 @@ const UserProfilePage = () => {
     <>
       <Navbar />
       <div className="flex  justify-evenly gap-8 p-6 bg-black h-full">
-        <div className="h-1/2 w-4/5 rounded-lg bg-zinc-800 shadow-2xl flex flex-row">
+          <div className="h-1/2 w-4/5 rounded-lg bg-zinc-800 shadow-2xl flex flex-row">
           <div>
             <h1 className="m-9 text-6xl font-thin font-CosmicNeue text-white">
-              Your Blogs
+              {showVlogs ? "Your Blogs" : "No Blogs"}
             </h1>
             <div className="m-3 flex flex-col gap-9 mt-9">
               {ublog.map((data, index) => (

@@ -56,7 +56,7 @@ export const getUserProfileData = async (id) => {
     return response.data;
   } catch (error) {
     console.log(error);
-    return null
+    return null;
   }
 };
 
@@ -216,7 +216,7 @@ export const follow = async (uid) => {
     const api = `http://localhost:3000/api/v1/user/follow/${uid}`;
     const result = await axios.post(
       api,
-      {id:fid},
+      { id: fid },
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -231,7 +231,8 @@ export const follow = async (uid) => {
 };
 
 //user followed
-export const getFollowed = async () => { // the user followed these guys
+export const getFollowed = async () => {
+  // the user followed these guys
   const token = getToken();
   const uid = getUserId();
   const id = uid.id;
@@ -249,14 +250,15 @@ export const getFollowed = async () => { // the user followed these guys
 };
 
 //user followers
-export const getFollowers = async () =>{ // the user followers; number of users that follows these user
-  const token  = getToken();
-  const uid  = getUserId()
-  const id  = uid.id;
+export const getFollowers = async () => {
+  // the user followers; number of users that follows these user
+  const token = getToken();
+  const uid = getUserId();
+  const id = uid.id;
   const api = `http://localhost:3000/api/v1/user/getfollowers/${id}`;
   try {
-    const result  = await axios.get(api,{
-      headers:{
+    const result = await axios.get(api, {
+      headers: {
         Authorization: `Bearer ${token}`,
       },
     });
@@ -264,15 +266,14 @@ export const getFollowers = async () =>{ // the user followers; number of users 
   } catch (error) {
     console.log(error);
   }
+};
 
-}
-
-export const getFollowersById = async (id) =>{
+export const getFollowersById = async (id) => {
   const token = getToken();
   const api = `http://localhost:3000/api/v1/user/getfollowers/${id}`;
   try {
-    const result  = await axios.get(api,{
-      headers:{
+    const result = await axios.get(api, {
+      headers: {
         Authorization: `Bearer ${token}`,
       },
     });
@@ -280,7 +281,7 @@ export const getFollowersById = async (id) =>{
   } catch (error) {
     console.log(error);
   }
-}
+};
 
 export const unfollowUser = async (uid) => {
   const token = getToken();
@@ -292,11 +293,11 @@ export const unfollowUser = async (uid) => {
 
   try {
     const result = await axios.delete(api, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
       data: {
         id: fid,
+      },
+      headers: {
+        Authorization: `Bearer ${token}`,
       },
     });
     return result.data;
@@ -305,6 +306,28 @@ export const unfollowUser = async (uid) => {
   }
 };
 
-export const searchBlog = async (title) =>{
-  
-}
+export const searchBlog = async (title) => {};
+
+export const editBlog = async (id, title, content, image) => {
+  const token = getToken();
+  const api = "http://localhost:3000/api/v1/blog/edit";
+  try {
+    const result = axios.put(
+      api,
+      {
+        id: id,
+        title: title,
+        content: content,
+        image: image,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    return result;
+  } catch (error) {
+    console.log("Error while editing the blog! ");
+  }
+};

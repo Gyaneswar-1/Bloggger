@@ -17,7 +17,7 @@ const BlogPage = () => {
     const blogData = await getBlogByID(id);
     const userData = await getUserProfileData(blogData[0].user_id);
     if (blogData != null && userData != null) {
-      setShowBlog(false)
+      setShowBlog(false);
     }
     setBlog(blogData[0]);
     setUser(userData);
@@ -32,10 +32,9 @@ const BlogPage = () => {
       {showBlog ? (
         <div className="flex justify-center items-center pt-[20%]">
           <VStack colorPalette="green.100">
-          <Spinner color="green.100" />
-          <Text color="green.100">Loading...</Text>
-        </VStack>
-        
+            <Spinner color="green.100" />
+            <Text color="green.100">Loading...</Text>
+          </VStack>
         </div>
       ) : (
         <div>
@@ -150,7 +149,10 @@ const BlogPage = () => {
                 </div>
                 <hr />
               </div>
-              <div className="image pt-8 h-1/4 w-full ">
+              <div
+                className="image pt-8 h-1/4 w-full cursor-pointer"
+                
+              >
                 <img
                   src={blog.images}
                   alt=""
@@ -185,29 +187,9 @@ const BlogPage = () => {
             </div>
           </footer>
         </div>
-      )}
+      )}    
     </div>
   );
 };
 
 export default BlogPage;
-{
-  /* <img src= alt="" className="h-[300px] w-5/6 object-cover"/> */
-}
-
-// {blog.content}
-{
-  /* <img src={blog.images} alt="" /> */
-}
-{
-  /* <p>{blog.created_at}</p> */
-}
-{
-  /* <p>{user.username}</p> */
-}
-{
-  /* <img src={user.pfp} alt="" className=""/> */
-}
-{
-  /* <h1 className="text-4xl">{}</h1> */
-}

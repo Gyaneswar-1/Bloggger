@@ -14,7 +14,7 @@ function Cardd(props) {
   return (
 
         <div className="cardd bg-zinc-800 shadow-2xl text-white rounded-sm overflow-hidden w-[700px] h-[240px] ml-4 mr-4 flex flex-row-reverse justify-between">
-          <div className="image h-60 w-60 overflow-hidden p-4">
+          <div className="image h-60 w-1/2 overflow-hidden">
             {images ? (
               <img
                 src={images}
@@ -79,6 +79,7 @@ function Cardd(props) {
                 ) : (
                   <Button className="m-2" colorScheme="yellow" color="black" onClick={()=>{
                     setShowEditBlog(!showEditBlog)
+                   
                   }}>
                     edit
                   </Button>
@@ -105,7 +106,7 @@ function Cardd(props) {
             </div>
           </div>
           {showDeleteUser && <DeleteBlogs id={id} />}
-          {showEditBlog &&  navigate("/home/blog/edit")}
+          {showEditBlog &&  navigate(`/home/blog/edit/${id}`)}
         </div>
 
   );
