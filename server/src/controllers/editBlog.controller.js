@@ -16,7 +16,7 @@ export async function editBlog(req, res) {
 
     return res
       .status(200)
-      .json(new ApiResponse(200, "OK", "blog edited sucsessfully"));
+      .json(new ApiResponse(200, result, "OK", "blog edited sucsessfully"));
   } catch (err) {
     return res
       .status(501)

@@ -60,8 +60,8 @@ const UserProfilePage = () => {
             </div>
           </div>
         </div>
-        <div className="bg-white p-6 rounded-lg shadow-lg h-fit w-1/4 ">
-          <div className="flex flex-col items-center">
+        <div className="bg-zinc-600 p-6 rounded-lg shadow-lg h-fit w-1/4 ">
+          <div className=" flex flex-col items-center">
             <img
               src={udata.pfp}
               alt={udata.username}

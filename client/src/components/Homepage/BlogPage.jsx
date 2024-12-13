@@ -7,11 +7,28 @@ import {
 
 import { CloseButton, Spinner, Text, VStack } from "@chakra-ui/react";
 
+export default BlogPage;
+import { Button } from "@/components/ui/button"
+import {
+  DrawerActionTrigger,
+  DrawerBackdrop,
+  DrawerBody,
+  DrawerCloseTrigger,
+  DrawerContent,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerRoot,
+  DrawerTitle,
+  DrawerTrigger,
+} from "@/components/ui/drawer"
+
+
 const BlogPage = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const [blog, setBlog] = useState({});
   const [user, setUser] = useState({});
+  const [showComment, setShowComment] = useState(false);
   const [showBlog, setShowBlog] = useState(true);
   async function getData() {
     const blogData = await getBlogByID(id);
@@ -63,9 +80,9 @@ const BlogPage = () => {
                   <div className="flex gap-2">
                     <h1>{user.username}</h1>
                     <p>●</p>
-                    <button className="text-green-600 font-semibold">
+                    {/* <button className="text-green-600 font-semibold">
                       Follow
-                    </button>
+                    </button> */}
                   </div>
                   <div>
                     {new Date(blog.created_at).toLocaleDateString(undefined, {
@@ -95,17 +112,19 @@ const BlogPage = () => {
                       <p>12</p>
                     </div>
                     <div className="like flex gap-1 justify-center items-center">
-                      <button>
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          height="28px"
-                          viewBox="0 -960 960 960"
-                          width="28px"
-                          fill="000000"
-                        >
-                          <path d="M240-400h480v-80H240v80Zm0-120h480v-80H240v80Zm0-120h480v-80H240v80ZM880-80 720-240H160q-33 0-56.5-23.5T80-320v-480q0-33 23.5-56.5T160-880h640q33 0 56.5 23.5T880-800v720ZM160-320h594l46 45v-525H160v480Zm0 0v-480 480Z" />
-                        </svg>
-                      </button>
+
+                          <button>
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              height="28px"
+                              viewBox="0 -960 960 960"
+                              width="28px"
+                              fill="000000"
+                            >
+                              <path d="M240-400h480v-80H240v80Zm0-120h480v-80H240v80Zm0-120h480v-80H240v80ZM880-80 720-240H160q-33 0-56.5-23.5T80-320v-480q0-33 23.5-56.5T160-880h640q33 0 56.5 23.5T880-800v720ZM160-320h594l46 45v-525H160v480Zm0 0v-480 480Z" />
+                            </svg>
+                          </button>
+
                       <p>34</p>
                     </div>
                   </div>
@@ -149,10 +168,7 @@ const BlogPage = () => {
                 </div>
                 <hr />
               </div>
-              <div
-                className="image pt-8 h-1/4 w-full cursor-pointer"
-                
-              >
+              <div className="image pt-8 h-1/4 w-full cursor-pointer">
                 <img
                   src={blog.images}
                   alt=""
@@ -187,9 +203,39 @@ const BlogPage = () => {
             </div>
           </footer>
         </div>
-      )}    
+      )}
+
     </div>
   );
 };
 
-export default BlogPage;
+const Demo = () => {
+  return (
+    <DrawerRoot>
+      <DrawerBackdrop />
+      <DrawerTrigger asChild>
+        <Button variant="outline" size="sm">
+          Open Drawer
+        </Button>
+      </DrawerTrigger>
+      <DrawerContent>
+        <DrawerHeader>
+          <DrawerTitle>Drawer Title</DrawerTitle>
+        </DrawerHeader>
+        <DrawerBody>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          </p>
+        </DrawerBody>
+        <DrawerFooter>
+          <DrawerActionTrigger asChild>
+            <Button variant="outline">Cancel</Button>
+          </DrawerActionTrigger>
+          <Button>Save</Button>
+        </DrawerFooter>
+        <DrawerCloseTrigger />
+      </DrawerContent>
+    </DrawerRoot>
+  )
+}

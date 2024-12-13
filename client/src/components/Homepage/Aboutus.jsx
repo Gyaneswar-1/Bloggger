@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 function Aboutus() {
     const navigate = useNavigate();
+    
   return (
     <div className="text-white flex p-40 text-3xl max-h-screen">
       <h1>
