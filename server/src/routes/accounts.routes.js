@@ -19,7 +19,8 @@ import { getFollowers } from "../controllers/FollowHandle.controllers/getFollowe
 import { unfollow } from "../controllers/FollowHandle.controllers/unfollow.controller.js";
 import { searchBlog } from "../controllers/searchBlog.controller.js";
 import { editBlog } from "../controllers/editBlog.controller.js";
-import { comment } from "../controllers/comment.controller.js";
+import { postcomment } from "../controllers/postcomment.controller.js";
+import { getcomment } from "../controllers/getcomments.controller.js";
 // import { logout } from "../controllers/logout.controllers.js";
 
 const router = Router();
@@ -32,17 +33,17 @@ router.route("/user").get(authenticationToken, getusers);
 router.route("/user/blogs/:id").get(authenticationToken, getUserBlogs);
 router.route("/user/edit").put(authenticationToken, editUserData);
 router.route("/user/delete").delete(authenticationToken, deleteUser);
-router.route("/home").get(authenticationToken,homepage);
+router.route("/home").get(authenticationToken, homepage);
 router.route("/blog/post").post(authenticationToken, postnewblogs);
 router.route("/blog/delete/:uid/:id").delete(authenticationToken, deleteblog);
 router.route("/blog/:id").get(authenticationToken, getBlogByID);
-router.route("/blog/searchBlog").get(authenticationToken,searchBlog);
-router.route("/blog/edit").put(authenticationToken,editBlog);
+router.route("/blog/searchBlog").get(authenticationToken, searchBlog);
+router.route("/blog/edit").put(authenticationToken, editBlog);
 router.route("/user/follow/:uid").post(authenticationToken, follow);
-router.route("/user/getfollows/:uid").get(authenticationToken,getFollows);
-router.route("/blog/comment/:bid/:uid").post(comment)
-router.route("/user/getfollowers/:uid").get(authenticationToken,getFollowers);
-router.route("/user/unfollow/:uid").delete(authenticationToken,unfollow);
-
+router.route("/user/getfollows/:uid").get(authenticationToken, getFollows);
+router.route("/blog/comment/:bid/:uid").post(postcomment);
+router.route("/blog/comment/:bid").get(getcomment);
+router.route("/user/getfollowers/:uid").get(authenticationToken, getFollowers);
+router.route("/user/unfollow/:uid").delete(authenticationToken, unfollow);
 
 export default router;
