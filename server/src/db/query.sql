@@ -43,8 +43,8 @@ CREATE TABLE comments (
     id SERIAL PRIMARY KEY,
     content TEXT NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    blog_id INT REFERENCES blogs(id) ON DELETE CASCADE,
-    user_id INT REFERENCES users(id) ON DELETE CASCADE
+    blog_id INT,
+    user_id INT 
 );
 
 -- created follows

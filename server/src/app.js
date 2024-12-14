@@ -15,7 +15,7 @@ app.use(express.static("public"));
 
 // import routes
 
-import accounthandle from "./routes/accounts.route.js";
+import accounthandle from "./routes/accounts.routes.js";
 
 // routes
 

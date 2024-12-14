@@ -113,17 +113,33 @@ const BlogPage = () => {
                     </div>
                     <div className="like flex gap-1 justify-center items-center">
 
-                          <button>
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              height="28px"
-                              viewBox="0 -960 960 960"
-                              width="28px"
-                              fill="000000"
-                            >
-                              <path d="M240-400h480v-80H240v80Zm0-120h480v-80H240v80Zm0-120h480v-80H240v80ZM880-80 720-240H160q-33 0-56.5-23.5T80-320v-480q0-33 23.5-56.5T160-880h640q33 0 56.5 23.5T880-800v720ZM160-320h594l46 45v-525H160v480Zm0 0v-480 480Z" />
-                            </svg>
-                          </button>
+                    <DrawerRoot>
+      <DrawerBackdrop />
+      <DrawerTrigger asChild>
+        <Button variant="outline" size="sm">
+          Open Drawer
+        </Button>
+      </DrawerTrigger>
+      <DrawerContent>
+        <DrawerHeader>
+          <DrawerTitle>Drawer Title</DrawerTitle>
+        </DrawerHeader>
+        <DrawerBody>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          </p>
+        </DrawerBody>
+        <DrawerFooter>
+          <DrawerActionTrigger asChild>
+            <Button variant="outline">Cancel</Button>
+            
+          </DrawerActionTrigger>
+          <Button>Save</Button>
+        </DrawerFooter>
+        <DrawerCloseTrigger />
+      </DrawerContent>
+    </DrawerRoot>
 
                       <p>34</p>
                     </div>
@@ -208,34 +224,3 @@ const BlogPage = () => {
     </div>
   );
 };
-
-const Demo = () => {
-  return (
-    <DrawerRoot>
-      <DrawerBackdrop />
-      <DrawerTrigger asChild>
-        <Button variant="outline" size="sm">
-          Open Drawer
-        </Button>
-      </DrawerTrigger>
-      <DrawerContent>
-        <DrawerHeader>
-          <DrawerTitle>Drawer Title</DrawerTitle>
-        </DrawerHeader>
-        <DrawerBody>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          </p>
-        </DrawerBody>
-        <DrawerFooter>
-          <DrawerActionTrigger asChild>
-            <Button variant="outline">Cancel</Button>
-          </DrawerActionTrigger>
-          <Button>Save</Button>
-        </DrawerFooter>
-        <DrawerCloseTrigger />
-      </DrawerContent>
-    </DrawerRoot>
-  )
-}
