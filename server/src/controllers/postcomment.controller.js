@@ -2,7 +2,7 @@ import { ApiResponse } from "../utils/ApiResponse.js";
 import { ApiError } from "../utils/ApiError.js";
 import db from "../db/db.js";
 
-export async function comment(req,res){
+export async function postcomment(req,res){
 
     const {bid,uid}=req.params
     const {content} = req.body
