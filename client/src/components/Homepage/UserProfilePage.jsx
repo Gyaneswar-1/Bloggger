@@ -4,14 +4,30 @@ import { getUserId } from "../../services/authService.js";
 import { Button } from "@chakra-ui/react";
 import { logout } from "../../services/authService.js";
 import { useNavigate } from "react-router-dom";
-import {  getFollowers, getUserBlogs } from "../../services/apiManage.service.js";
+import {
+  getFollowers,
+  getUserBlogs,
+  getFollowed,
+} from "../../services/apiManage.service.js";
 import Cardd from "../ReuseableComponents.jsx/Cardd.jsx";
+import {
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+  PopoverHeader,
+  PopoverBody,
+  PopoverArrow,
+  PopoverCloseButton,
+} from "@chakra-ui/react";
 
 const UserProfilePage = () => {
   const navigate = useNavigate();
   const [ublog, setUblog] = useState([]);
-  const [followers,setFollowers] = useState("");
-  const [showVlogs,setShowBlogs] = useState(false)
+  const [followers, setFollowers] = useState("");
+  const [followed, setFollowed] = useState("");
+  const [followersList, setFollowersList] = useState([]);
+  const [followedList, setFollowedList] = useState([]);
+  const [showVlogs, setShowBlogs] = useState(false);
   const [udata, setUdata] = useState({
     pfp: "",
     username: "",
@@ -21,27 +37,31 @@ const UserProfilePage = () => {
 
   const getData = async () => {
     const data = await getUserId();
-    const result = await getUserBlogs(getUserId().id);
+    const result = await getUserBlogs(data.id);
     const follow = await getFollowers();
+    const followed = await getFollowed();
     if (result != null) {
-      setShowBlogs(true)
+      setShowBlogs(true);
     }
+    setFollowersList(follow);
+    setFollowedList(followed);
     setUblog(result);
     setUdata(data);
     setFollowers(follow.length);
-    console.log("Get number of followers",follow.length);
-    
+    setFollowed(followed.length);
   };
 
   useEffect(() => {
     getData();
   }, []);
 
+  console.log("FolloweSSSSS list", followersList);
+
   return (
     <>
       <Navbar />
       <div className="flex  justify-evenly gap-8 p-6 bg-black h-full">
-          <div className="h-1/2 w-4/5 rounded-lg bg-zinc-800 shadow-2xl flex flex-row">
+        <div className="h-1/2 w-4/5 rounded-lg bg-zinc-500 shadow-2xl flex flex-row">
           <div>
             <h1 className="m-9 text-6xl font-thin font-CosmicNeue text-white">
               {showVlogs ? "Your Blogs" : "No Blogs"}
@@ -60,7 +80,7 @@ const UserProfilePage = () => {
             </div>
           </div>
         </div>
-        <div className="bg-zinc-600 p-6 rounded-lg shadow-lg h-fit w-1/4 ">
+        <div className="bg-zinc-200 p-6 rounded-lg shadow-lg h-fit w-1/4 ">
           <div className=" flex flex-col items-center">
             <img
               src={udata.pfp}
@@ -73,8 +93,61 @@ const UserProfilePage = () => {
             <p className="text-gray-500 mt-2">
               Created at: {new Date(udata.created_at).toLocaleDateString()}
             </p>
-            <div className="follows flex gap-5 pt-2 ">
-              <h1 className="bg bg-gray-200 p-1 rounded-md">{followers} followers</h1>
+            <div className="follows flex gap-5 pt-2">
+              <Popover>
+                <PopoverTrigger>
+                  <button className="bg-gray-400 p-1 rounded-md cursor-pointer">
+                    {followers} followers
+                  </button>
+                </PopoverTrigger>
+                <PopoverContent>
+                  <PopoverArrow />
+                  <PopoverCloseButton />
+                  <PopoverHeader>Followers</PopoverHeader>
+                  {followersList.map((data) => {
+                    return (
+                      <PopoverBody key={data.id}>
+                        <div className="flex justify-between">
+                          <img
+                            src={data.pfp}
+                            alt={data.username}
+                            className="h-8 w-8 rounded-full"
+                          />
+                          <p>{data.username}</p>
+                        </div>
+                      </PopoverBody>
+                    );
+                  })}
+                </PopoverContent>
+              </Popover>
+
+              <Popover>
+                <PopoverTrigger>
+                  <button className="bg bg-gray-400 p-1 rounded-md cursor-pointer">
+                    {followed} Followed
+                  </button>
+                </PopoverTrigger>
+                <PopoverContent>
+                  <PopoverArrow />
+                  <PopoverCloseButton />
+                  <PopoverHeader>Followed</PopoverHeader>
+                  {followedList.map((data) => {
+                    return (
+                      <PopoverBody key={data.id}>
+                        <div className="flex justify-between">
+                          <img
+                            src={data.pfp}
+                            alt=""
+                            className="h-8 w-8 rounded-full"
+                          />
+                          <p>{data.username}</p>
+                        </div>
+                        <hr />
+                      </PopoverBody>
+                    );
+                  })}
+                </PopoverContent>
+              </Popover>
             </div>
           </div>
           <div className="buttons flex justify-evenly pt-5">

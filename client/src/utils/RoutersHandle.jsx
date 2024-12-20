@@ -15,7 +15,7 @@ import Aboutus from "../components/Homepage/Aboutus";
 import Editblog from "../components/Homepage/Editblog";
 
 function RoutersHandle() {
-  const token = getToken();
+  // const token = getToken();
 
   return (
     <BrowserRouter>

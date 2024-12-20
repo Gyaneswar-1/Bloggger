@@ -1,12 +1,26 @@
 import React from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { getUserId } from "../../services/authService";
+import {
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+  PopoverHeader,
+  PopoverBody,
+  PopoverFooter,
+  PopoverArrow,
+  PopoverCloseButton,
+  Portal,
+  Box,
+  Button,
+} from "@chakra-ui/react";
 
 function Navbar(props) {
   const data = getUserId();
   const { id } = props;
   const navigate = useNavigate();
   console.log("user registered ", id);
+  const initRef = React.useRef();
   return (
     <div className="p-3 pb-16 text-white">
       <div className="name-avatar flex flex-row justify-between items-center w-full">
@@ -83,16 +97,42 @@ function Navbar(props) {
             </svg>
             Post Blog
           </div>
-          <img
-            src={data.pfp}
-            alt=""
-            className="rounded-full h-14 w-14 object-cover"
-          />
+
+          <Popover
+            closeOnBlur={false}
+            placement="left"
+            initialFocusRef={initRef}
+          >
+            {({ isOpen, onClose }) => (
+              <>
+                <PopoverTrigger>
+                  <img
+                    src={data.pfp}
+                    alt=""
+                    className="rounded-full h-14 w-14 object-cover"
+                  />
+                </PopoverTrigger>
+                <Portal>
+                  <PopoverContent>
+                    <PopoverHeader>{data.username}</PopoverHeader>
+                    <PopoverCloseButton />
+                    <PopoverBody>
+                      <Box>{data.bio}</Box>
+                      
+                    </PopoverBody>
+                    <PopoverFooter>
+
+                      {new Date(data.created_at).toLocaleString()}
+                    </PopoverFooter>
+                    <PopoverContent color="blue">{data.email}</PopoverContent>
+                  </PopoverContent>
+                </Portal>
+              </>
+            )}
+          </Popover>
         </div>
       </div>
-      <div className="real-nav flex place-items-center flex-col">
-
-      </div>
+      <div className="real-nav flex place-items-center flex-col"></div>
     </div>
   );
 }

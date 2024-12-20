@@ -6,7 +6,7 @@ export async function getFollows(req, res) {
   const id  = req.params; // this id shows that the id follows how many people
   try {
     const result = await db.query(
-      'SELECT users.id, users.username FROM follows JOIN users ON follows.followed_id = users.id WHERE follows.follower_id = $1',
+      'SELECT users.id, users.username,users.pfp FROM follows JOIN users ON follows.followed_id = users.id WHERE follows.follower_id = $1',
       [id.uid]
     );
     console.log(result);

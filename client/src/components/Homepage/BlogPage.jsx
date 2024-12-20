@@ -7,22 +7,6 @@ import {
 
 import { CloseButton, Spinner, Text, VStack } from "@chakra-ui/react";
 
-export default BlogPage;
-import { Button } from "@/components/ui/button"
-import {
-  DrawerActionTrigger,
-  DrawerBackdrop,
-  DrawerBody,
-  DrawerCloseTrigger,
-  DrawerContent,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerRoot,
-  DrawerTitle,
-  DrawerTrigger,
-} from "@/components/ui/drawer"
-
-
 const BlogPage = () => {
   const navigate = useNavigate();
   const { id } = useParams();
@@ -82,7 +66,7 @@ const BlogPage = () => {
                     <p>●</p>
                     {/* <button className="text-green-600 font-semibold">
                       Follow
-                    </button> */}
+                      </button> */}
                   </div>
                   <div>
                     {new Date(blog.created_at).toLocaleDateString(undefined, {
@@ -112,35 +96,6 @@ const BlogPage = () => {
                       <p>12</p>
                     </div>
                     <div className="like flex gap-1 justify-center items-center">
-
-                    <DrawerRoot>
-      <DrawerBackdrop />
-      <DrawerTrigger asChild>
-        <Button variant="outline" size="sm">
-          Open Drawer
-        </Button>
-      </DrawerTrigger>
-      <DrawerContent>
-        <DrawerHeader>
-          <DrawerTitle>Drawer Title</DrawerTitle>
-        </DrawerHeader>
-        <DrawerBody>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          </p>
-        </DrawerBody>
-        <DrawerFooter>
-          <DrawerActionTrigger asChild>
-            <Button variant="outline">Cancel</Button>
-            
-          </DrawerActionTrigger>
-          <Button>Save</Button>
-        </DrawerFooter>
-        <DrawerCloseTrigger />
-      </DrawerContent>
-    </DrawerRoot>
-
                       <p>34</p>
                     </div>
                   </div>
@@ -220,7 +175,8 @@ const BlogPage = () => {
           </footer>
         </div>
       )}
-
     </div>
   );
 };
+
+export default BlogPage;

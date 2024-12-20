@@ -14,7 +14,7 @@ function WelcomePage() {
 
   return (
     <>
-      <div className="h-screen w-screen">
+      <div className="h-screen w-screen bg-black">
         <div className="fixed w-full">
           <nav className="pl-24 pr-14 p-4 flex flex-row justify-between bg-black ">
             <h1 className="text-6xl font-playfair text-white ">Bloggger</h1>
@@ -43,7 +43,7 @@ function WelcomePage() {
           <div className="pl-28 pt-[13%] gap-16 flex flex-col">
             <h1 className="text-8xl font-playfair text-white ">
               Share Information <br /> &
-              <span className="animate-pulse text-green-400  "> Grow</span>
+              <span className=" text-green-400  "> Grow</span>
             </h1>
             <h3 className="text-4xl font-CosmicNeue text-white">
               Lorem ipsum dolor sit amet consectetur adipisicing
@@ -56,9 +56,7 @@ function WelcomePage() {
             </button>
           </div>
         </main>
-        <footer className="fixed bottom-0 w-full">
           <IntropageFooter />
-        </footer>
       </div>
 
       {login && (

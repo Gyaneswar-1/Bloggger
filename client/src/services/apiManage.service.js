@@ -223,7 +223,6 @@ export const follow = async (uid) => {
         },
       }
     );
-    console.log("Result", result);
     return result;
   } catch (error) {
     console.log(error);
@@ -242,7 +241,8 @@ export const getFollowed = async () => {
       headers: {
         Authorization: `Bearer ${token}`,
       },
-    });
+    });    
+    
     return result.data.data;
   } catch (error) {
     console.log(error);
@@ -262,6 +262,8 @@ export const getFollowers = async () => {
         Authorization: `Bearer ${token}`,
       },
     });
+    console.log("Hello",result.data.data);
+    
     return result.data.data;
   } catch (error) {
     console.log(error);
