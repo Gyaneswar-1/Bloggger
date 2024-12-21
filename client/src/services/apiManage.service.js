@@ -52,7 +52,6 @@ export const getUserProfileData = async (id) => {
         Authorization: `Bearer ${token}`,
       },
     });
-    console.log(response.data);
     return response.data;
   } catch (error) {
     console.log(error);
@@ -83,6 +82,7 @@ export const postNewBlogData = async (title, content, image) => {
         },
       }
     );
+
     return response;
   } catch (error) {
     console.log("Some error: ", error);
@@ -148,7 +148,6 @@ export const deleteUser = async () => {
         Authorization: `Bearer ${token}`,
       },
     });
-    console.log(result);
     if (result) {
       return "User deleted";
     }
@@ -167,6 +166,14 @@ export const deleteBlog = async (bid) => {
         Authorization: `Bearer ${token}`,
       },
     });
+    console.log("DELETED DATA",result.data.message.images);
+    const data = result.data.message.images
+    const fileName = data.substring(
+      data.lastIndexOf("/") + 1,
+      data.lastIndexOf(".")
+    );
+    console.log("result", fileName)
+    
     return true;
   } catch (error) {
     console.log(error);
@@ -210,8 +217,6 @@ export const follow = async (uid) => {
   const token = getToken();
   const id = getUserId();
   const fid = id.id;
-  console.log("user id: ", uid);
-  console.log("follow id: ", fid);
   try {
     const api = `http://localhost:3000/api/v1/user/follow/${uid}`;
     const result = await axios.post(
@@ -241,8 +246,8 @@ export const getFollowed = async () => {
       headers: {
         Authorization: `Bearer ${token}`,
       },
-    });    
-    
+    });
+
     return result.data.data;
   } catch (error) {
     console.log(error);
@@ -262,8 +267,7 @@ export const getFollowers = async () => {
         Authorization: `Bearer ${token}`,
       },
     });
-    console.log("Hello",result.data.data);
-    
+
     return result.data.data;
   } catch (error) {
     console.log(error);
@@ -290,8 +294,6 @@ export const unfollowUser = async (uid) => {
   const id = getUserId();
   const fid = id.id;
   const api = `http://localhost:3000/api/v1/user/unfollow/${uid}`;
-  console.log("uid=", uid);
-  console.log("fid=", fid);
 
   try {
     const result = await axios.delete(api, {
@@ -332,4 +334,28 @@ export const editBlog = async (id, title, content, image) => {
   } catch (error) {
     console.log("Error while editing the blog! ");
   }
+};
+
+export const uploadImage = async (image) => {
+  const data = new FormData();
+  data.append("file", image);
+  data.append("upload_preset", import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET);
+  data.append("cloud_name", import.meta.env.VITE_CLOUD_NAME);
+
+  try {
+    const result = await axios.post(
+      import.meta.env.VITE_CLOUDINARY_UPLOAD_URL,
+      data
+    );
+    console.log(result.data);
+
+    return result.data.url;
+  } catch (error) {
+    console.log("Axios_error➡️", error);
+  }
+};
+
+export const deleteImage = async () => {
+  console.log("hell");
+  
 };

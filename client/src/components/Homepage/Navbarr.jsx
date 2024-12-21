@@ -19,7 +19,6 @@ function Navbar(props) {
   const data = getUserId();
   const { id } = props;
   const navigate = useNavigate();
-  console.log("user registered ", id);
   const initRef = React.useRef();
   return (
     <div className="p-3 pb-16 text-white">

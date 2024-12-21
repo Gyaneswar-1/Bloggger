@@ -55,7 +55,6 @@ const UserProfilePage = () => {
     getData();
   }, []);
 
-  console.log("FolloweSSSSS list", followersList);
 
   return (
     <>

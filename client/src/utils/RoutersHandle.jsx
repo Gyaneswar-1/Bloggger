@@ -16,11 +16,17 @@ import Editblog from "../components/Homepage/Editblog";
 
 function RoutersHandle() {
   // const token = getToken();
+  const [showpage,setShowpage]=useState(false);
 
+  useEffect(()=>{
+    if (isAuthenticated()==true) {
+      setShowpage(true)
+    }
+  },[])
   return (
     <BrowserRouter>
       <Routes>
-        {isAuthenticated() ? (
+        {showpage ? (
           <Route path="/" element={<HomeEx />} />
         ) : (
           <Route path="/" element={<WelcomePage />} />

@@ -40,7 +40,7 @@ export const getUserId = () => {
   if (token) {
     try {
       const decoded = jwtDecode(token);
-      console.log(decoded.result.rows[0]);
+      // console.log(decoded.result.rows[0]);
       return (decoded.result.rows[0]);
       
     } catch (error) {
