@@ -6,7 +6,7 @@ import {
   FormErrorMessage,
   Input,
   Button,
-  useToast
+  useToast,
 } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 // import HomeEx from "../Homepage/HomeEx";
@@ -14,7 +14,7 @@ function SignUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isError, setIsError] = useState(false);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const toast = useToast();
 
@@ -35,12 +35,12 @@ function SignUp() {
       password: password,
     };
 
-   try {
-    await login(userdata);
-    navigate("/home/main")
-   } catch (error) {
-    toastRes()
-   }
+    try {
+      await login(userdata);
+      navigate("/home/main");
+    } catch (error) {
+      toastRes();
+    }
   };
 
   const handleChangeEmail = (e) => {
@@ -54,7 +54,7 @@ function SignUp() {
 
   return (
     <>
-     <div className=" text-4xl font-playfair text-center">Welcome Back</div>
+      <div className=" text-4xl font-playfair text-center">Welcome Back</div>
       <form onSubmit={handleSubmit}>
         <FormControl isInvalid={isError}>
           <FormLabel>Email:</FormLabel>
@@ -70,7 +70,23 @@ function SignUp() {
           <FormLabel>Password</FormLabel>
           <Input type="password" value={password} onChange={handlePassword} />
         </FormControl>
+        <div className="google-login flex gap-4">
+          <Button
+            colorScheme="teal"
+            variant="outline"
+            className="mt-4 w-full gap-3"
+          >
+            <i class="ri-google-fill"></i> Google
+          </Button>
 
+          <Button
+            colorScheme="teal"
+            variant="outline"
+            className="mt-4 w-full gap-3"
+          >
+            <i class="ri-instagram-line"></i> Instagram
+          </Button>
+        </div>
         <Button mt={4} colorScheme="teal" type="submit">
           SignIn
         </Button>

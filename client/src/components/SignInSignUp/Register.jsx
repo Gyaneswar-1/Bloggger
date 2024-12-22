@@ -6,7 +6,7 @@ import {
   FormErrorMessage,
   Input,
   Button,
-  useToast
+  useToast,
 } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import Toast from "../ReuseableComponents.jsx/Toast.jsx";
@@ -21,7 +21,11 @@ export default function Register() {
   const toast = useToast();
 
   const toastRes = () => {
-    <Toast title="User registered" desc="User registered success" status="success" />
+    <Toast
+      title="User registered"
+      desc="User registered success"
+      status="success"
+    />;
   };
 
   const handleSubmit = async (e) => {
@@ -93,6 +97,23 @@ export default function Register() {
           value={confirmPassword}
           onChange={handleConfirmPassword}
         />
+        <div className="google-login flex gap-4">
+          <Button
+            colorScheme="teal"
+            variant="outline"
+            className="mt-4 w-full gap-3"
+          >
+            <i class="ri-google-fill"></i> Google
+          </Button>
+
+          <Button
+            colorScheme="teal"
+            variant="outline"
+            className="mt-4 w-full gap-3"
+          >
+            <i class="ri-instagram-line"></i> Instagram
+          </Button>
+        </div>
         {isPasswordMismatch && (
           <FormErrorMessage>Passwords do not match</FormErrorMessage>
         )}
@@ -103,4 +124,3 @@ export default function Register() {
     </form>
   );
 }
-

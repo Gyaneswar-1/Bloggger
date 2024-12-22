@@ -13,6 +13,8 @@ const BlogPage = () => {
   const [blog, setBlog] = useState({});
   const [user, setUser] = useState({});
   const [showComment, setShowComment] = useState(false);
+  const [isLike, setIsLike] = useState(false);
+  const [like, setLike] = useState(0);
   const [showBlog, setShowBlog] = useState(true);
   async function getData() {
     const blogData = await getBlogByID(id);
@@ -64,9 +66,6 @@ const BlogPage = () => {
                   <div className="flex gap-2">
                     <h1>{user.username}</h1>
                     <p>●</p>
-                    {/* <button className="text-green-600 font-semibold">
-                      Follow
-                      </button> */}
                   </div>
                   <div>
                     {new Date(blog.created_at).toLocaleDateString(undefined, {
@@ -82,10 +81,18 @@ const BlogPage = () => {
                 <div className="logos pt-6 pb-6 flex justify-between">
                   <div className="left-logo flex gap-7">
                     <div className="like flex gap-1 justify-center items-center">
-                      <button>
-                        <i class="ri-heart-line"></i>
+                      <button
+                        onClick={() => {
+                          setIsLike(!isLike), setLike(like + 1);
+                        }}
+                      >
+                        {isLike ? (
+                          <i className="ri-heart-line "></i>
+                        ) : (
+                          <i className="ri-heart-fill text-red-500"></i>
+                        )}
                       </button>
-                      <p>12</p>
+                      <p>{like}</p>
                     </div>
                     <div className="like flex gap-1 justify-center items-center">
                       <button>
@@ -97,7 +104,7 @@ const BlogPage = () => {
                   <div className="right-logo">
                     <div className="like flex gap-7 justify-center items-center">
                       <button>
-                        <i class="ri-share-line"></i>
+                        <i className="ri-share-line"></i>
                       </button>
                     </div>
                   </div>
@@ -106,36 +113,40 @@ const BlogPage = () => {
               </div>
               <div className="image pt-8 h-1/4 w-full cursor-pointer">
                 <img
+                  class="h-full w-full"
                   src={blog.images}
-                  alt=""
-                  className="object-cover h-full w-full"
+                  alt="image description"
                 />
               </div>
-              <div className="content-text pt-10 text-lg font-serif">
+              <div className="content-text pt-20 text-lg font-serif">
                 {blog.content}
               </div>
             </div>
           </div>
-          <footer className="bg-gray-800 text-white py-4 mt-4">
-            <div className="container mx-auto text-center">
-              <p>
-                &copy; {new Date().getFullYear()} Your Blog Name. All rights
-                reserved.
-              </p>
-              <p>
-                <a
-                  href="/privacy-policy"
-                  className="text-green-400 hover:underline"
-                >
-                  Privacy Policy
+
+          <footer className="rounded-lg shadow m-4 bg-black">
+            <div className="w-full mx-auto max-w-screen-xl p-4 md:flex md:items-center md:justify-between">
+              <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">
+                © 2023{" "}
+                <a href="https://flowbite.com/" className="hover:underline">
+                  Flowbite™
                 </a>
-                <a
-                  href="/terms-of-service"
-                  className="text-green-400 hover:underline"
-                >
-                  Terms of Service
-                </a>
-              </p>
+                . All Rights Reserved.
+              </span>
+              <ul className="flex flex-wrap items-center mt-3 text-sm font-medium text-gray-500 dark:text-gray-400 sm:mt-0">
+                <li>
+                  <a className="hover:underline me-4 md:me-6">About</a>
+                </li>
+                <li>
+                  <a className="hover:underline me-4 md:me-6">Privacy Policy</a>
+                </li>
+                <li>
+                  <a className="hover:underline me-4 md:me-6">Licensing</a>
+                </li>
+                <li>
+                  <a className="hover:underline">Contact</a>
+                </li>
+              </ul>
             </div>
           </footer>
         </div>

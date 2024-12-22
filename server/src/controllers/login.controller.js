@@ -2,8 +2,9 @@ import db from "../db/db.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import passport from "passport";
 
-const JWT_SECRET = "Gyaneswar";
+const JWT_SECRET = process.env.JWT_SECRET;
 
 export async function login(req, res) {
   const { email, password } = req.body;

@@ -31,7 +31,7 @@ function HomePage() {
   }, []);
 
   return (
-    <div className="flex justify-center ">
+    <div className="flex justify-center">
       <div className=" cards flex flex-col flex-wraps items-center justify-center gap-2">
         {blogLoading ? (
           <VStack colorPalette="green.100">
@@ -54,7 +54,9 @@ function HomePage() {
         )
 }
       </div>
-      <div>
+
+      
+      <div className="hidden md:flex flex-col gap-3 sidepage-container">
        
         {ucard
           .filter((user) => user.id !== getUserId().id)
@@ -65,6 +67,7 @@ function HomePage() {
               name={user.username}
               bio={user.bio}
               id={user.id}
+              email={user.email}
             />
           ))}
       </div>

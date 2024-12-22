@@ -12,10 +12,12 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
+app.use(passport.initialize());
 
 // import routes
 
 import accounthandle from "./routes/accounts.routes.js";
+import passport from "passport";
 
 // routes
 

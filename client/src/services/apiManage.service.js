@@ -255,6 +255,23 @@ export const getFollowed = async () => {
   }
 };
 
+export const getFollowedById = async (id) => {
+  // the user followed these guys
+  const token = getToken();
+  try {
+    const api = `http://localhost:3000/api/v1/user/getfollows/${id}`;
+    const result = await axios.get(api, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    return result.data.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 //user followers
 export const getFollowers = async () => {
   // the user followers; number of users that follows these user

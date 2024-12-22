@@ -3,11 +3,10 @@ import Navbar from "./Navbarr";
 import HomePage from "./HomePage";
 
 function HomeEx() {
-
   return (
     <>
       <Navbar />
-        <HomePage />
+      <HomePage />
     </>
   );
 }
