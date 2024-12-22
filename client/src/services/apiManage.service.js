@@ -166,14 +166,15 @@ export const deleteBlog = async (bid) => {
         Authorization: `Bearer ${token}`,
       },
     });
-    console.log("DELETED DATA",result.data.message.images);
-    const data = result.data.message.images
+    console.log("DELETED DATA", result.data.message.images);
+    const data = result.data.message.images;
     const fileName = data.substring(
       data.lastIndexOf("/") + 1,
       data.lastIndexOf(".")
     );
-    console.log("result", fileName)
-    
+    console.log("result", fileName);
+    console.log(await deleteImage(fileName));
+
     return true;
   } catch (error) {
     console.log(error);
@@ -355,7 +356,24 @@ export const uploadImage = async (image) => {
   }
 };
 
-export const deleteImage = async () => {
-  console.log("hell");
-  
+export const deleteImage = async (publicId) => {
+  try {
+    const result = await axios.post(
+      import.meta.env.VITE_CLOUDINARY_DELETE_URL,
+      {
+        public_id: publicId,
+      },
+      {
+        headers: {
+          'Content-Type':'image',
+        },
+      }
+    );
+    console.log('Image deleted successfully:', result.data);
+    return result.data;
+  } catch (error) {
+    console.log("error while deleting the cloudinary image", error);
+    return null;
+  }
+
 };

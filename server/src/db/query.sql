@@ -74,3 +74,14 @@ UPDATE blogs SET title = 'new_title',
     images = 'new_images',
     updated_at = NOW()
 WHERE id = 93;
+
+-- user like
+CREATE TABLE user_likes (
+    id SERIAL PRIMARY KEY,
+    user_id INT NOT NULL,
+    blog_id INT NOT NULL,
+    like_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id),
+    FOREIGN KEY (blog_id) REFERENCES blogs(id),
+    UNIQUE (user_id, blog_id)
+);
