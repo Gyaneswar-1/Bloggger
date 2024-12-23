@@ -22,10 +22,9 @@ function Navbar(props) {
   const initRef = React.useRef();
   return (
     <div className=" pb-16 text-white">
-      <nav className=" border-gray-200 bg-zinc-900">
+      <nav className=" border-gray-200 bg-zinc-800">
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
           <a
-            // onClick={navigate("/home/main")}
             className="flex items-center space-x-3 rtl:space-x-reverse"
           >
             <img
@@ -88,7 +87,7 @@ function Navbar(props) {
             className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
             id="navbar-cta"
           >
-            <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white bg-zinc-900 md:dark:bg-zinc-900 dark:border-zinc-700">
+            <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white bg-zinc-800 md:dark:bg-zinc-800 dark:border-zinc-700">
               <li>
                 <a
                   href="#"
@@ -176,12 +175,3 @@ function Navbar(props) {
 }
 
 export default Navbar;
-<NavLink className="" to="/home/search">
-  {(e) => {
-    return (
-      <span className={[e.isActive ? "text-green-700 " : ""].join("")}>
-        Search
-      </span>
-    );
-  }}
-</NavLink>;
