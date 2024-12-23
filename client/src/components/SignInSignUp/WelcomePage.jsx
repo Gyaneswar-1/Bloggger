@@ -10,18 +10,21 @@ function WelcomePage() {
   const toast = useToast();
   const [login, setLogin] = useState(false);
   const [signUp, setSignUp] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(true);
 
   return (
     <>
-      <div className=" bg-black">
-        <div className="w-full">
+      <div className=" flex flex-col min-h-screen bg-black ">
+        <div className="w-sticky top-0 bg-black text-white shadow-md">
           {/* sdfsdfsdf */}
 
           <nav className="bg-zinc-800 border-zinc-700">
             <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
               <a className="flex items-center space-x-3 rtl:space-x-reverse">
                 <img
-                  src="https://static-00.iconduck.com/assets.00/b-letter-icon-512x512-90rzacib.png"
+                  src="
+    ./src/assets/Icons/LOGO.png
+                  "
                   className="h-8"
                   alt="Flowbite Logo"
                 />
@@ -30,11 +33,12 @@ function WelcomePage() {
                 </span>
               </a>
               <button
-                data-collapse-toggle="navbar-solid-bg"
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                // data-collapse-toggle="navbar-solid-bg"
                 type="button"
-                className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+                className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden  focus:outline-none focus:ring-2  dark:text-gray-400 hover:bg-green-700 focus:ring-green-600"
                 aria-controls="navbar-solid-bg"
-                aria-expanded="false"
+                aria-expanded={isMenuOpen}
               >
                 <span className="sr-only">Open main menu</span>
                 <svg
@@ -54,14 +58,16 @@ function WelcomePage() {
                 </svg>
               </button>
               <div
-                className="hidden w-full md:block md:w-auto"
+                className={` ${
+                  isMenuOpen ? "hidden" : "flex items-center justify-center p-4"
+                } w-full md:block md:w-auto`}
                 id="navbar-solid-bg"
               >
-                <ul className="flex flex-col font-medium mt-4 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-transparent dark:bg-gray-800 md:dark:bg-transparent dark:border-gray-700">
+                <ul className="flex flex-col justify-center gap-1 items-center font-medium mt-4 rounded-lg  md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-transparent bg-zinc-800 md:dark:bg-transparent border-zinc-700">
                   <li>
                     <button
                       type="button"
-                      class="text-white  px-5 py-2.5"
+                      className="text-white  px-5 py-2.5"
                       onClick={() => navigate("/aboutus")}
                     >
                       About us
@@ -70,7 +76,7 @@ function WelcomePage() {
                   <li>
                     <button
                       type="button"
-                      class="text-white px-5 py-2.5"
+                      className="text-white px-5 py-2.5"
                       onClick={() => navigate("/subsctiption")}
                     >
                       Subscription
@@ -79,7 +85,11 @@ function WelcomePage() {
                   <li>
                     <button
                       type="button"
-                      class="text-white focus:ring-4  font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-green-800"
+                      className={` ${
+                        isMenuOpen
+                          ? "text-white focus:ring-4  font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-green-800"
+                          : "text-white  px-5 py-1"
+                      }`}
                       onClick={() => setLogin(!login)}
                     >
                       Register
@@ -88,7 +98,11 @@ function WelcomePage() {
                   <li>
                     <button
                       type="button"
-                      class="border focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 border-green-500 text-green-500 hover:text-white hover:bg-green-500 focus:ring-green-700"
+                      className={`${
+                        isMenuOpen
+                          ? "border focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 border-green-500 text-green-500 hover:text-white hover:bg-green-500 focus:ring-green-700"
+                          : "text-white  px-5 py-2.5"
+                      }`}
                       onClick={() => setSignUp(!signUp)}
                     >
                       Sign in
@@ -99,24 +113,21 @@ function WelcomePage() {
             </div>
           </nav>
 
-          <hr className="h-[1px] bg-black opacity-100 mb-6 w-screen" />
+          <hr className="h-[1px] bg-black opacity-100 w-screen" />
         </div>
 
-        <div className="middle-page h-5/6">
-          <h1 class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
+        <div className="middle-page flex-grow flex flex-col items-center justify-center bg-center  bg-[url('https://i.pinimg.com/736x/c8/ba/55/c8ba55fa89b44d3f9b3827d17147d07f.jpg')] bg-zinc-700 bg-blend-multiply">
+          <h1 className="mb-4 text-4xl text-center font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
             We invest in the world’s potential
           </h1>
-          <p class="mb-6 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400">
+          <p className="mb-6 text-lg text-center font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400">
             Here at Flowbite we focus on markets where technology, innovation,
             and capital can unlock long-term value and drive economic growth.
           </p>
-          <a
-            href="#"
-            class="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900"
-          >
+          <a className="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4  focus:ring-green-900 cursor-auto">
             Learn more
             <svg
-              class="w-3.5 h-3.5 ms-2 rtl:rotate-180"
+              className="w-3.5 h-3.5 ms-2 rtl:rotate-180"
               aria-hidden="true"
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -132,94 +143,27 @@ function WelcomePage() {
             </svg>
           </a>
         </div>
-        <div className="footer-page mt-32">
-          <footer class="bg-white dark:bg-gray-900">
-            <div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
-              <div class="md:flex md:justify-between">
-                <div class="mb-6 md:mb-0">
-                  <a href="https://flowbite.com/" class="flex items-center">
-                    <img
-                      src="https://flowbite.com/docs/images/logo.svg"
-                      class="h-8 me-3"
-                      alt="FlowBite Logo"
-                    />
-                    <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
-                      Flowbite
-                    </span>
-                  </a>
-                </div>
-                <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
-                  <div>
-                    <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
-                      Resources
-                    </h2>
-                    <ul class="text-gray-500 dark:text-gray-400 font-medium">
-                      <li class="mb-4">
-                        <a href="https://flowbite.com/" class="hover:underline">
-                          Flowbite
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                          href="https://tailwindcss.com/"
-                          class="hover:underline"
-                        >
-                          Tailwind CSS
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                  <div>
-                    <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
-                      Follow us
-                    </h2>
-                    <ul class="text-gray-500 dark:text-gray-400 font-medium">
-                      <li class="mb-4">
-                        <a
-                          href="https://github.com/themesberg/flowbite"
-                          class="hover:underline "
-                        >
-                          Github
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                          href="https://discord.gg/4eeurUVvTy"
-                          class="hover:underline"
-                        >
-                          Discord
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                  <div>
-                    <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
-                      Legal
-                    </h2>
-                    <ul class="text-gray-500 dark:text-gray-400 font-medium">
-                      <li class="mb-4">
-                        <a href="#" class="hover:underline">
-                          Privacy Policy
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#" class="hover:underline">
-                          Terms &amp; Conditions
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
-              <div class="sm:flex sm:items-center sm:justify-between">
-                <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">
-                  © 2023{" "}
-                  <a href="https://flowbite.com/" class="hover:underline">
-                    Flowbite™
-                  </a>
-                  . All Rights Reserved.
-                </span>
+        <div className="footer-page sticky bottom-0 bg-black text-white">
+          <footer className="bg-white shadow dark:bg-zinc-900">
+            <hr className="h-[1px] bg-black opacity-100  w-screen" />
+            <div className="w-full max-w-screen-xl mx-auto p-4 md:py-8">
+              <div className="sm:flex sm:items-center sm:justify-between">
+                <ul className="flex flex-wrap  items-center mb-6 text-sm font-medium text-gray-500 sm:mb-0 dark:text-gray-400">
+                  <li>
+                    <a className="hover:underline me-4 md:me-6">About</a>
+                  </li>
+                  <li>
+                    <a className="hover:underline me-4 md:me-6">
+                      Privacy Policy
+                    </a>
+                  </li>
+                  <li>
+                    <a className="hover:underline me-4 md:me-6">Licensing</a>
+                  </li>
+                  <li>
+                    <a className="hover:underline">Contact</a>
+                  </li>
+                </ul>
                 <div class="flex mt-4 sm:justify-center sm:mt-0">
                   <a
                     href="#"
@@ -317,7 +261,6 @@ function WelcomePage() {
             </div>
           </footer>
         </div>
-
       </div>
 
       {/* etc  */}

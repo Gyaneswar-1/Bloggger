@@ -29,8 +29,7 @@ function Navbar(props) {
             className="flex items-center space-x-3 rtl:space-x-reverse"
           >
             <img
-              src="    https://static-00.iconduck.com/assets.00/b-letter-icon-512x512-90rzacib.png
-"
+              src="../../src/assets/Icons/LOGO.png"
               className="h-8"
               alt="Blogger logo"
             />
@@ -152,9 +151,7 @@ function Navbar(props) {
                 </a>
               </li>
               <li>
-                <div
-                  className="block py-2 px-3 md:p-0 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-                >
+                <div className="block py-2 px-3 md:p-0 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">
                   <NavLink className="" to="/home/user">
                     {(e) => {
                       return (

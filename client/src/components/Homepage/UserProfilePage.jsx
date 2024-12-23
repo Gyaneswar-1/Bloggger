@@ -79,7 +79,9 @@ const UserProfilePage = () => {
             </div>
           </div>
         </div>
-        <div className="bg-zinc-200 p-6 rounded-lg shadow-lg h-fit w-1/4 ">
+        <div className=" max-w-sm  border border-gray-200  
+bg-zinc-200 p-6 rounded-lg shadow-lg h-fit w-1/4 ">
+
           <div className=" flex flex-col items-center">
             <img
               src={udata.pfp}
