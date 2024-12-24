@@ -118,30 +118,15 @@ function WelcomePage() {
 
         <div className="middle-page flex-grow flex flex-col items-center justify-center bg-center  bg-[url('https://i.pinimg.com/736x/c8/ba/55/c8ba55fa89b44d3f9b3827d17147d07f.jpg')] bg-zinc-700 bg-blend-multiply">
           <h1 className="mb-4 text-4xl text-center font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
-            We invest in the world’s potential
-          </h1>
+          Unleash Your Voice, Share Your Story</h1>
           <p className="mb-6 text-lg text-center font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400">
-            Here at Flowbite we focus on markets where technology, innovation,
-            and capital can unlock long-term value and drive economic growth.
+          Dive into a World of ideas, inspiration, and stories. Our platform is your canvas to express your passions, thoughts, and insights while connecting with a vibrant community of readers and writers.
           </p>
-          <a className="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4  focus:ring-green-900 cursor-auto">
-            Learn more
-            <svg
-              className="w-3.5 h-3.5 ms-2 rtl:rotate-180"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 14 10"
-            >
-              <path
-                stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M1 5h12m0 0L9 1m4 4L9 9"
-              />
-            </svg>
-          </a>
+          <button className="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4  focus:ring-green-900 cursor-auto" onClick={()=>{
+            setLogin(!login)
+          }} >
+            Get started
+          </button>
         </div>
         <div className="footer-page sticky bottom-0 bg-black text-white">
           <footer className="bg-white shadow dark:bg-zinc-900">
@@ -266,7 +251,7 @@ function WelcomePage() {
       {/* etc  */}
       {login && (
         <div className="fixed inset-0 text-white flex items-center justify-center backdrop-blur-md bg-black bg-opacity-70 w-full ">
-          <div className="bg-zinc-800 p-8 rounded-xl shadow-lg h-6/6 w-2/5">
+          <div className="bg-zinc-800 p-8 rounded-xl shadow-lg md:h-6/6 md:w-2/5 w-full h-full">
             <h1 className="text-5xl text-center font-playfair">
               Join to Blogger
             </h1>
@@ -286,7 +271,7 @@ function WelcomePage() {
 
       {signUp && (
         <div className="fixed inset-0 text-white flex items-center justify-center backdrop-blur-md bg-black bg-opacity-70 ">
-          <div className="bg-zinc-800 p-8 rounded-xl shadow-lg h-5/6 w-2/5">
+          <div className="bg-zinc-800 p-8 rounded-xl shadow-lg md:h-5/6 md:w-2/5 w-full h-full">
             <h1 className="text-5xl text-center font-playfair"></h1>
             <CloseButton
               size="lg"

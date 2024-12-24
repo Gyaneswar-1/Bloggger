@@ -55,22 +55,23 @@ const UserProfilePage = () => {
     getData();
   }, []);
 
-
   return (
     <>
       <Navbar />
       <div className="flex justify-evenly flex-wrap flex-row gap-8 p-6 bg-black h-full">
-        
-        <div className=" max-w-sm  border border-gray-200  
-bg-zinc-800 p-6 rounded-lg shadow-lg h-fit w-1/4 ">
-
+        <div
+          className=" max-w-sm  border border-gray-200  
+bg-zinc-800 p-6 rounded-lg shadow-lg h-full w-full "
+        >
           <div className=" flex flex-col items-center">
             <img
               src={udata.pfp}
               alt={udata.username}
               className="h-24 w-24 rounded-full mb-4 object-cover"
             />
-            <h1 className="text-2xl text-gray-100 font-bold mb-2">{udata.username}</h1>
+            <h1 className="text-2xl text-gray-100 font-bold mb-2">
+              {udata.username}
+            </h1>
             <p className="text-gray-100">{udata.email}</p>
             <p className="text-gray-200">{udata.bio}</p>
             <p className="text-gray-200 mt-2">
@@ -166,7 +167,7 @@ bg-zinc-800 p-6 rounded-lg shadow-lg h-fit w-1/4 ">
             </Button>
           </div>
         </div>
-        <div className=" rounded-lg bg-zinc-500 shadow-2xl flex flex-row">
+        <div className=" rounded-lg bg-zinc-800 shadow-2xl flex flex-row">
           <div>
             <h1 className="m-9 text-6xl font-thin font-CosmicNeue text-white">
               {showVlogs ? "Your Blogs" : "No Blogs"}

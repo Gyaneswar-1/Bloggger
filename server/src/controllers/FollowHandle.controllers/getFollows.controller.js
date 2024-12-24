@@ -10,7 +10,6 @@ export async function getFollows(req, res) {
       'SELECT users.id, users.username,users.pfp FROM follows JOIN users ON follows.followed_id = users.id WHERE follows.follower_id = $1',
       [id.uid]
     );
-    console.log(result);
     return res.status(201).send(new ApiResponse(201, result.rows, "followed user"));
   } catch (error) {
     console.error(error);

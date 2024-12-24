@@ -4,10 +4,7 @@ import { ApiError } from "../utils/ApiError.js";
 
 export async function editBlog(req, res) {
   const { id } = req.body;
-  console.log(id.id);
-  console.log(id.title);
-  console.log(id.content);
-  console.log(id.image);
+
   try {
     const result = await db.query(
       "UPDATE blogs SET title = $1, content = $2, images = $3,updated_at = NOW() WHERE id = $4;",

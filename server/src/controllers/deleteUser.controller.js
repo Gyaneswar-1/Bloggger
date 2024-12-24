@@ -3,7 +3,6 @@ import { ApiResponse } from "../utils/ApiResponse.js";
 
 export async function deleteUser(req, res) {
   const email = req.body.email;
-  console.log("get email: ",req.body.email);
 
   try {
     const result = await db.query("DELETE FROM users WHERE email=$1", [email]);

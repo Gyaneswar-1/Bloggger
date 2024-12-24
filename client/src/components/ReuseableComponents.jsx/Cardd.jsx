@@ -11,8 +11,8 @@ function Cardd(props) {
   const { id, title, content, images, username, created_at, userpfp } = props;
 
   return (
-    <div className="cardd will bg-zinc-800 shadow-2xl text-white rounded-md overflow-hidden w-[700px] h-[200px] ml-4 mr-4 flex flex-row-reverse justify-between">
-      <div className="image h-60 w-1/2 overflow-hidden">
+    <div className="cardd bg-zinc-800 shadow-2xl text-white rounded-md overflow-hidden lg:w-[700px] lg:h-[200px] ml-4 mr-4 flex md:flex-row w-full flex-col justify-between">
+      <div className="image md:h-60 md:w-60 overflow-hidden w-full h-full">
         {images ? (
           <img
             src={images}

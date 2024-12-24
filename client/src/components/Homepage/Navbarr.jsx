@@ -16,6 +16,7 @@ import {
 } from "@chakra-ui/react";
 
 function Navbar(props) {
+    // const [isMenuOpen, setIsMenuOpen] = useState(true);
   const data = getUserId();
   const { id } = props;
   const navigate = useNavigate();
@@ -29,7 +30,7 @@ function Navbar(props) {
           >
             <img
               src="../../src/assets/Icons/LOGO.png"
-              className="h-8"
+              className="h-8 "
               alt="Blogger logo"
             />
             <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
@@ -40,7 +41,7 @@ function Navbar(props) {
             <div className="avatar flex gap-10 items-center rounded-full cursor-pointer">
               <button
                 type="button"
-                className="flex gap-1 text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2  focus:outline-none "
+                className="md:flex hidden gap-1 text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2  focus:outline-none "
                 onClick={() => {
                   navigate("/home/user/postnewblog");
                 }}
@@ -81,10 +82,11 @@ function Navbar(props) {
                   </>
                 )}
               </Popover>
+      
             </div>
           </div>
           <div
-            className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
+            className="items-center justify-between block w-full md:flex md:w-auto md:order-1"
             id="navbar-cta"
           >
             <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white bg-zinc-800 md:dark:bg-zinc-800 dark:border-zinc-700">
@@ -164,6 +166,19 @@ function Navbar(props) {
                       );
                     }}
                   </NavLink>
+                </div>
+              </li>
+              <li>
+                <div className="md:hidden py-2 px-3 md:p-0 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">
+                  <button
+                type="button"
+                className="flex gap-1 text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2  focus:outline-none "
+                onClick={() => {
+                  navigate("/home/user/postnewblog");
+                }}
+              >
+                Post Blog
+              </button>
                 </div>
               </li>
             </ul>

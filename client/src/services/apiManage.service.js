@@ -382,15 +382,62 @@ export const deleteImage = async (publicId) => {
       },
       {
         headers: {
-          'Content-Type':'image',
+          "Content-Type": "image",
         },
       }
     );
-    console.log('Image deleted successfully:', result.data);
+    console.log("Image deleted successfully:", result.data);
     return result.data;
   } catch (error) {
     console.log("error while deleting the cloudinary image", error);
     return null;
   }
-
 };
+
+export const likeblog = async (bid, uid) => {
+  const api = `http://localhost:3000/api/v1/blog/like/${bid}/${uid}`;
+  try {
+    const result = axios.post(api, {
+      Headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return true;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getlike = async (bid) => {
+  const api = `http://localhost:3000/api/v1/blog/getlike/${bid}`;
+  const token = getToken();
+  try {
+    const result = await axios.get(api, {
+      Headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    console.log(result.data.message);
+    return result;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const dislike = async (bid,uid) => {
+  const api = `http://localhost:3000/api/v1/blog/dislike/${bid}/${uid}`;
+  const token = getToken();
+  try {
+    const result = await axios.delete(api, {
+      Headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    console.log(result.data.message);
+    return result;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+

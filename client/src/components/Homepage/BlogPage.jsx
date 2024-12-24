@@ -2,20 +2,26 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import {
   getBlogByID,
+  getlike,
+  likeblog,
+  dislike,
   getUserProfileData,
 } from "../../services/apiManage.service";
 
 import { CloseButton, Spinner, Text, VStack } from "@chakra-ui/react";
 
 const BlogPage = () => {
+  // const { isOpen, onOpen, onClose } = useDisclosure()
+  // const btnRef = React.useRef()
+
   const navigate = useNavigate();
   const { id } = useParams();
   const [blog, setBlog] = useState({});
   const [user, setUser] = useState({});
-  const [showComment, setShowComment] = useState(false);
   const [isLike, setIsLike] = useState(false);
   const [like, setLike] = useState(0);
   const [showBlog, setShowBlog] = useState(true);
+  // const [date, setDate] = useState({});
   async function getData() {
     const blogData = await getBlogByID(id);
     const userData = await getUserProfileData(blogData[0].user_id);
@@ -24,6 +30,9 @@ const BlogPage = () => {
     }
     setBlog(blogData[0]);
     setUser(userData);
+    // setDate(
+
+    // );
   }
 
   useEffect(() => {
@@ -40,92 +49,56 @@ const BlogPage = () => {
           </VStack>
         </div>
       ) : (
-        <div>
-          <div className="flex justify-center bg-zinc-800 text-white h-fit">
-            <div className="flex flex-col bg-zinc-800 max-w-[920px] p-4">
-              <div>
-                <CloseButton
-                  size="lg"
-                  onClick={() => {
-                    navigate("/home/main");
-                  }}
-                />
-              </div>
-              <div className="pt-4">
-                <h1 className="text-5xl font-Times">{blog.title}</h1>
-              </div>
-              <div className="userinfo pt-5 flex gap-3 items-center justify-start">
-                <div className="userPfps items-center rounded-full">
-                  <img
-                    src={user.pfp}
-                    alt={user.username}
-                    className="rounded-full h-11 w-11 object-cover"
-                  />
-                </div>
-                <div className="user-text flex flex-col">
-                  <div className="flex gap-2">
-                    <h1>{user.username}</h1>
-                    <p>●</p>
-                  </div>
-                  <div>
-                    {new Date(blog.created_at).toLocaleDateString(undefined, {
-                      year: "numeric",
-                      month: "long",
-                      day: "numeric",
-                    })}
-                  </div>
-                </div>
-              </div>
-              <div className=" pt-8">
-                <hr />
-                <div className="logos pt-6 pb-6 flex justify-between">
-                  <div className="left-logo flex gap-7">
-                    <div className="like flex gap-1 justify-center items-center">
-                      <button
-                        onClick={() => {
-                          setIsLike(!isLike), setLike(like + 1);
-                        }}
-                      >
-                        {isLike ? (
-                          <i className="ri-heart-line "></i>
-                        ) : (
-                          <i className="ri-heart-fill text-red-500"></i>
-                        )}
-                      </button>
-                      <p>{like}</p>
-                    </div>
-                    <div className="like flex gap-1 justify-center items-center">
-                      <button>
-                        <i className="ri-chat-4-line "></i>
-                      </button>
-                      <p>34</p>
-                    </div>
-                  </div>
-                  <div className="right-logo">
-                    <div className="like flex gap-7 justify-center items-center">
-                      <button>
-                        <i className="ri-share-line"></i>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-                <hr />
-              </div>
-              <div className="image pt-8 h-1/4 w-full cursor-pointer">
-                <img
-                  class="h-full w-full"
-                  src={blog.images}
-                  alt="image description"
-                />
-              </div>
-              <div className="content-text pt-20 text-lg font-serif">
-                {blog.content}
-              </div>
+        <div className="flex flex-col bg-zinc-700 items-center">
+          <div class="relative flex flex-col items-center my-6 bg-zinc-700  shadow-sm rounded-lg w-full">
+            <h6 class="mb-2 text-white text-4xl font-semibold text-center">
+              {blog.title}{" "}
+            </h6>
+            <div class="relative h-[500px] m-2.5 overflow-hidden text-white rounded-md">
+              <img
+                src={blog.images}
+                alt="card-image"
+                className="w-full h-full"
+              />
             </div>
+            <div class="p-4  flex flex-col flex-wrap">
+              <div class="mb-4 flex justify-between">
+                <div className="flex items-center">
+                  <img
+                    alt={user.username}
+                    src={user.pfp}
+                    class="relative inline-block h-8 w-8 rounded-full"
+                  />
+                  <div class="flex flex-col ml-3 text-sm">
+                    <span class="text-zinc-100 font-semibold">
+                      {user.username}
+                    </span>
+                    <span class="text-zinc-300">
+                      {new Date(blog.created_at).toLocaleDateString("en-GB", {
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric",
+                      })}
+                    </span>
+                  </div>
+                </div>
+                <div className="icons flex gap-2 text-xl">
+                  <i class="cursor-pointer ri-heart-fill text-white"></i>
+                  <i class="cursor-pointer ri-message-2-fill text-white"></i>
+                  <i class="cursor-pointer ri-share-fill text-white"></i>
+                </div>
+              </div>
+
+              <p class="text-zinc-100 leading-normal w-max-[900px] w-min-[100px] text-wrap font-light">
+                {blog.content}
+              </p>
+            </div>
+
+            <div class="flex items-center justify-between p-4"></div>
           </div>
 
-          <footer className="rounded-lg shadow m-4 bg-black">
-            <div className="w-full mx-auto max-w-screen-xl p-4 md:flex md:items-center md:justify-between">
+          <footer className="rounded-lg h-full shadow m-4 bg-black">
+            <div className="w-full  mx-auto max-w-screen-xl gap-9 p-4 md:flex md:items-center md:justify-between">
               <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">
                 © 2023{" "}
                 <a href="https://flowbite.com/" className="hover:underline">

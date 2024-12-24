@@ -9,10 +9,8 @@ export async function editUserData(req, res) {
       " UPDATE users SET username=$1,pfp=$2,bio=$3 WHERE id=$4 RETURNING *;",
       [username, pfp, bio, id]
     );
-
-    console.log(result.rows);
     
-    res.json({ Ok: result.rows });
+    return res.json({ Ok: result.rows });
   } catch (error) {
     console.log(error);
   }
