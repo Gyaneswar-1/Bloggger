@@ -118,13 +118,19 @@ function WelcomePage() {
 
         <div className="middle-page flex-grow flex flex-col items-center justify-center bg-center  bg-[url('https://i.pinimg.com/736x/c8/ba/55/c8ba55fa89b44d3f9b3827d17147d07f.jpg')] bg-zinc-700 bg-blend-multiply">
           <h1 className="mb-4 text-4xl text-center font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
-          Unleash Your Voice, Share Your Story</h1>
+            Unleash Your Voice, Share Your Story
+          </h1>
           <p className="mb-6 text-lg text-center font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400">
-          Dive into a World of ideas, inspiration, and stories. Our platform is your canvas to express your passions, thoughts, and insights while connecting with a vibrant community of readers and writers.
+            Dive into a World of ideas, inspiration, and stories. Our platform
+            is your canvas to express your passions, thoughts, and insights
+            while connecting with a vibrant community of readers and writers.
           </p>
-          <button className="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4  focus:ring-green-900 cursor-auto" onClick={()=>{
-            setLogin(!login)
-          }} >
+          <button
+            className="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4  focus:ring-green-900 cursor-auto"
+            onClick={() => {
+              setLogin(!login);
+            }}
+          >
             Get started
           </button>
         </div>

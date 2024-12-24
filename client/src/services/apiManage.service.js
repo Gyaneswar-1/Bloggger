@@ -333,6 +333,10 @@ export const searchBlog = async (title) => {};
 export const editBlog = async (id, title, content, image) => {
   const token = getToken();
   const api = "http://localhost:3000/api/v1/blog/edit";
+  console.log("imageurl",image);
+  const imageurl = await uploadImage(image)
+  console.log("imageurl",imageurl);
+  
   try {
     const result = axios.put(
       api,
@@ -340,7 +344,7 @@ export const editBlog = async (id, title, content, image) => {
         id: id,
         title: title,
         content: content,
-        image: image,
+        image: imageurl,
       },
       {
         headers: {
