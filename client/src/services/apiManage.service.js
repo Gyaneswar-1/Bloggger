@@ -333,10 +333,10 @@ export const searchBlog = async (title) => {};
 export const editBlog = async (id, title, content, image) => {
   const token = getToken();
   const api = "http://localhost:3000/api/v1/blog/edit";
-  console.log("imageurl",image);
-  const imageurl = await uploadImage(image)
-  console.log("imageurl",imageurl);
-  
+  console.log("imageurl", image);
+  const imageurl = await uploadImage(image);
+  console.log("imageurl", imageurl);
+
   try {
     const result = axios.put(
       api,
@@ -398,17 +398,22 @@ export const deleteImage = async (publicId) => {
   }
 };
 
-export const likeblog = async (bid, uid) => {
+export const likeblog = async (bid) => {
+  const uid = getUserId().id;
+  const token = getToken();
   const api = `http://localhost:3000/api/v1/blog/like/${bid}/${uid}`;
   try {
-    const result = axios.post(api, {
+    const result = await axios.post(api, {
       Headers: {
         Authorization: `Bearer ${token}`,
       },
     });
+    console.log("like result", result);
+    
     return true;
   } catch (error) {
     console.log(error);
+    return false;
   }
 };
 
@@ -422,13 +427,35 @@ export const getlike = async (bid) => {
       },
     });
     console.log(result.data.message);
-    return result;
+    return result.data.message;
   } catch (error) {
     console.log(error);
   }
 };
+export const isUserliked = async (bid) => {
+  const uid = getUserId().id;
+  const api = `http://localhost:3000/api/v1/blog/getlike/${bid}/${uid}`;
+  const token = getToken();
+  try {
+    const result = await axios.get(api, {
+      Headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    console.log("isliked",result);
+    
+    if (isliked) {
+      return true
+    }
+    return false
+  } catch (error) {
+    console.log(error);
+  }
+  
+}
 
-export const dislike = async (bid,uid) => {
+export const dislike = async (bid) => {
+  const uid = getUserId().id;
   const api = `http://localhost:3000/api/v1/blog/dislike/${bid}/${uid}`;
   const token = getToken();
   try {
@@ -438,10 +465,8 @@ export const dislike = async (bid,uid) => {
       },
     });
     console.log(result.data.message);
-    return result;
+    return true;
   } catch (error) {
     console.log(error);
   }
 };
-
-

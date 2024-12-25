@@ -6,23 +6,21 @@ import {
   likeblog,
   dislike,
   getUserProfileData,
+  isUserliked,
 } from "../../services/apiManage.service";
 
 import { CloseButton, Spinner, Text, VStack } from "@chakra-ui/react";
+import { getUserId } from "../../services/authService";
 
 const BlogPage = () => {
-  // const { isOpen, onOpen, onClose } = useDisclosure()
-  // const btnRef = React.useRef()
-
-  const navigate = useNavigate();
   const { id } = useParams();
   const [blog, setBlog] = useState({});
   const [user, setUser] = useState({});
-  const [isLike, setIsLike] = useState(false);
-  const [like, setLike] = useState(0);
+  const [userLike, setUserLike] = useState(false); // liked or not
+  const [likes, setLikes] = useState(0); // number of likes
   const [showBlog, setShowBlog] = useState(true);
-  // const [date, setDate] = useState({});
   async function getData() {
+    const user_id = await getUserId();
     const blogData = await getBlogByID(id);
     const userData = await getUserProfileData(blogData[0].user_id);
     if (blogData != null && userData != null) {
@@ -30,10 +28,29 @@ const BlogPage = () => {
     }
     setBlog(blogData[0]);
     setUser(userData);
-    // setDate(
-
-    // );
+    const likeNumber = await getlike(id);
+    setLikes(likeNumber.length);
+    console.log("SDAD", user_id.id);
+    const isUserliked = likeNumber.includes(user_id.id);
+    if (isUserliked) {
+      setUserLike(!userLike);
+    }
   }
+  const handleLikeClick = async () => {
+    try {
+      if (userLike) {
+        await dislike(id);
+        setUserLike(!userLike)
+        setLikes(likes - 1);
+      } else {
+        await likeblog(id);
+        setUserLike(!userLike)
+        setLikes(likes + 1);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   useEffect(() => {
     getData();
@@ -52,7 +69,7 @@ const BlogPage = () => {
         <div className="flex flex-col bg-zinc-700 items-center">
           <div class="relative flex flex-col items-center my-6 bg-zinc-700  shadow-sm rounded-lg w-full">
             <h6 class="mb-2 text-white text-4xl font-semibold text-center">
-              {blog.title}{" "}
+              {blog.title}
             </h6>
             <div class="relative h-[500px] m-2.5 overflow-hidden text-white rounded-md">
               <img
@@ -61,7 +78,7 @@ const BlogPage = () => {
                 className="w-full h-full"
               />
             </div>
-            <div class="p-4  flex flex-col flex-wrap">
+            <div class="p-4  md:w-[930px]  flex flex-col flex-wrap">
               <div class="mb-4 flex justify-between">
                 <div className="flex items-center">
                   <img
@@ -82,10 +99,27 @@ const BlogPage = () => {
                     </span>
                   </div>
                 </div>
-                <div className="icons flex gap-2 text-xl">
-                  <i class="cursor-pointer ri-heart-fill text-white"></i>
-                  <i class="cursor-pointer ri-message-2-fill text-white"></i>
-                  <i class="cursor-pointer ri-share-fill text-white"></i>
+                <div className="icons flex gap-2 text-xl text-white">
+                  <button
+                    onClick={() => {
+                      handleLikeClick();
+                    }}
+                    className="flex flex-col items-center"
+                  >
+                    {userLike ? (
+                      <i class="ri-heart-fill text-red-600"></i>
+                    ) : (
+                      <i class="ri-heart-line text-white"></i>
+                    )}
+                    <p className="text-sm">{likes}</p>
+                  </button>
+                  <button className="flex flex-col items-center">
+                    <i class="cursor-pointer ri-message-2-fill text-xl text-white"></i>
+                    <p className="text-sm">12</p>
+                  </button>
+                  <button className="flex">
+                    <i class="cursor-pointer ri-share-fill text-white"></i>
+                  </button>
                 </div>
               </div>
 

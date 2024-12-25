@@ -8,10 +8,11 @@ export async function getlike(req, res) {
       "select user_id from user_likes WHERE blog_id=$1",
       [bid]
     );
+    const ids = result.rows.map(row => row.user_id);
     return res
       .status(201)
       .json(
-        new ApiResponse(201, "Success", result.rows, "Get likes sucess")
+        new ApiResponse(201, "Success", ids, "Get likes sucess")
       );
   } catch (error) {
     console.log(error);

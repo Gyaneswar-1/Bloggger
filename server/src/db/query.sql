@@ -81,7 +81,7 @@ CREATE TABLE user_likes (
     user_id INT NOT NULL,
     blog_id INT NOT NULL,
     like_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES users(id),
-    FOREIGN KEY (blog_id) REFERENCES blogs(id),
+    FOREIGN KEY (user_id) REFERENCES users(id)  ON DELETE CASCADE,
+    FOREIGN KEY (blog_id) REFERENCES blogs(id)  ON DELETE CASCADE,
     UNIQUE (user_id, blog_id)
 );
