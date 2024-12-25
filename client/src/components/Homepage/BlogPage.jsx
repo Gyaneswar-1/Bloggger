@@ -9,16 +9,40 @@ import {
   isUserliked,
 } from "../../services/apiManage.service";
 
-import { CloseButton, Spinner, Text, VStack } from "@chakra-ui/react";
+import {
+  CloseButton,
+  Spinner,
+  Text,
+  VStack,
+  Drawer,
+  DrawerBody,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerOverlay,
+  DrawerContent,
+  DrawerCloseButton,
+  Button,
+  Input,
+  Textarea,
+} from "@chakra-ui/react";
+import { useDisclosure } from "@chakra-ui/hooks";
+
 import { getUserId } from "../../services/authService";
+import CommentCard from "../ReuseableComponents.jsx/CommentCard";
+import { getcomment } from "../../services/apiManage.service";
+
 
 const BlogPage = () => {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const btnRef = React.useRef();
   const { id } = useParams();
   const [blog, setBlog] = useState({});
   const [user, setUser] = useState({});
   const [userLike, setUserLike] = useState(false); // liked or not
   const [likes, setLikes] = useState(0); // number of likes
   const [showBlog, setShowBlog] = useState(true);
+  // comment
+    const [comment,setComment] = useState("");
   async function getData() {
     const user_id = await getUserId();
     const blogData = await getBlogByID(id);
@@ -40,11 +64,11 @@ const BlogPage = () => {
     try {
       if (userLike) {
         await dislike(id);
-        setUserLike(!userLike)
+        setUserLike(!userLike);
         setLikes(likes - 1);
       } else {
         await likeblog(id);
-        setUserLike(!userLike)
+        setUserLike(!userLike);
         setLikes(likes + 1);
       }
     } catch (error) {
@@ -52,8 +76,20 @@ const BlogPage = () => {
     }
   };
 
+  //comment handle
+    async function handleComment() {
+      try {
+        const result = await getcomment(106);
+        console.log(result);
+        setComment(result)
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
   useEffect(() => {
     getData();
+    handleComment();
   }, [id]);
 
   return (
@@ -113,8 +149,50 @@ const BlogPage = () => {
                     )}
                     <p className="text-sm">{likes}</p>
                   </button>
-                  <button className="flex flex-col items-center">
+                  <button
+                    className="flex flex-col items-center"
+                    ref={btnRef}
+                    onClick={onOpen}
+                  >
                     <i class="cursor-pointer ri-message-2-fill text-xl text-white"></i>
+
+                    <Drawer
+                      isOpen={isOpen}
+                      placement="right"
+                      onClose={onClose}
+                      finalFocusRef={btnRef}
+                    >
+                      <DrawerOverlay />
+                      <DrawerContent bg="#333">
+                        <DrawerCloseButton textColor="white" />
+                        <DrawerHeader textColor="white">
+                          Add comment
+                        </DrawerHeader>
+
+                        <DrawerBody className="flex items-center flex-col">
+                          <Textarea
+                            textColor="white"
+                            size="lg"
+                            placeholder="Type here..."
+                            className="mb-8 p-2"
+                            resize="vertical"
+                          />
+
+
+                          <div className="flex flex-col gap-3  justify-center items-center text-cyan-50">
+                            {/* {
+                              comment.data.map((data)=>{
+                               <CommentCard content={data.content} username={data.username} pfp={data.pfp} date={data.date}/>
+                              })
+                            } */}
+                          </div>
+                        </DrawerBody>
+                        <DrawerFooter>
+                          <Button colorScheme="green">Post</Button>
+                        </DrawerFooter>
+                      </DrawerContent>
+                    </Drawer>
+
                     <p className="text-sm">12</p>
                   </button>
                   <button className="flex">

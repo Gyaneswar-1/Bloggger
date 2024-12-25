@@ -20,10 +20,10 @@ import { unfollow } from "../controllers/FollowHandle.controllers/unfollow.contr
 import { searchBlog } from "../controllers/searchBlog.controller.js";
 import { editBlog } from "../controllers/editBlog.controller.js";
 import { postcomment } from "../controllers/postcomment.controller.js";
-import { getcomment } from "../controllers/getcomments.controller.js";
 import { likeblog } from "../controllers/likeHandle.controllers/likeblog.controller.js";
 import { getlike } from "../controllers/likeHandle.controllers/getlike.controller.js";
 import { dislike } from "../controllers/likeHandle.controllers/dislike.controller.js";
+import { getcomment } from "../controllers/comment.controllers/getcomments.controller.js";
 
 const router = Router();
 
@@ -53,8 +53,8 @@ router.route("/user/getfollows/:uid").get(authenticationToken, getFollows);
 router.route("/blog/comment/:bid/:uid").post(postcomment);
 router.route("/blog/comment/:bid").get(getcomment);
 // blog like
-router.route("/blog/like/:bid/:uid").post(likeblog);
-router.route("/blog/dislike/:bid/:uid").delete(dislike);
-router.route("/blog/getlike/:bid").get(getlike);
+router.route("/blog/like/:bid/:uid").post(authenticationToken,likeblog);
+router.route("/blog/dislike/:bid/:uid").delete(authenticationToken,dislike);
+router.route("/blog/getlike/:bid").get(authenticationToken,getlike);
 
 export default router;

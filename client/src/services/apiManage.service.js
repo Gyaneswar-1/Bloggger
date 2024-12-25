@@ -357,7 +357,7 @@ export const editBlog = async (id, title, content, image) => {
     console.log("Error while editing the blog! ");
   }
 };
-
+// image upload && delete
 export const uploadImage = async (image) => {
   const data = new FormData();
   data.append("file", image);
@@ -398,18 +398,19 @@ export const deleteImage = async (publicId) => {
   }
 };
 
+// like
 export const likeblog = async (bid) => {
   const uid = getUserId().id;
   const token = getToken();
   const api = `http://localhost:3000/api/v1/blog/like/${bid}/${uid}`;
   try {
     const result = await axios.post(api, {
-      Headers: {
+      headers: {
         Authorization: `Bearer ${token}`,
       },
     });
     console.log("like result", result);
-    
+
     return true;
   } catch (error) {
     console.log(error);
@@ -422,7 +423,7 @@ export const getlike = async (bid) => {
   const token = getToken();
   try {
     const result = await axios.get(api, {
-      Headers: {
+      headers: {
         Authorization: `Bearer ${token}`,
       },
     });
@@ -432,27 +433,27 @@ export const getlike = async (bid) => {
     console.log(error);
   }
 };
+
 export const isUserliked = async (bid) => {
   const uid = getUserId().id;
   const api = `http://localhost:3000/api/v1/blog/getlike/${bid}/${uid}`;
   const token = getToken();
   try {
     const result = await axios.get(api, {
-      Headers: {
+      headers: {
         Authorization: `Bearer ${token}`,
       },
     });
-    console.log("isliked",result);
-    
+    console.log("isliked", result);
+
     if (isliked) {
-      return true
+      return true;
     }
-    return false
+    return false;
   } catch (error) {
     console.log(error);
   }
-  
-}
+};
 
 export const dislike = async (bid) => {
   const uid = getUserId().id;
@@ -460,7 +461,7 @@ export const dislike = async (bid) => {
   const token = getToken();
   try {
     const result = await axios.delete(api, {
-      Headers: {
+      headers: {
         Authorization: `Bearer ${token}`,
       },
     });
@@ -468,5 +469,21 @@ export const dislike = async (bid) => {
     return true;
   } catch (error) {
     console.log(error);
+  }
+};
+
+export const getcomment = async (bid) => {
+  const token = getToken();
+  const api = `http://localhost:3000/api/v1/blog/comment/${bid}`;
+  try {
+    const result = await axios(api, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return result.data;
+  } catch (error) {
+    console.log(error);
+    return false
   }
 };
