@@ -51,7 +51,7 @@ function PostnewBlogs() {
   const toast = useToast();
   return (
     <div className="bg-black h-lvh w-lvw flex justify-center items-center">
-      <div className="h-5/6 w-5/6 bg-zinc-500 shadow-2xl p-8 rounded-xl max-h-full max-w-full min-h-fit min-w-fit">
+      <div className="h-5/6 w-5/6 bg-zinc-600 text-white shadow-2xl p-8 rounded-xl max-h-full max-w-full min-h-fit min-w-fit">
         <form action="" onSubmit={handleSubmit}>
           <div className=" flex justify-between items-center pb-6 text-center font-serif">
             <div
@@ -67,7 +67,7 @@ function PostnewBlogs() {
               <button
                 disabled
                 type="button"
-                class="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2  inline-flex items-center"
+                class="cursor-wait text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2  inline-flex items-center"
               >
                 <svg
                   aria-hidden="true"
@@ -99,19 +99,19 @@ function PostnewBlogs() {
           <input
             type="text"
             onChange={handleTitleChange}
-            className="w-full p-4 text-4xl bg-transparent text-black outline-none placeholder-gray-100"
+            className="w-full p-4 text-3xl bg-transparent text-black outline-none placeholder-gray-100"
             placeholder="Title"
           />
           <textarea
             name=""
             id=""
-            className="w-full p-4 h-40 max-h-60 bg-transparent text-xl outline-none placeholder-gray-100"
+            className="w-full p-4 h-40 max-h-60 bg-transparent text-lg outline-none placeholder-gray-100"
             placeholder="Edit your text"
             onChange={handleContentChange}
           ></textarea>
 
           <label
-            className="block mb-2 text-sm font-medium text-gray-900 dark"
+            className="block mb-2 text-sm font-medium text-white dark"
             htmlFor="file_input"
           >
             Upload file

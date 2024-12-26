@@ -9,7 +9,7 @@ function SidePage({ pfp, name, bio, id, email }) {
             <img
               className="w-8 h-8 rounded-full"
               src={pfp}
-              alt="Neil image"
+              alt={name}
             />
           </div>
           <div className="flex-1 min-w-0 ms-4">

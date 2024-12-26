@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import DeleteBlogs from "../Homepage/DeleteBlogs";
 import Editblog from "../Homepage/Editblog";
 import { useNavigate } from "react-router-dom";
+import { formatDistanceToNow } from "date-fns";
 
 function Cardd(props) {
   const navigate = useNavigate();
@@ -11,17 +12,17 @@ function Cardd(props) {
   const { id, title, content, images, username, created_at, userpfp } = props;
 
   return (
-    <div className="cardd bg-zinc-800 shadow-2xl text-white rounded-md overflow-hidden lg:w-[700px] lg:h-[200px] ml-4 mr-4 flex md:flex-row w-full flex-col justify-between">
-      <div className="image md:h-60 md:w-60 overflow-hidden w-full h-full">
+    <div className="cardd  bg-zinc-800 shadow-2xl text-white rounded-md overflow-hidden lg:w-[700px] lg:h-[200px] ml-4 mr-4 flex md:flex-row w-full flex-col justify-start">
+      <div className="image  flex-shrink-0 w-full md:w-60 h-40 md:h-full overflow-hidden">
         {images ? (
-          <img
-            src={images}
-            alt={title}
-            className="rounded-sm h-full w- object-cover cursor-pointer"
-            onClick={() => {
-              navigate(`/home/blog/${id}`);
-            }}
-          />
+            <img
+              src={images}
+              alt={title}
+              className="rounded-sm h-full w-full object-cover cursor-pointer"
+              onClick={() => {
+                navigate(`/home/blog/${id}`);
+              }}
+            />
         ) : (
           <div className="h-full w-full bg-gray-300 flex items-center justify-center">
             <span>No Image</span>
@@ -87,7 +88,7 @@ function Cardd(props) {
             )}
             {username ? (
               <p className="text-gray-500 text-sm">
-                {new Date(created_at).toLocaleDateString()}
+                {formatDistanceToNow(new Date(created_at), { addSuffix: true })}
               </p>
             ) : (
               <div> </div>

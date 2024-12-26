@@ -30,6 +30,8 @@ import { useDisclosure } from "@chakra-ui/hooks";
 import { getUserId } from "../../services/authService";
 import CommentCard from "../ReuseableComponents.jsx/CommentCard";
 import { getcomment } from "../../services/apiManage.service";
+import { formatDistanceToNow } from "date-fns";
+import CopyUrlButton from "../ReuseableComponents.jsx/CopyurlButton";
 
 const BlogPage = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -42,7 +44,8 @@ const BlogPage = () => {
   const [showBlog, setShowBlog] = useState(true);
   // comment
   const [comment, setComment] = useState([]);
-  async function getData() { 
+  const [newComment,setNewComment] = useState("");
+  async function getData() {
     const user_id = await getUserId();
     const blogData = await getBlogByID(id);
     const userData = await getUserProfileData(blogData[0].user_id);
@@ -91,7 +94,6 @@ const BlogPage = () => {
     handleComment();
   }, [id]);
 
-
   return (
     <div>
       {showBlog ? (
@@ -127,10 +129,8 @@ const BlogPage = () => {
                       {user.username}
                     </span>
                     <span class="text-zinc-300">
-                      {new Date(blog.created_at).toLocaleDateString("en-GB", {
-                        year: "numeric",
-                        month: "long",
-                        day: "numeric",
+                      {formatDistanceToNow(new Date(blog.created_at), {
+                        addSuffix: true,
                       })}
                     </span>
                   </div>
@@ -176,6 +176,10 @@ const BlogPage = () => {
                             placeholder="Type here..."
                             className="mb-8 p-2"
                             resize="vertical"
+                            onChange={(e)=>{
+                              setNewComment(e.target.value)
+                              console.log(newComment);
+                            }}
                           />
 
                           <div className="flex flex-col gap-3  justify-center items-center text-cyan-50">
@@ -199,10 +203,10 @@ const BlogPage = () => {
                       </DrawerContent>
                     </Drawer>
 
-                    <p className="text-sm">12</p>
+                    <p className="text-sm">{comment.length}</p>
                   </button>
                   <button className="flex">
-                    <i class="cursor-pointer ri-share-fill text-white"></i>
+                    <CopyUrlButton/>
                   </button>
                 </div>
               </div>

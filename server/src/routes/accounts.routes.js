@@ -52,7 +52,7 @@ router.route("/user/getfollowers/:uid").get(authenticationToken, getFollowers);
 router.route("/user/getfollows/:uid").get(authenticationToken, getFollows);
 // blog comment
 router.route("/blog/comment/:bid/:uid").post(postcomment);
-router.route("/blog/comment/:bid/:uid").delete(deletecomments);
+router.route("/blog/comment/:bid/:uid").delete(authenticationToken,deletecomments);
 router.route("/blog/comment/:bid").get(authenticationToken,getcomment);
 // blog like
 router.route("/blog/like/:bid/:uid").post(authenticationToken,likeblog);

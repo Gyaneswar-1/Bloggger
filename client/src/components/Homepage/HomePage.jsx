@@ -7,11 +7,12 @@ import {
 import SidePage from "./SidePage.jsx";
 import { getUserId } from "../../services/authService.js";
 import { Spinner, Text, VStack } from "@chakra-ui/react";
-
+import { useNavigate } from "react-router-dom";
 function HomePage() {
   const [card, setCard] = useState([]);
   const [ucard, setUCard] = useState([]);
   const [blogLoading, setBlogLoading] = useState(true);
+  const navigate = useNavigate();
 
   const getDatas = async () => {
     try {
@@ -59,7 +60,12 @@ function HomePage() {
                 <h6 className="mr-4 font-bold leading-none text-gray-900 dark:text-white">
                   New Users
                 </h6>
-                <a className="text-sm font-medium text-blue-600 hover:underline dark:text-blue-500">
+                <a
+                  className="text-sm font-medium text-blue-600 hover:underline dark:text-blue-500 cursor-pointer"
+                  onClick={() => {
+                    navigate("/home/trending/");
+                  }}
+                >
                   View all
                 </a>
               </div>
