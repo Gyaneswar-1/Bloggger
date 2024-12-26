@@ -19,7 +19,7 @@ import { getFollowers } from "../controllers/FollowHandle.controllers/getFollowe
 import { unfollow } from "../controllers/FollowHandle.controllers/unfollow.controller.js";
 import { searchBlog } from "../controllers/searchBlog.controller.js";
 import { editBlog } from "../controllers/editBlog.controller.js";
-import { postcomment } from "../controllers/postcomment.controller.js";
+import { postcomment } from "../controllers/comment.controllers/postcomment.controller.js";
 import { likeblog } from "../controllers/likeHandle.controllers/likeblog.controller.js";
 import { getlike } from "../controllers/likeHandle.controllers/getlike.controller.js";
 import { dislike } from "../controllers/likeHandle.controllers/dislike.controller.js";
@@ -52,7 +52,7 @@ router.route("/user/getfollowers/:uid").get(authenticationToken, getFollowers);
 router.route("/user/getfollows/:uid").get(authenticationToken, getFollows);
 // blog comment
 router.route("/blog/comment/:bid/:uid").post(postcomment);
-router.route("/blog/comment/:bid/:uid").delete(authenticationToken,deletecomments);
+router.route("/blog/comment/:cid").delete(authenticationToken,deletecomments);
 router.route("/blog/comment/:bid").get(authenticationToken,getcomment);
 // blog like
 router.route("/blog/like/:bid/:uid").post(authenticationToken,likeblog);

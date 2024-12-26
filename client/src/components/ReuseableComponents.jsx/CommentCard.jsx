@@ -3,13 +3,14 @@ import { Menu, MenuButton, MenuList, MenuItem, Button } from "@chakra-ui/react";
 import { formatDistanceToNow } from "date-fns";
 import { getUserId } from "../../services/authService";
 import { deletecomment } from "../../services/apiManage.service";
-function CommentCard({ content, username, pfp, date, uid, bid, onDelete }) {
+function CommentCard({ content, username, pfp, date, uid, cid }) {
   const id = getUserId().id;
   const [showMenu, setShowMenu] = useState(false);
 
   const deleteHandle = async () => {
     if (showMenu) {
-      const result = await deletecomment(bid, id);
+      console.log("cid",cid);
+      const result = await deletecomment(cid);
     }
   };
 
@@ -32,7 +33,7 @@ function CommentCard({ content, username, pfp, date, uid, bid, onDelete }) {
           </div>
           <div className="flex gap-2 text-[0.9rem]">
             <div className="flex gap-2 items-center">
-              <h1>{username} |</h1>
+              <h1>{username} &#x2022;</h1>
               <p className="text-[0.7rem]">
                 {formatDistanceToNow(new Date(date), {
                   addSuffix: true,

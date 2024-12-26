@@ -6,11 +6,9 @@ import {
   likeblog,
   dislike,
   getUserProfileData,
-  isUserliked,
 } from "../../services/apiManage.service";
 
 import {
-  CloseButton,
   Spinner,
   Text,
   VStack,
@@ -26,12 +24,12 @@ import {
   Textarea,
 } from "@chakra-ui/react";
 import { useDisclosure } from "@chakra-ui/hooks";
-
 import { getUserId } from "../../services/authService";
 import CommentCard from "../ReuseableComponents.jsx/CommentCard";
 import { getcomment } from "../../services/apiManage.service";
 import { formatDistanceToNow } from "date-fns";
 import CopyUrlButton from "../ReuseableComponents.jsx/CopyurlButton";
+import { addcomment } from "../../services/apiManage.service";
 
 const BlogPage = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -44,7 +42,7 @@ const BlogPage = () => {
   const [showBlog, setShowBlog] = useState(true);
   // comment
   const [comment, setComment] = useState([]);
-  const [newComment,setNewComment] = useState("");
+  const [newComment, setNewComment] = useState("");
   async function getData() {
     const user_id = await getUserId();
     const blogData = await getBlogByID(id);
@@ -88,6 +86,13 @@ const BlogPage = () => {
       console.log(error);
     }
   }
+
+  const SubmitComment = async(newComment) => {
+    console.log("Submitted Comment:", newComment);
+    const result = await addcomment(id,newComment);
+    console.log("Submitted Comment:", result);
+    // setComment(result)
+  };
 
   useEffect(() => {
     getData();
@@ -154,7 +159,7 @@ const BlogPage = () => {
                     ref={btnRef}
                     onClick={onOpen}
                   >
-                    <i class="cursor-pointer ri-message-2-fill text-xl text-white"></i>
+                    <i className="cursor-pointer ri-message-2-fill text-xl text-white"></i>
 
                     <Drawer
                       isOpen={isOpen}
@@ -163,50 +168,60 @@ const BlogPage = () => {
                       finalFocusRef={btnRef}
                     >
                       <DrawerOverlay />
-                      <DrawerContent bg="#333">
-                        <DrawerCloseButton textColor="white" />
-                        <DrawerHeader textColor="white">
-                          Add comment
-                        </DrawerHeader>
+                      <form
+                        onSubmit={(e) => {
+                          e.preventDefault();
+                          SubmitComment(newComment);
+                        }}
+                      >
+                        <DrawerContent bg="#333">
+                          <DrawerCloseButton textColor="white" />
+                          <DrawerHeader textColor="white">
+                            Add comment
+                          </DrawerHeader>
 
-                        <DrawerBody className="flex items-center flex-col">
-                          <Textarea
-                            textColor="white"
-                            size="lg"
-                            placeholder="Type here..."
-                            className="mb-8 p-2"
-                            resize="vertical"
-                            onChange={(e)=>{
-                              setNewComment(e.target.value)
-                              console.log(newComment);
-                            }}
-                          />
+                          <DrawerBody className="flex items-center flex-col">
+                            <Textarea
+                              textColor="white"
+                              size="lg"
+                              placeholder="Type here..."
+                              className="mb-8 p-2"
+                              resize="vertical"
+                              onInput={(e) => {
+                                const value = e.target.value;
+                                setNewComment(value);
+                              }}
+                            />
 
-                          <div className="flex flex-col gap-3  justify-center items-center text-cyan-50">
-                            {comment.map((data) => {
-                              return (
-                                <CommentCard
-                                  content={data.content}
-                                  username={data.user_name}
-                                  pfp={data.user_pfp}
-                                  date={data.created_at}
-                                  uid={data.user_id}
-                                  bid={data.blog_id}
-                                />
-                              );
-                            })}
-                          </div>
-                        </DrawerBody>
-                        <DrawerFooter>
-                          <Button colorScheme="green">Post</Button>
-                        </DrawerFooter>
-                      </DrawerContent>
+                            <div className="flex flex-col gap-3  justify-center items-center text-cyan-50">
+                              {comment.map((data) => {
+                                return (
+                                  <CommentCard
+                                    content={data.content}
+                                    username={data.user_name}
+                                    pfp={data.user_pfp}
+                                    date={data.created_at}
+                                    uid={data.user_id}
+                                    bid={data.blog_id}
+                                    cid={data.id}
+                                  />
+                                );
+                              })}
+                            </div>
+                          </DrawerBody>
+                          <DrawerFooter>
+                            <Button colorScheme="green" type="submit">
+                              Post
+                            </Button>
+                          </DrawerFooter>
+                        </DrawerContent>
+                      </form>
                     </Drawer>
 
                     <p className="text-sm">{comment.length}</p>
                   </button>
                   <button className="flex">
-                    <CopyUrlButton/>
+                    <CopyUrlButton />
                   </button>
                 </div>
               </div>
