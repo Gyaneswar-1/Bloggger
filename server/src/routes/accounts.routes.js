@@ -24,6 +24,7 @@ import { likeblog } from "../controllers/likeHandle.controllers/likeblog.control
 import { getlike } from "../controllers/likeHandle.controllers/getlike.controller.js";
 import { dislike } from "../controllers/likeHandle.controllers/dislike.controller.js";
 import { getcomment } from "../controllers/comment.controllers/getcomments.controller.js";
+import { deletecomments } from "../controllers/comment.controllers/deletecomments.controller.js";
 
 const router = Router();
 
@@ -51,7 +52,8 @@ router.route("/user/getfollowers/:uid").get(authenticationToken, getFollowers);
 router.route("/user/getfollows/:uid").get(authenticationToken, getFollows);
 // blog comment
 router.route("/blog/comment/:bid/:uid").post(postcomment);
-router.route("/blog/comment/:bid").get(getcomment);
+router.route("/blog/comment/:bid/:uid").delete(deletecomments);
+router.route("/blog/comment/:bid").get(authenticationToken,getcomment);
 // blog like
 router.route("/blog/like/:bid/:uid").post(authenticationToken,likeblog);
 router.route("/blog/dislike/:bid/:uid").delete(authenticationToken,dislike);

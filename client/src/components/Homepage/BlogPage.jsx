@@ -31,7 +31,6 @@ import { getUserId } from "../../services/authService";
 import CommentCard from "../ReuseableComponents.jsx/CommentCard";
 import { getcomment } from "../../services/apiManage.service";
 
-
 const BlogPage = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = React.useRef();
@@ -42,8 +41,8 @@ const BlogPage = () => {
   const [likes, setLikes] = useState(0); // number of likes
   const [showBlog, setShowBlog] = useState(true);
   // comment
-    const [comment,setComment] = useState("");
-  async function getData() {
+  const [comment, setComment] = useState([]);
+  async function getData() { 
     const user_id = await getUserId();
     const blogData = await getBlogByID(id);
     const userData = await getUserProfileData(blogData[0].user_id);
@@ -77,20 +76,21 @@ const BlogPage = () => {
   };
 
   //comment handle
-    async function handleComment() {
-      try {
-        const result = await getcomment(106);
-        console.log(result);
-        setComment(result)
-      } catch (error) {
-        console.log(error);
-      }
+  async function handleComment() {
+    try {
+      const result = await getcomment(id);
+      console.log("array", result.data);
+      setComment(result.data);
+    } catch (error) {
+      console.log(error);
     }
+  }
 
   useEffect(() => {
     getData();
     handleComment();
   }, [id]);
+
 
   return (
     <div>
@@ -178,13 +178,19 @@ const BlogPage = () => {
                             resize="vertical"
                           />
 
-
                           <div className="flex flex-col gap-3  justify-center items-center text-cyan-50">
-                            {/* {
-                              comment.data.map((data)=>{
-                               <CommentCard content={data.content} username={data.username} pfp={data.pfp} date={data.date}/>
-                              })
-                            } */}
+                            {comment.map((data) => {
+                              return (
+                                <CommentCard
+                                  content={data.content}
+                                  username={data.user_name}
+                                  pfp={data.user_pfp}
+                                  date={data.created_at}
+                                  uid={data.user_id}
+                                  bid={data.blog_id}
+                                />
+                              );
+                            })}
                           </div>
                         </DrawerBody>
                         <DrawerFooter>

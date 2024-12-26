@@ -476,11 +476,28 @@ export const getcomment = async (bid) => {
   const token = getToken();
   const api = `http://localhost:3000/api/v1/blog/comment/${bid}`;
   try {
-    const result = await axios(api, {
+    const result = await axios.get(api, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     });
+    return result.data;
+  } catch (error) {
+    console.log(error);
+    return false
+  }
+};
+
+export const deletecomment = async (bid,uid) => {
+  const token = getToken();
+  const api = `http://localhost:3000/api/v1/blog/comment/${bid}/${uid}`;
+  try {
+    const result = await axios.delete(api, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
     return result.data;
   } catch (error) {
     console.log(error);
