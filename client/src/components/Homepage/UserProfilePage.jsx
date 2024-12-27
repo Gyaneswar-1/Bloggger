@@ -47,8 +47,10 @@ const UserProfilePage = () => {
     const result = await getUserBlogs(data.id);
     const follow = await getFollowers();
     const followed = await getFollowed();
-    if (result != null) {
+    if (result>0) {
       setShowBlogs(true);
+      console.log("state",showVlogs);
+      
     }
     setFollowersList(follow);
     setFollowedList(followed);
