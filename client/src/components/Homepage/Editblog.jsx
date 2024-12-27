@@ -14,7 +14,8 @@ function Editblog() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const result = await editBlog({ id, title, content, image });
+    console.log("image",image); 
+    const result = await editBlog( id, title, content, image );
     console.log("RESULT",result); 
     navigate("/home/user");
   };

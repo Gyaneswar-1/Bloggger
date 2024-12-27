@@ -330,6 +330,11 @@ export const unfollowUser = async (uid) => {
 export const searchBlog = async (title) => {};
 
 export const editBlog = async (id, title, content, image) => {
+  console.log("id",id);
+  console.log("id",title);
+  console.log("id",content);
+  console.log("id",image);
+  
   const token = getToken();
   const api = "http://localhost:3000/api/v1/blog/edit";
   console.log("imageurl", image);
@@ -377,24 +382,24 @@ export const uploadImage = async (image) => {
 };
 
 export const deleteImage = async (publicId) => {
-//   cloudinary.config({
-//     cloud_name: 'DATA',
-//     api_key: 'DATA',
-//     api_secret: 'DATA',
-//   });
-//   // cloudinary.config({
-//   //   cloud_name: 'dsrwi1qoe',
-//   //   api_key: '786456799217111',
-//   //   api_secret: 'tmGwaVpqNIxWsxXSJcYgYFzFd2s',
-//   // });
-//   cloudinary.uploader
-//     .destroy(publicId, (error, result) => {
-//       console.log(error);
-//       console.log(result);
-//     })
-//     .catch((err) => {
-//       console.log(err);
-//     });
+  //   cloudinary.config({
+  //     cloud_name: 'DATA',
+  //     api_key: 'DATA',
+  //     api_secret: 'DATA',
+  //   });
+  //   // cloudinary.config({
+  //   //   cloud_name: 'dsrwi1qoe',
+  //   //   api_key: '786456799217111',
+  //   //   api_secret: 'tmGwaVpqNIxWsxXSJcYgYFzFd2s',
+  //   // });
+  //   cloudinary.uploader
+  //     .destroy(publicId, (error, result) => {
+  //       console.log(error);
+  //       console.log(result);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
 };
 
 // like
@@ -403,13 +408,15 @@ export const likeblog = async (bid) => {
   const token = getToken();
   const api = `http://localhost:3000/api/v1/blog/like/${bid}/${uid}`;
   try {
-    const result = await axios.post(api, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    console.log("like result", result);
-
+    const result = await axios.post(
+      api,
+      {},
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
     return true;
   } catch (error) {
     console.log(error);
@@ -497,8 +504,8 @@ export const deletecomment = async (cid) => {
         Authorization: `Bearer ${token}`,
       },
     });
-    console.log("deleted comment",result.rows);
-    
+    console.log("deleted comment", result.rows);
+
     return result.data;
   } catch (error) {
     console.log(error);
@@ -507,7 +514,7 @@ export const deletecomment = async (cid) => {
 };
 
 export const addcomment = async (bid, content) => {
-  if(content===""){
+  if (content === "") {
     return null;
   }
   const uid = getUserId().id;
@@ -523,7 +530,7 @@ export const addcomment = async (bid, content) => {
         },
       }
     );
-    console.log("added comment axios result: ",result.data);
+    console.log("added comment axios result: ", result.data);
 
     return result.data;
   } catch (error) {

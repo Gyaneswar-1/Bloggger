@@ -51,12 +51,12 @@ router.route("/user/unfollow/:uid").delete(authenticationToken, unfollow);
 router.route("/user/getfollowers/:uid").get(authenticationToken, getFollowers);
 router.route("/user/getfollows/:uid").get(authenticationToken, getFollows);
 // blog like
-router.route("/blog/like/:bid/:uid").post(likeblog);
+router.route("/blog/like/:bid/:uid").post(authenticationToken,likeblog);
 router.route("/blog/dislike/:bid/:uid").delete(authenticationToken,dislike);
 router.route("/blog/getlike/:bid").get(authenticationToken,getlike);
 // blog comment
-router.route("/blog/comment/:bid/:uid").post(postcomment);
-router.route("/blog/comment/:cid").delete(deletecomments);
+router.route("/blog/comment/:bid/:uid").post(authenticationToken,postcomment);
+router.route("/blog/comment/:cid").delete(authenticationToken,deletecomments);
 router.route("/blog/comment/:bid").get(authenticationToken,getcomment);
 
 export default router;
