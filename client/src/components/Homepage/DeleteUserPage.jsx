@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Modal,
   ModalOverlay,
@@ -16,6 +16,7 @@ import { deleteUser } from '../../services/apiManage.service';
 
 function DeleteUserPage(id) {
   console.log("recived id ",id.id);
+  const [loading,setLoading] = useState(false);
   
   const { isOpen, onOpen, onClose } = useDisclosure();
   const navigate = useNavigate();
@@ -25,6 +26,7 @@ function DeleteUserPage(id) {
   }, [onOpen]);
 
   const handleDelete = async () => {
+    setLoading(true);
     try {
       const result = await deleteUser(id.id);
       onClose();
@@ -50,7 +52,7 @@ function DeleteUserPage(id) {
             <Button colorScheme='green' mr={3} onClick={onClose}>
               Close
             </Button>
-            <Button variant='ghost' colorScheme="red" onClick={handleDelete}>
+            <Button isLoading={loading} variant='ghost' colorScheme="red" onClick={handleDelete}>
               Delete
             </Button>
           </ModalFooter>

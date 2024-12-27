@@ -117,7 +117,7 @@ function EditUser() {
           </form>
         </div>
       </div>
-      {deleteUser && <DeleteUserPage />}
+      {deleteUser && <DeleteUserPage  />}
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect,useState } from "react";
 import {
   Modal,
   ModalOverlay,
@@ -16,6 +16,8 @@ import { deleteBlog } from "../../services/apiManage.service";
 
 function DeleteBlogs({ id }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [loading,setLoading] = useState(false);
+
   const toast = useToast();
 
   useEffect(() => {
@@ -23,6 +25,8 @@ function DeleteBlogs({ id }) {
   }, [onOpen]);
 
   const handleDelete = async () => {
+    setLoading(true);
+
     try {
       const response = await deleteBlog(id);
       if (response) {
@@ -61,7 +65,7 @@ function DeleteBlogs({ id }) {
             <Button colorScheme="blue" mr={3} onClick={onClose}>
               Close
             </Button>
-            <Button variant="ghost" colorScheme="red" onClick={handleDelete}>
+            <Button isLoading={loading}  variant="ghost" colorScheme="red" onClick={handleDelete}>
               Delete
             </Button>
           </ModalFooter>

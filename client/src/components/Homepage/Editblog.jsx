@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { Stack, Input, Textarea, CloseButton } from "@chakra-ui/react";
+import { Stack, Input, Textarea, CloseButton, Button } from "@chakra-ui/react";
 import { editBlog, getBlogByID } from "../../services/apiManage.service";
 import { Spinner, Text, VStack } from "@chakra-ui/react";
 
@@ -11,8 +11,11 @@ function Editblog() {
   const [content, setContent] = useState("content");
   const [image, setImage] = useState({});
   const [loading, setLoading] = useState(true);
+  const [bloading,setbLoading] = useState(false);
+
 
   const handleSubmit = async (e) => {
+    setbLoading(true);
     e.preventDefault();
     console.log("image",image); 
     const result = await editBlog( id, title, content, image );
@@ -78,12 +81,14 @@ function Editblog() {
                 type="file"
                 onChange={(e) => setImage(e.target.files[0])}
               />
-              <button
+              <Button
+                  isLoading={bloading}    
                 type="submit"
-                className="bg-green-500 text-white p-2 rounded mt-6"
+                colorScheme="green"
+                className=" text-white p-2 rounded mt-6"
               >
                 Submit
-              </button>
+              </Button>
             </Stack>
           </form>
         </div>
