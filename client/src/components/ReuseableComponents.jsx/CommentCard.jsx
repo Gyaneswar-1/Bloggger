@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Menu, MenuButton, MenuList, MenuItem, Button } from "@chakra-ui/react";
-import { formatDistanceToNow } from "date-fns";
 import { getUserId } from "../../services/authService";
+import moment from "moment"
 import { deletecomment } from "../../services/apiManage.service.js";
 function CommentCard({ content, username, pfp, date, uid, cid }) {
   const id = getUserId().id;
   const [showMenu, setShowMenu] = useState(false);
+  
 
   const deleteHandle = async () => {
     console.log("deleted");
@@ -33,9 +34,9 @@ function CommentCard({ content, username, pfp, date, uid, cid }) {
             <div className="flex gap-2 items-center">
               <h1>{username} &#x2022;</h1>
               <p className="text-[0.7rem]">
-                {formatDistanceToNow(new Date(date), {
-                  addSuffix: true,
-                }).replace("about ", "")}
+                {
+                  moment(date).fromNow()
+                }
               </p>
             </div>
 
@@ -60,7 +61,7 @@ function CommentCard({ content, username, pfp, date, uid, cid }) {
                       onClick={() => {
                         deleteHandle();
                       }}
-                    >
+                      >
                       <i class="ri-delete-bin-6-line"></i>
                       Delete
                     </MenuItem>

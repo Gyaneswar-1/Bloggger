@@ -6,7 +6,7 @@ import {
   uploadImage,
 } from "../../services/apiManage.service";
 import { getUserId } from "../../services/authService";
-import { CloseButton, Input, Text } from "@chakra-ui/react";
+import { Button, CloseButton, Input, Text } from "@chakra-ui/react";
 import DeleteUserPage from "./DeleteUserPage";
 
 function EditUser() {
@@ -16,11 +16,12 @@ function EditUser() {
   const [pfp, setPfp] = useState(id.pfp);
   const [pfpPreview, setPfpPreview] = useState(id.pfp);
   const [deleteUser, setDeleteUser] = useState(false);
+  const [submitButtonLoading, setsubmitButtonLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    setsubmitButtonLoading(true);
     const userData = { username, bio, pfp };
     try {
       if (typeof pfp === "object") {
@@ -45,7 +46,7 @@ function EditUser() {
       <div className="bg-zinc-800 h-5/6 w-3/6 min-h-fit min-w-fit max-h-full max-w-full shadow-2xl rounded-md">
         <div className="pl-2">
           <CloseButton
-          className="text-white"
+            className="text-white"
             padding={3}
             margin={2}
             onClick={() => navigate("/home/user")}
@@ -94,19 +95,24 @@ function EditUser() {
               className="w-full bg-zinc-200 text-lg p-2 rounded-md"
             />
             <div className="action">
-              <button
+              <Button
+                isLoading={submitButtonLoading}
+                colorScheme="green"
                 type="submit"
                 className="bg-green-600 p-2 rounded-md m-2 text-white"
               >
                 Submit
-              </button>
-              <button
+              </Button>
+              <Button
                 type="button"
-                className="bg-red-600 p-2 rounded-md m-2 text-white"
-                onClick={() => setDeleteUser(!deleteUser)}
+                colorScheme="red"
+                onClick={() => {
+
+                  setDeleteUser(!deleteUser);
+                }}
               >
                 Delete
-              </button>
+              </Button>
             </div>
           </form>
         </div>

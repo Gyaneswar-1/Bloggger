@@ -22,8 +22,11 @@ import {
   Text,
   VStack,
 } from "@chakra-ui/react";
+import { useToast } from '@chakra-ui/react'
+import moment from "moment";
 
 const UserProfilePage = () => {
+  const toast = useToast()
   const navigate = useNavigate();
   const [ublog, setUblog] = useState([]);
   const [followers, setFollowers] = useState("");
@@ -88,7 +91,7 @@ bg-zinc-800 p-6 rounded-lg shadow-lg h-full w-full "
               <p className="text-gray-100">{udata.email}</p>
               <p className="text-gray-200">{udata.bio}</p>
               <p className="text-gray-200 mt-2">
-                Created at: {new Date(udata.created_at).toLocaleDateString()}
+                Joined {moment(udata.created_at).fromNow()}
               </p>
               <div className="follows flex gap-5 pt-2">
                 <Popover>
@@ -149,6 +152,7 @@ bg-zinc-800 p-6 rounded-lg shadow-lg h-full w-full "
             </div>
             <div className="buttons flex justify-evenly pt-5">
               <Button
+
                 rounded="inherit"
                 variant="outline"
                 borderRadius={6}
@@ -156,6 +160,12 @@ bg-zinc-800 p-6 rounded-lg shadow-lg h-full w-full "
                 onClick={() => {
                   try {
                     if (logout()) {
+                      toast({
+                        title: "Logged out successfully.",
+                        status: "success",
+                        duration: 5000,
+                        isClosable: true,
+                      });
                       console.log("Logged out");
                       navigate("/welcome");
                     } else {
@@ -180,12 +190,12 @@ bg-zinc-800 p-6 rounded-lg shadow-lg h-full w-full "
               </Button>
             </div>
           </div>
-          <div className=" rounded-lg bg-zinc-800 shadow-2xl flex flex-row">
+          <div className=" rounded-lg  shadow-2xl flex flex-row justify-center items-center">
             <div>
-              <h1 className="m-9 text-6xl font-thin font-CosmicNeue text-white">
+              <h1 className="md:m-9 mt-4 mb-4 md:text-6xl text-xl font-thin font-CosmicNeue text-white">
                 {showVlogs ? "Your Blogs" : "No Blogs"}
               </h1>
-              <div className="m-3 flex flex-col gap-9 mt-9">
+              <div className="md:w-fit w-screen flex flex-col justify-center gap-9 mt-9">
                 {ublog.map((data, index) => (
                   <Cardd
                     key={index}

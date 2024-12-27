@@ -40,7 +40,7 @@ function HomePage() {
         </VStack>
       ) : (
         <div className="flex justify-center">
-          <div className=" cards flex flex-col flex-wrap items-center justify-center gap-2">
+          <div className=" cards flex flex-col md:w-fit w-screen pl-0 ml-0 md:p-0 md:m-0 flex-wrap items-center justify-center gap-2">
             {card.map((card, index) => (
               <Cardd
                 key={index}
@@ -69,8 +69,8 @@ function HomePage() {
                   View all
                 </a>
               </div>
-              <div className="flow-root">
-                <ul role="list" className="divide-y divide-gray-700">
+              <div className="flow-root ">
+                <ul role="list" className="divide-y divide-gray-700 ">
                   {ucard
                     .filter((user) => user.id !== getUserId().id)
                     .slice(0, 4)

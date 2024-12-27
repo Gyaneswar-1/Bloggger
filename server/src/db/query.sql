@@ -16,7 +16,6 @@ CREATE TABLE blogs(
     content TEXT NOT NULL,
     user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP,
     images VARCHAR(400) DEFAULT NULL
 );
 

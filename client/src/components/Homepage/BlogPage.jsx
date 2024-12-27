@@ -27,7 +27,7 @@ import { useDisclosure } from "@chakra-ui/hooks";
 import { getUserId } from "../../services/authService";
 import CommentCard from "../ReuseableComponents.jsx/CommentCard";
 import { getcomment } from "../../services/apiManage.service";
-import { formatDistanceToNow } from "date-fns";
+import moment from "moment";
 import CopyUrlButton from "../ReuseableComponents.jsx/CopyurlButton";
 import { addcomment } from "../../services/apiManage.service";
 
@@ -89,11 +89,11 @@ const BlogPage = () => {
   }
 
   const SubmitComment = async (newComment) => {
-    setLoading(true)
+    setLoading(true);
     console.log("Submitted Comment:", newComment);
     const newcomment = await addcomment(id, newComment);
     if (newcomment !== null) {
-      setLoading(false)
+      setLoading(false);
     }
     console.log("Submitted Comment:", newcomment);
   };
@@ -138,9 +138,7 @@ const BlogPage = () => {
                       {user.username}
                     </span>
                     <span class="text-zinc-300">
-                      {formatDistanceToNow(new Date(blog.created_at), {
-                        addSuffix: true,
-                      })}
+                      {moment(blog.created_at).fromNow()}
                     </span>
                   </div>
                 </div>
@@ -214,12 +212,13 @@ const BlogPage = () => {
                             </div>
                           </DrawerBody>
                           <DrawerFooter>
-                          <Button 
-  isLoading={loading}
-  colorScheme="green" 
-  type="submit">
-  Post
-</Button>
+                            <Button
+                              isLoading={loading}
+                              colorScheme="green"
+                              type="submit"
+                            >
+                              Post
+                            </Button>
                           </DrawerFooter>
                         </DrawerContent>
                       </form>
