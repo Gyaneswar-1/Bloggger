@@ -1,13 +1,38 @@
-import React from "react";
-import Navbar from "./Navbarr";
-import { Button } from "@chakra-ui/react";
+import React, { useState, useEffect } from "react";
+import Navbarr from "./Navbarr";
+import { getHomePageData } from "../../services/apiManage.service";
+import Cardd from "../ReuseableComponents.jsx/Cardd";
+import { Spinner } from "@chakra-ui/react";
 
-function SearchPage() {
+const SearchPage = () => {
+  const [query, setQuery] = useState("");
+  const [dataArray, setDataArray] = useState([]);
+  const [filteredData, setFilteredData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setIsLoading(true);
+      const data = await getHomePageData();
+      setDataArray(data);
+      setFilteredData(data); // Show all data initially
+      setIsLoading(false);
+    };
+    fetchData();
+  }, []);
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    const filtered = dataArray.filter((item) =>
+      item.title.toLowerCase().includes(query.toLowerCase())
+    );
+    setFilteredData(filtered);
+  };
+
   return (
     <div>
-      <Navbar />
-
-      <form className="max-w-md mx-auto">
+      <Navbarr />
+      <form className="max-w-md mx-auto" onSubmit={handleSearch}>
         <label
           htmlFor="default-search"
           className="mb-2 text-sm font-medium text-zinc-900 sr-only"
@@ -33,10 +58,12 @@ function SearchPage() {
             </svg>
           </div>
           <input
+            placeholder="Search blogs..."
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
             type="search"
             id="default-search"
             className="block w-full p-4 ps-10 text-sm  border border-gray-300 rounded-lg bg-gray-50  dark:bg-zinc-700  placeholder-zinc-400 text-white focus:ring-blue-500 focus:border-blue-500"
-            placeholder="Search Mockups, Logos..."
             required
           />
           <button
@@ -47,8 +74,28 @@ function SearchPage() {
           </button>
         </div>
       </form>
+      <div className="text-white h-full w-full flex flex-col gap-9 justify-center items-center pt-10">
+        {isLoading ? (
+          <Spinner size="xl" color="green.500" />
+        ) : filteredData.length > 0 ? (
+          filteredData.map((item) => (
+            <Cardd
+              key={item.id}
+              id={item.id}
+              title={item.title}
+              content={item.content}
+              images={item.images}
+              username={item.username}
+              created_at={item.created_at}
+              userpfp={item.pfp}
+            />
+          ))
+        ) : (
+          <p>No blogs found!</p>
+        )}
+      </div>
     </div>
   );
-}
+};
 
 export default SearchPage;

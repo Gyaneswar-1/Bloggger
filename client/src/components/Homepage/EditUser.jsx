@@ -22,16 +22,22 @@ function EditUser() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setsubmitButtonLoading(true);
-    const userData = { username, bio, pfp };
+    const userData = {
+      username: username || id.username,
+      bio: bio || id.bio,
+      pfp: pfp || id.pfp,
+    };
     try {
       if (typeof pfp === "object") {
         const uploadedPfp = await uploadImage(pfp);
         userData.pfp = uploadedPfp;
-        await postUserData(userData);
       }
+      await postUserData(userData);
       navigate("/home/main");
     } catch (error) {
       console.log(error);
+    } finally {
+      setsubmitButtonLoading(false);
     }
   };
 
@@ -107,7 +113,6 @@ function EditUser() {
                 type="button"
                 colorScheme="red"
                 onClick={() => {
-
                   setDeleteUser(!deleteUser);
                 }}
               >

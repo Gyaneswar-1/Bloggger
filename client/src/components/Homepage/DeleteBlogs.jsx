@@ -30,13 +30,8 @@ function DeleteBlogs({ id }) {
     try {
       const response = await deleteBlog(id);
       if (response) {
-        toast({
-          title: "Blog deleted.",
-          description: "The blog has been deleted refresh the page to see the change",
-          status: "info",
-          duration: 5000,
-          isClosable: true,
-        });
+        window.location.reload();
+
       }
       onClose();
     } catch (error) {

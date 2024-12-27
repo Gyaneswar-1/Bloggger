@@ -11,6 +11,7 @@ function CommentCard({ content, username, pfp, date, uid, cid }) {
   const deleteHandle = async () => {
     console.log("deleted");
       const result = await deletecomment(cid);
+      window.location.reload();
   };
 
   useEffect(() => {

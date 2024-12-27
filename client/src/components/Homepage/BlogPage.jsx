@@ -55,7 +55,6 @@ const BlogPage = () => {
     setUser(userData);
     const likeNumber = await getlike(id);
     setLikes(likeNumber.length);
-    console.log("SDAD", user_id.id);
     const isUserliked = likeNumber.includes(user_id.id);
     if (isUserliked) {
       setUserLike(!userLike);
@@ -81,7 +80,6 @@ const BlogPage = () => {
   async function handleComment() {
     try {
       const result = await getcomment(id);
-      console.log("array", result.data);
       setComment(result.data);
     } catch (error) {
       console.log(error);
@@ -95,7 +93,7 @@ const BlogPage = () => {
     if (newcomment !== null) {
       setLoading(false);
     }
-    console.log("Submitted Comment:", newcomment);
+    window.location.reload();
   };
 
   useEffect(() => {

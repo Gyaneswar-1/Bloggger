@@ -2,21 +2,6 @@ import { getToken, isAuthenticated, getUserId } from "./authService.js";
 import axios from "axios";
 // import { v2 as cloudinary } from "cloudinary";
 
-// export const getUserInfoFromToken = () => {
-//   const token = getToken();
-//   if (token) {
-//     try {
-//       // const decodedData = getUserId();
-//       console.log(getUserId());
-
-//       // return decodedData;
-//     } catch (error) {
-//       console.log("Error decoding token:", error);
-//     }
-//   } else {
-//     console.log("No token found, sorry");
-//   }
-// };
 
 // this is homepage data fetch
 export const getHomePageData = async () => {
@@ -327,14 +312,14 @@ export const unfollowUser = async (uid) => {
   }
 };
 
-export const searchBlog = async (title) => {};
+
 
 export const editBlog = async (id, title, content, image) => {
-  console.log("id",id);
-  console.log("id",title);
-  console.log("id",content);
-  console.log("id",image);
-  
+  console.log("id", id);
+  console.log("id", title);
+  console.log("id", content);
+  console.log("id", image);
+
   const token = getToken();
   const api = "http://localhost:3000/api/v1/blog/edit";
   console.log("imageurl", image);

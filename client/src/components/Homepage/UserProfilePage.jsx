@@ -192,7 +192,7 @@ bg-zinc-800 p-6 rounded-lg shadow-lg h-full w-full "
           </div>
           <div className=" rounded-lg  shadow-2xl flex flex-row justify-center items-center">
             <div>
-              <h1 className="md:m-9 mt-4 mb-4 md:text-6xl text-xl font-thin font-CosmicNeue text-white">
+              <h1 className="md:mr-9 md:mb-9 md:ml-9  mb-4 md:text-6xl text-xl font-thin font-CosmicNeue text-white">
                 {showVlogs ? "Your Blogs" : "No Blogs"}
               </h1>
               <div className="md:w-fit w-screen flex flex-col justify-center gap-9 mt-9">
