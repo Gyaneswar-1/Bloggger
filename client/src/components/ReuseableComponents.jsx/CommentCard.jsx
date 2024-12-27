@@ -2,16 +2,14 @@ import React, { useEffect, useState } from "react";
 import { Menu, MenuButton, MenuList, MenuItem, Button } from "@chakra-ui/react";
 import { formatDistanceToNow } from "date-fns";
 import { getUserId } from "../../services/authService";
-import { deletecomment } from "../../services/apiManage.service";
+import { deletecomment } from "../../services/apiManage.service.js";
 function CommentCard({ content, username, pfp, date, uid, cid }) {
   const id = getUserId().id;
   const [showMenu, setShowMenu] = useState(false);
 
   const deleteHandle = async () => {
-    if (showMenu) {
-      console.log("cid",cid);
+    console.log("deleted");
       const result = await deletecomment(cid);
-    }
   };
 
   useEffect(() => {
@@ -43,8 +41,8 @@ function CommentCard({ content, username, pfp, date, uid, cid }) {
 
             <div>
               {showMenu && (
-                <Menu>
-                  <MenuButton>
+                <Menu >
+                  <MenuButton type="button" >
                     <i class="ri-more-2-line"></i>
                   </MenuButton>
                   <MenuList

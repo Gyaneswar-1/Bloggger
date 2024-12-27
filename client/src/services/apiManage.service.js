@@ -1,7 +1,6 @@
-import { getToken, isAuthenticated, getUserId } from "./authService";
+import { getToken, isAuthenticated, getUserId } from "./authService.js";
 import axios from "axios";
-import { jwtDecode } from "jwt-decode";
-import { login } from "./authService";
+// import { v2 as cloudinary } from "cloudinary";
 
 // export const getUserInfoFromToken = () => {
 //   const token = getToken();
@@ -42,7 +41,6 @@ export const getHomePageData = async () => {
 };
 
 // this is UserProfile  page
-
 export const getUserProfileData = async (id) => {
   const token = getToken();
   const api = `http://localhost:3000/api/v1/user/${id}`;
@@ -379,24 +377,24 @@ export const uploadImage = async (image) => {
 };
 
 export const deleteImage = async (publicId) => {
-  try {
-    const result = await axios.post(
-      import.meta.env.VITE_CLOUDINARY_DELETE_URL,
-      {
-        public_id: publicId,
-      },
-      {
-        headers: {
-          "Content-Type": "image",
-        },
-      }
-    );
-    console.log("Image deleted successfully:", result.data);
-    return result.data;
-  } catch (error) {
-    console.log("error while deleting the cloudinary image", error);
-    return null;
-  }
+//   cloudinary.config({
+//     cloud_name: 'DATA',
+//     api_key: 'DATA',
+//     api_secret: 'DATA',
+//   });
+//   // cloudinary.config({
+//   //   cloud_name: 'dsrwi1qoe',
+//   //   api_key: '786456799217111',
+//   //   api_secret: 'tmGwaVpqNIxWsxXSJcYgYFzFd2s',
+//   // });
+//   cloudinary.uploader
+//     .destroy(publicId, (error, result) => {
+//       console.log(error);
+//       console.log(result);
+//     })
+//     .catch((err) => {
+//       console.log(err);
+//     });
 };
 
 // like
@@ -486,7 +484,7 @@ export const getcomment = async (bid) => {
     return result.data;
   } catch (error) {
     console.log(error);
-    return false
+    return false;
   }
 };
 
@@ -499,28 +497,37 @@ export const deletecomment = async (cid) => {
         Authorization: `Bearer ${token}`,
       },
     });
-    return result.data;
-  } catch (error) {
-    console.log(error);
-    return false
-  }
-};
-
-export const addcomment = async (bid,content) => {
-  const uid = getUserId().id
-  const token = getToken();
-  const api = `http://localhost:3000/api/v1/blog/comment/${bid}/${uid}`;
-  try {
-    const result = await axios.post(api,{content:content}, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    console.log(result.data);
+    console.log("deleted comment",result.rows);
     
     return result.data;
   } catch (error) {
     console.log(error);
-    return false
+    return false;
+  }
+};
+
+export const addcomment = async (bid, content) => {
+  if(content===""){
+    return null;
+  }
+  const uid = getUserId().id;
+  const token = getToken();
+  const api = `http://localhost:3000/api/v1/blog/comment/${bid}/${uid}`;
+  try {
+    const result = await axios.post(
+      api,
+      { content: content },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    console.log("added comment axios result: ",result.data);
+
+    return result.data;
+  } catch (error) {
+    console.log(error);
+    return false;
   }
 };

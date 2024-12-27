@@ -47,6 +47,7 @@ CREATE TABLE comments (
     user_id INT REFERENCES users(id) ON DELETE CASCADE
 );
 
+
 -- created follows
 CREATE TABLE follows (
     id SERIAL PRIMARY KEY,

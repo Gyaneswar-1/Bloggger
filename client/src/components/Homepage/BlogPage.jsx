@@ -43,6 +43,7 @@ const BlogPage = () => {
   // comment
   const [comment, setComment] = useState([]);
   const [newComment, setNewComment] = useState("");
+  const [loading, setLoading] = useState(false);
   async function getData() {
     const user_id = await getUserId();
     const blogData = await getBlogByID(id);
@@ -87,11 +88,14 @@ const BlogPage = () => {
     }
   }
 
-  const SubmitComment = async(newComment) => {
+  const SubmitComment = async (newComment) => {
+    setLoading(true)
     console.log("Submitted Comment:", newComment);
-    const result = await addcomment(id,newComment);
-    console.log("Submitted Comment:", result);
-    // setComment(result)
+    const newcomment = await addcomment(id, newComment);
+    if (newcomment !== null) {
+      setLoading(false)
+    }
+    console.log("Submitted Comment:", newcomment);
   };
 
   useEffect(() => {
@@ -187,7 +191,7 @@ const BlogPage = () => {
                               placeholder="Type here..."
                               className="mb-8 p-2"
                               resize="vertical"
-                              onInput={(e) => {
+                              onChange={(e) => {
                                 const value = e.target.value;
                                 setNewComment(value);
                               }}
@@ -210,9 +214,12 @@ const BlogPage = () => {
                             </div>
                           </DrawerBody>
                           <DrawerFooter>
-                            <Button colorScheme="green" type="submit">
-                              Post
-                            </Button>
+                          <Button 
+  isLoading={loading}
+  colorScheme="green" 
+  type="submit">
+  Post
+</Button>
                           </DrawerFooter>
                         </DrawerContent>
                       </form>
