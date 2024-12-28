@@ -6,6 +6,8 @@ import {
   likeblog,
   dislike,
   getUserProfileData,
+  follow,
+  unfollowUser,
 } from "../../services/apiManage.service";
 
 import {
@@ -35,6 +37,8 @@ const BlogPage = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = React.useRef();
   const { id } = useParams();
+  const [userFollow, setUserFollow] = useState(false);
+
   const [blog, setBlog] = useState({});
   const [user, setUser] = useState({});
   const [userLike, setUserLike] = useState(false); // liked or not
@@ -96,6 +100,19 @@ const BlogPage = () => {
     window.location.reload();
   };
 
+  const handleFollowClick = async () => {
+    try {
+      if (userFollow) {
+        await unfollowUser(user.id);
+      } else {
+        await follow(user.id);
+      }
+      setUserFollow(!userFollow);
+    } catch (error) {
+      console.error("Error updating follow status:", error);
+    }
+  };
+
   useEffect(() => {
     getData();
     handleComment();
@@ -129,11 +146,21 @@ const BlogPage = () => {
                   <img
                     alt={user.username}
                     src={user.pfp}
-                    class="relative inline-block h-8 w-8 rounded-full"
+                    class="relative inline-block object-cover h-8 w-8 rounded-full"
                   />
                   <div class="flex flex-col ml-3 text-sm">
-                    <span class="text-zinc-100 font-semibold">
+                    <span class="text-zinc-100 font-semibold flex gap-1 justify-center items-center">
                       {user.username}
+                      <button
+                        className={`p-2 rounded-md ${
+                          userFollow
+                            ? "text-zinc-600 font-medium"
+                            : "text-green-600 font-semibold"
+                        }`}
+                        onClick={handleFollowClick}
+                      >
+                        {userFollow ? "Unfollow" : "Follow"}
+                      </button>
                     </span>
                     <span class="text-zinc-300">
                       {moment(blog.created_at).fromNow()}
@@ -239,13 +266,11 @@ const BlogPage = () => {
           </div>
 
           <footer className="rounded-lg h-full shadow m-4 bg-black">
-            <div className="w-full  mx-auto max-w-screen-xl gap-9 p-4 md:flex md:items-center md:justify-between">
+            <div className="w-full flex flex-row  mx-auto max-w-screen-xl gap-10 p-4 md:flex md:items-center md:justify-between">
               <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">
-                © 2023{" "}
-                <a href="https://flowbite.com/" className="hover:underline">
-                  Flowbite™
-                </a>
-                . All Rights Reserved.
+                {new Date().getFullYear()}
+                <a className="hover:underline">Bloggger |</a>. All Rights
+                Reserved.
               </span>
               <ul className="flex flex-wrap items-center mt-3 text-sm font-medium text-gray-500 dark:text-gray-400 sm:mt-0">
                 <li>

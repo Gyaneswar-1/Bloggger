@@ -44,7 +44,7 @@ function Editblog() {
           <Text color="green.100">Loading...</Text>
         </VStack>
       ) : (
-        <div className="md:h-5/6 md:w-2/6 h-full w-full bg-zinc-700 rounded-md  text-white ">
+        <div className="md:h-fit md:w-4/6 h-full w-full bg-zinc-700 rounded-md  text-white ">
           <form action="" onSubmit={handleSubmit}>
             <CloseButton
               className="p-4 m-4"
@@ -68,7 +68,7 @@ function Editblog() {
               <h1>Content:</h1>
               <textarea
                 id="message"
-                rows="4"
+                rows="6"
                 class="block p-2.5 w-full text-sm max-h-36 text-white bg-zinc-50 rounded-lg border border-zinc-300 focus:ring-green-500 focus:border-green-500 dark:bg-zinc-700 dark:border-zinc-600 "
                 placeholder={content}
                 value={content}

@@ -55,7 +55,7 @@ function UsersPage({ pfp, name, bio, id, email }) {
         <div className="p-3">
           <div className="flex items-center justify-between mb-2">
             <span>
-              <img className="w-10 h-10 rounded-full" src={pfp} alt={name} />
+              <img className="w-10 h-10 rounded-full object-cover" src={pfp} alt={name} />
             </span>
             <button
               className={`p-2 rounded-md ${

@@ -22,11 +22,11 @@ import {
   Text,
   VStack,
 } from "@chakra-ui/react";
-import { useToast } from '@chakra-ui/react'
+import { useToast } from "@chakra-ui/react";
 import moment from "moment";
 
 const UserProfilePage = () => {
-  const toast = useToast()
+  const toast = useToast();
   const navigate = useNavigate();
   const [ublog, setUblog] = useState([]);
   const [followers, setFollowers] = useState("");
@@ -47,10 +47,9 @@ const UserProfilePage = () => {
     const result = await getUserBlogs(data.id);
     const follow = await getFollowers();
     const followed = await getFollowed();
-    if (result>0) {
+    if (result !== 0) {
       setShowBlogs(true);
-      console.log("state",showVlogs);
-      
+      console.log("state", showVlogs);
     }
     setFollowersList(follow);
     setFollowedList(followed);
@@ -76,7 +75,7 @@ const UserProfilePage = () => {
           <Text color="green.100">Loading...</Text>
         </VStack>
       ) : (
-        <div className="flex justify-evenly flex-wrap flex-row gap-8 p-6 bg-black h-full">
+        <div className="flex justify-evenly flex-wrap flex-row gap-8  w-full bg-black h-full">
           <div
             className=" max-w-sm  border border-gray-200  
 bg-zinc-800 p-6 rounded-lg shadow-lg h-full w-full "
@@ -91,7 +90,7 @@ bg-zinc-800 p-6 rounded-lg shadow-lg h-full w-full "
                 {udata.username}
               </h1>
               <p className="text-gray-100">{udata.email}</p>
-              <p className="text-gray-200">{udata.bio}</p>
+              <p className="text-gray-200 text-center">{udata.bio}</p>
               <p className="text-gray-200 mt-2">
                 Joined {moment(udata.created_at).fromNow()}
               </p>
@@ -152,9 +151,8 @@ bg-zinc-800 p-6 rounded-lg shadow-lg h-full w-full "
                 </Popover>
               </div>
             </div>
-            <div className="buttons flex justify-evenly pt-5">
+            <div className="buttons flex justify-center gap-9 pt-5">
               <Button
-
                 rounded="inherit"
                 variant="outline"
                 borderRadius={6}

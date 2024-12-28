@@ -10,7 +10,6 @@ function Cardd(props) {
   const [showDeleteUser, setShowDeleteUser] = useState(false);
   const [showEditBlog, setShowEditBlog] = useState(false);
   const { id, title, content, images, username, created_at, userpfp } = props;
-  console.log(created_at);
 
   return (
     <div className="cardd  bg-zinc-800 shadow-2xl text-white rounded-md overflow-hidden lg:w-[700px] lg:h-[200px] md:ml-4 md:mr-4 flex md:flex-row w-full flex-col justify-start">
@@ -47,7 +46,6 @@ function Cardd(props) {
         >
           {content.substring(0, 100)}
         </p>
-        {/* <hr className="border-gray-300 mb-4 w-full" /> */}
         <div className="flex items-center">
           <div className="">
             {username ? (

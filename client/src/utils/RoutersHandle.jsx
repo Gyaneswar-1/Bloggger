@@ -13,7 +13,6 @@ import EditUser from "../components/Homepage/EditUser";
 import BlogPage from "../components/Homepage/BlogPage";
 import Aboutus from "../components/Homepage/Aboutus";
 import Editblog from "../components/Homepage/Editblog";
-import Subsctiption from "../components/Homepage/Subsctiption";
 
 function RoutersHandle() {
   // const token = getToken();
@@ -36,7 +35,6 @@ function RoutersHandle() {
         <Route path="/welcome" element={<WelcomePage />} />
         <Route path="/aboutus" element={<Aboutus/>} />
         <Route path="/register" element={<Register />} />
-        <Route path="/subsctiption" element={<Subsctiption/>} />
         <Route path="/home" element={<HomeEx />} />
         <Route path="/home/main" element={<HomeEx />} />
         <Route path="/home/search" element={<SearchPage />} />

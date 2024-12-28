@@ -140,7 +140,7 @@ function Navbar(props) {
                             ""
                           )}
                         >
-                          Trending
+                          Writers
                         </span>
                       );
                     }}

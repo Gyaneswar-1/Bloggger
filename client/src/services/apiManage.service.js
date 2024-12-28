@@ -16,7 +16,7 @@ export const getHomePageData = async () => {
 
       return response.data.result;
     } catch (err) {
-      console.log("error ===>", err);
+      console.log("error ", err);
     }
   } else {
     console.log("No token found, sorry");
@@ -132,7 +132,7 @@ export const getUserBlogs = async (id) => {
         Authorization: `Bearer ${token}`,
       },
     });
-    // console.log("Fetched data:",result.data.data);
+
     return result.data.data;
   } catch (error) {
     console.log("Error in fetching data: ", error);
@@ -149,7 +149,6 @@ export const deleteBlog = async (bid) => {
         Authorization: `Bearer ${token}`,
       },
     });
-    console.log("DELETED DATA", result.data.message.images);
     return true;
   } catch (error) {
     console.log(error);
@@ -306,9 +305,7 @@ export const unfollowUser = async (uid) => {
 export const editBlog = async (id, title, content, image) => {
   const token = getToken();
   const api = "http://localhost:3000/api/v1/blog/edit";
-  console.log("imageurl", image);
   const imageurl = await uploadImage(image);
-  console.log("imageurl", imageurl);
 
   try {
     const result = axios.put(
@@ -342,11 +339,10 @@ export const uploadImage = async (image) => {
       import.meta.env.VITE_CLOUDINARY_UPLOAD_URL,
       data
     );
-    console.log(result.data);
 
     return result.data.url;
   } catch (error) {
-    console.log("Axios_error➡️", error);
+    console.log("Axios_error", error);
   }
 };
 
@@ -381,7 +377,6 @@ export const getlike = async (bid) => {
         Authorization: `Bearer ${token}`,
       },
     });
-    console.log(result.data.message);
     return result.data.message;
   } catch (error) {
     console.log(error);
@@ -398,7 +393,6 @@ export const isUserliked = async (bid) => {
         Authorization: `Bearer ${token}`,
       },
     });
-    console.log("isliked", result);
 
     if (isliked) {
       return true;
@@ -419,7 +413,6 @@ export const dislike = async (bid) => {
         Authorization: `Bearer ${token}`,
       },
     });
-    console.log(result.data.message);
     return true;
   } catch (error) {
     console.log(error);
@@ -452,7 +445,6 @@ export const deletecomment = async (cid) => {
         Authorization: `Bearer ${token}`,
       },
     });
-    console.log("deleted comment", result.rows);
 
     return result.data;
   } catch (error) {
@@ -478,7 +470,6 @@ export const addcomment = async (bid, content) => {
         },
       }
     );
-    console.log("added comment axios result: ", result.data);
 
     return result.data;
   } catch (error) {
