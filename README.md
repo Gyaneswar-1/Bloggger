@@ -39,7 +39,7 @@ The backend is built with the following technologies:
 
 1. Clone the repository:
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/Gyaneswar-1/Bloggger.git
    ```
 2. Navigate to the project directory:
    ```bash
