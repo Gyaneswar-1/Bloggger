@@ -2,8 +2,6 @@ import db from "../db/db.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { ApiResponse } from "../utils/ApiResponse.js";
-import passport from "passport";
-import GoogleStrategy from "passport-google-oauth2";
 
 const saltround = 10;
 const JWT_SECRET = process.env.JWT_SECRET;
@@ -34,21 +32,6 @@ export async function register(req, res) {
             "INSERT INTO users (username,email,user_password,pfp) VALUES ($1,$2,$3,$4) RETURNING *",
             [username, email, hash, pfp]
           );
-          // passport.use(
-          //   new GoogleStrategy(
-          //     {
-          //       clientID: process.env.GOOGLE_CLIENT_ID,
-          //       clientSecret: process.env.GOOGLE_CLIENT_SECRETS,
-          //       callbackURL: "http://localhost:3000/auth/google/callback",
-          //     },
-          //     (accessToken, refreshToken, profile, done) => {
-          //       return done(null, profile);
-          //     }
-          //   )
-          // );
-
-          passport.serializeUser((user, done) => done(null, user));
-          passport.deserializeUser((user, done) => done(null, user));
           
           const token = jwt.sign({ result }, JWT_SECRET, { expiresIn: "3h" });
 
