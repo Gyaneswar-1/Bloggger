@@ -2,7 +2,6 @@ import { getToken, isAuthenticated, getUserId } from "./authService.js";
 import axios from "axios";
 // import { v2 as cloudinary } from "cloudinary";
 
-
 // this is homepage data fetch
 export const getHomePageData = async () => {
   const token = await getToken();
@@ -151,14 +150,6 @@ export const deleteBlog = async (bid) => {
       },
     });
     console.log("DELETED DATA", result.data.message.images);
-    const data = result.data.message.images;
-    const fileName = data.substring(
-      data.lastIndexOf("/") + 1,
-      data.lastIndexOf(".")
-    );
-    console.log("result", fileName);
-    console.log(await deleteImage(fileName));
-
     return true;
   } catch (error) {
     console.log(error);
@@ -312,14 +303,7 @@ export const unfollowUser = async (uid) => {
   }
 };
 
-
-
 export const editBlog = async (id, title, content, image) => {
-  console.log("id", id);
-  console.log("id", title);
-  console.log("id", content);
-  console.log("id", image);
-
   const token = getToken();
   const api = "http://localhost:3000/api/v1/blog/edit";
   console.log("imageurl", image);
@@ -364,27 +348,6 @@ export const uploadImage = async (image) => {
   } catch (error) {
     console.log("Axios_error➡️", error);
   }
-};
-
-export const deleteImage = async (publicId) => {
-  //   cloudinary.config({
-  //     cloud_name: 'DATA',
-  //     api_key: 'DATA',
-  //     api_secret: 'DATA',
-  //   });
-  //   // cloudinary.config({
-  //   //   cloud_name: 'dsrwi1qoe',
-  //   //   api_key: '786456799217111',
-  //   //   api_secret: 'tmGwaVpqNIxWsxXSJcYgYFzFd2s',
-  //   // });
-  //   cloudinary.uploader
-  //     .destroy(publicId, (error, result) => {
-  //       console.log(error);
-  //       console.log(result);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
 };
 
 // like

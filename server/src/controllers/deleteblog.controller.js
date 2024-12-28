@@ -1,6 +1,7 @@
 import db from "../db/db.js";
 import { ApiError } from "../utils/ApiError.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
+import { deleteImage } from "../middleware/cloudinaryImage.middleware.js";
 
 export async function deleteblog(req, res) {
   const { id, uid } = req.params;
@@ -23,6 +24,17 @@ export async function deleteblog(req, res) {
         );
     }
 
+    try {
+      if (result.rows[0].images !== null) {
+        await deleteImage(result.rows[0].images);
+      }else{
+        res
+        .status(200)
+        .json(new ApiResponse(200, "Blog deleted successfully", result.rows[0]));
+      }
+    } catch (error) {
+      console.error("Unable to delete image:", error);
+    }
     res
       .status(200)
       .json(new ApiResponse(200, "Blog deleted successfully", result.rows[0]));
